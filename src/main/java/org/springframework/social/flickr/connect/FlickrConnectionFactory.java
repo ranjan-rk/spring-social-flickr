@@ -18,11 +18,6 @@ package org.springframework.social.flickr.connect;
 import org.springframework.social.connect.support.OAuth1ConnectionFactory;
 import org.springframework.social.flickr.api.Flickr;
 
-/**
- * TODO : Document Me
- * 
- * @author Ranjan Kumar
- */
 public class FlickrConnectionFactory extends OAuth1ConnectionFactory<Flickr> {
 
     public FlickrConnectionFactory(String consumerKey, String consumerSecret) {

@@ -15,11 +15,6 @@
  */
 package org.springframework.social.flickr.api;
 
-/**
- * TODO : Document Me
- *
- * @author Ranjan Kumar
- */
 public class FlickrProfile {
 
 }

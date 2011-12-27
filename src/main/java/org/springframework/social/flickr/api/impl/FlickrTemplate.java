@@ -19,11 +19,6 @@ import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.FlickrProfile;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
-/**
- * TODO : Document Me
- * 
- * @author Ranjan Kumar
- */
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 
     public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {

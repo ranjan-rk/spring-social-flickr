@@ -21,11 +21,6 @@ import org.springframework.social.connect.UserProfile;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.web.client.HttpClientErrorException;
 
-/**
- * TODO : Document Me
- * 
- * @author Ranjan Kumar
- */
 public class FlickrAdapter implements ApiAdapter<Flickr> {
 
     public boolean test(Flickr flickr) {

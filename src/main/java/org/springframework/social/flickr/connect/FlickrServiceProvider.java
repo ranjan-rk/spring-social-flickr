@@ -20,11 +20,6 @@ import org.springframework.social.flickr.api.impl.FlickrTemplate;
 import org.springframework.social.oauth1.AbstractOAuth1ServiceProvider;
 import org.springframework.social.oauth1.OAuth1Template;
 
-/**
- * TODO : Document Me
- *
- * @author Ranjan Kumar
- */
 public class FlickrServiceProvider extends AbstractOAuth1ServiceProvider<Flickr> {
 
 	public FlickrServiceProvider(String consumerKey, String consumerSecret) {

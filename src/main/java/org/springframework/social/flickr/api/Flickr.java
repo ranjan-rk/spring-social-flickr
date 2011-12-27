@@ -17,11 +17,6 @@ package org.springframework.social.flickr.api;
 
 import org.springframework.social.ApiBinding;
 
-/**
- * TODO : Document Me
- * 
- * @author Ranjan Kumar
- */
 public interface Flickr extends ApiBinding{
 
     FlickrProfile getUserProfile();
