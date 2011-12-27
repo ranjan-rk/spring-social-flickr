@@ -16,18 +16,24 @@
 package org.springframework.social.flickr.connect;
 
 import org.junit.Test;
+import org.springframework.social.flickr.api.Flickr;
+import org.springframework.social.flickr.api.FlickrProfile;
+import org.springframework.social.flickr.api.impl.FlickrTemplate;
+import org.springframework.social.oauth1.OAuth1Operations;
+import org.springframework.social.oauth1.OAuthToken;
 
-/**
- * TODO : Document Me
- * 
- * @author Ranjan Kumar
- */
 public class FlickrServiceProviderTest {
     String consumerKey = "consumerKey";
     String consumerSecret = "consumerSecret";
 
     @Test
     public void getFlickrTemplate() {
-	new FlickrConnectionFactory(consumerKey, consumerSecret);
+	FlickrConnectionFactory flickrConnectionFactory = new FlickrConnectionFactory(consumerKey, consumerSecret);
+	OAuth1Operations oauthOperations = flickrConnectionFactory.getOAuthOperations();
+	OAuthToken fetchRequestToken = oauthOperations.fetchRequestToken("https://my-callback-url", null);
+	
+	Flickr flickr = new FlickrTemplate(consumerKey, consumerSecret, fetchRequestToken.getValue(), fetchRequestToken.getSecret());
+	FlickrProfile userProfile = flickr.getUserProfile();
+	System.out.println(userProfile);
     }
 }

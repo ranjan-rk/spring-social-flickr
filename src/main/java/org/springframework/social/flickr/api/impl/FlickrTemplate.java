@@ -27,8 +27,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 
     @Override
     public FlickrProfile getUserProfile() {
-	// TODO Auto-generated method stub
-	return null;
+	FlickrProfile flickrProfile = getRestTemplate().getForObject("http://api.flickr.com/services/rest/?method=flickr.urls.getUserProfile&name=bees", FlickrProfile.class);
+	return flickrProfile;
     }
 
 }
