@@ -15,11 +15,18 @@
  */
 package org.springframework.social.flickr.api.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.codehaus.jackson.map.ObjectMapper;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.FlickrProfile;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
+    private String URL_TO_ACCESS_PROFILE = "URL_TO_ACCESS_PROFILE";
 
     public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
 	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
@@ -27,8 +34,20 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 
     @Override
     public FlickrProfile getUserProfile() {
-	FlickrProfile flickrProfile = getRestTemplate().getForObject("http://api.flickr.com/services/rest/?method=flickr.urls.getUserProfile&name=bees", FlickrProfile.class);
+	FlickrProfile flickrProfile = getRestTemplate().getForObject(URL_TO_ACCESS_PROFILE, FlickrProfile.class);
 	return flickrProfile;
     }
 
+    @Override
+    protected MappingJacksonHttpMessageConverter getJsonMessageConverter() {
+	MappingJacksonHttpMessageConverter converter = super.getJsonMessageConverter();
+	ObjectMapper objectMapper = new ObjectMapper();
+	objectMapper.registerModule(new FlickrModule());
+	List<MediaType> supportedMediaTypes = new ArrayList<MediaType>();
+	supportedMediaTypes.add(MediaType.TEXT_PLAIN);
+	supportedMediaTypes.add(MediaType.TEXT_XML);
+	converter.setSupportedMediaTypes(supportedMediaTypes);
+	converter.setObjectMapper(objectMapper);
+	return converter;
+    }
 }

@@ -23,15 +23,16 @@ import org.springframework.social.oauth1.OAuth1Operations;
 import org.springframework.social.oauth1.OAuthToken;
 
 public class FlickrServiceProviderTest {
-    String consumerKey = "consumerKey";
-    String consumerSecret = "consumerSecret";
+    private String consumerKey = "consumerKey";
+    private String consumerSecret = "consumerSecret";
+    private String callbackUrl = "https://my-callback-url";
 
     @Test
     public void getFlickrTemplate() {
 	FlickrConnectionFactory flickrConnectionFactory = new FlickrConnectionFactory(consumerKey, consumerSecret);
 	OAuth1Operations oauthOperations = flickrConnectionFactory.getOAuthOperations();
-	OAuthToken fetchRequestToken = oauthOperations.fetchRequestToken("https://my-callback-url", null);
-	
+	OAuthToken fetchRequestToken = oauthOperations.fetchRequestToken(callbackUrl, null);
+
 	Flickr flickr = new FlickrTemplate(consumerKey, consumerSecret, fetchRequestToken.getValue(), fetchRequestToken.getSecret());
 	FlickrProfile userProfile = flickr.getUserProfile();
 	System.out.println(userProfile);

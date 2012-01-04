@@ -13,34 +13,25 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.springframework.social.flickr.api;
+package org.springframework.social.flickr.api.impl;
 
-public class FlickrProfile {
-    private String nsid;
-    private String url;
-    private String stat;
+import org.codehaus.jackson.Version;
+import org.codehaus.jackson.map.module.SimpleModule;
+import org.springframework.social.flickr.api.FlickrProfile;
+import org.springframework.social.flickr.api.FlickrProfileMixin;
 
-    public String getNsid() {
-	return nsid;
+public class FlickrModule extends SimpleModule {
+
+    public FlickrModule(String name, Version version) {
+	super(name, version);
     }
 
-    public void setNsid(String nsid) {
-	this.nsid = nsid;
+    public FlickrModule() {
+	super("FlickrModule", new Version(1, 0, 0, null));
     }
 
-    public String getUrl() {
-	return url;
-    }
-
-    public void setUrl(String url) {
-	this.url = url;
-    }
-
-    public String getStat() {
-	return stat;
-    }
-
-    public void setStat(String stat) {
-	this.stat = stat;
+    @Override
+    public void setupModule(SetupContext context) {
+	context.setMixInAnnotations(FlickrProfile.class, FlickrProfileMixin.class);
     }
 }
