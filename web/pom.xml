@@ -11,7 +11,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<name>Spring Social Flickr</name>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<description>Spring Social extension with connection support and an API binding for Flickr</description>
+	<description>Spring Social extension  with connection support and an API binding for Flickr</description>
 	<url>https://github.com/ranjan-rk/spring-social-flickr</url>
 	<dependencies>
 		<dependency>

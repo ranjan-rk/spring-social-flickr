@@ -26,14 +26,17 @@ import org.springframework.social.flickr.api.FlickrProfile;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
-    private String URL_TO_ACCESS_PROFILE = "https://testpeople.json";
+    private String URL_TO_ACCESS_PROFILE = "http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&username=hemantsch&format=json&nojsoncallback=1";
+    
+    
 
     public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
-	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+    	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
     }
 
     @Override
     public FlickrProfile getUserProfile() {
+    System.out.println("And the url is :  " + URL_TO_ACCESS_PROFILE);
 	FlickrProfile flickrProfile = getRestTemplate().getForObject(URL_TO_ACCESS_PROFILE, FlickrProfile.class);
 	return flickrProfile;
     }
