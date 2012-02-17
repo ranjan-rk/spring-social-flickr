@@ -21,7 +21,7 @@ import org.springframework.social.flickr.api.Flickr;
 public class FlickrConnectionFactory extends OAuth1ConnectionFactory<Flickr> {
 
     public FlickrConnectionFactory(String consumerKey, String consumerSecret) {
-	super("flickr", new FlickrServiceProvider(consumerKey, consumerSecret), new FlickrAdapter());
+    	super("flickr", new FlickrServiceProvider(consumerKey, consumerSecret), new FlickrAdapter());
     }
 
 }

@@ -26,7 +26,6 @@ public class FlickrServiceProvider extends AbstractOAuth1ServiceProvider<Flickr>
 		super(consumerKey, consumerSecret, new OAuth1Template(consumerKey, consumerSecret,
 			"http://www.flickr.com/services/oauth/request_token",
 			"http://www.flickr.com/services/oauth/authorize",
-			"http://www.flickr.com/services/oauth/authenticate",			
 			"http://www.flickr.com/services/oauth/access_token"));
 	}
 
