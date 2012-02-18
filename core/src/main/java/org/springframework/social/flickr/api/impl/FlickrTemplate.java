@@ -26,7 +26,7 @@ import org.springframework.social.flickr.api.FlickrProfile;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
-    private String URL_TO_ACCESS_PROFILE = "http://api.flickr.com/services/rest/?method=flickr.people.findByUsername&username=hemantsch&format=json&nojsoncallback=1";
+    private String URL_TO_ACCESS_PROFILE = "http://api.flickr.com/services/rest/?method=flickr.test.login&format=json&nojsoncallback=1";
     
     
 
@@ -40,7 +40,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 	FlickrProfile flickrProfile = getRestTemplate().getForObject(URL_TO_ACCESS_PROFILE, FlickrProfile.class);
 	return flickrProfile;
     }
-
+    
     @Override
     protected MappingJacksonHttpMessageConverter getJsonMessageConverter() {
 		MappingJacksonHttpMessageConverter converter = super.getJsonMessageConverter();

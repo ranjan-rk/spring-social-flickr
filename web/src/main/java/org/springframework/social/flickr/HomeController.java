@@ -35,9 +35,9 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		FlickrProfile fp = flickr.getUserProfile();
-		System.out.println(fp.getStat());
-		model.addAttribute("welcomeMessage", "more to done");
+		//FlickrProfile fp = flickr.getUserProfile();
+		//System.out.println(fp.getStat());
+		model.addAttribute("welcomeMessage","Welcome to spring social flickr,  "+ flickr.getUserProfile().getUser().getUsername().get_content());
 		return "welcomePage";
 	}
 

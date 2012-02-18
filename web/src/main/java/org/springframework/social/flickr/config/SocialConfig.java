@@ -17,9 +17,12 @@ import org.springframework.social.connect.UsersConnectionRepository;
 import org.springframework.social.connect.jdbc.JdbcUsersConnectionRepository;
 import org.springframework.social.connect.support.ConnectionFactoryRegistry;
 import org.springframework.social.connect.web.ProviderSignInController;
-import org.springframework.social.flickr.SimpleSignInAdapter;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.connect.FlickrConnectionFactory;
+import org.springframework.social.flickr.user.SecurityContext;
+import org.springframework.social.flickr.user.SimpleConnectionSignUp;
+import org.springframework.social.flickr.user.SimpleSignInAdapter;
+import org.springframework.social.flickr.user.User;
 
 @Configuration
 
@@ -34,6 +37,7 @@ public class SocialConfig {
     
     @Bean
     public ConnectionFactoryLocator connectionFactoryLocator() {
+    	System.out.println("inside the connection facotry locator");
         ConnectionFactoryRegistry registry = new ConnectionFactoryRegistry();
         registry.addConnectionFactory(new FlickrConnectionFactory(
             environment.getProperty("clientId"),
@@ -44,30 +48,24 @@ public class SocialConfig {
     @Bean
     @Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)
     public ConnectionRepository connectionRepository(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        /*
-        if (authentication == null) {
-            throw new IllegalStateException("Unable to get a ConnectionRepository: no user signed in");
-        }
-        */
-        ConnectionRepository cr=null;
-        try{
-        	cr = usersConnectionRepository().createConnectionRepository("hemant");
-        }catch(Exception e){
-        	System.out.println(e.toString());
-        }
-        return cr;
+    	System.out.println("inside the connectionRepository");
+    	User user = SecurityContext.getCurrentUser();
+	    return usersConnectionRepository().createConnectionRepository(user.getId());
     }
 
     @Bean
     public UsersConnectionRepository usersConnectionRepository() {
-        return new JdbcUsersConnectionRepository(dataSource, connectionFactoryLocator(), 
-        		Encryptors.noOpText());
+    	System.out.println("inside the usersConnectionRepository");
+    	JdbcUsersConnectionRepository repository = new JdbcUsersConnectionRepository(dataSource,
+				connectionFactoryLocator(), Encryptors.noOpText());
+		repository.setConnectionSignUp(new SimpleConnectionSignUp());
+		return repository;
     }
     
 	@Bean
 	@Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)	
 	public Flickr flickr() {
+		System.out.println("inside the flickr");
 	    return connectionRepository().getPrimaryConnection(Flickr.class).getApi();
 	}
 
@@ -81,6 +79,7 @@ public class SocialConfig {
 	
 	@Bean
 	public ProviderSignInController providerSignInController() {
+		System.out.println("inside the providerSignInController");
 		ProviderSignInController psc= new ProviderSignInController(connectionFactoryLocator(), usersConnectionRepository(),
 				new SimpleSignInAdapter());
 		return psc;

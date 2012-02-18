@@ -6,7 +6,5 @@
 </head>
 <body>
 	${welcomeMessage}
-	<%= new java.util.Date() %>
-	${1 + 2 * 4 - 6 / 2}
 </body>
 </html>

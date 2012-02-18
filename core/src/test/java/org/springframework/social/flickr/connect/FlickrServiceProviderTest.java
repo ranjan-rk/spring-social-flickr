@@ -43,7 +43,7 @@ public class FlickrServiceProviderTest {
 
     @Before
     public void getFlickrTemplate() {
-	/*
+	/* 
 	FlickrConnectionFactory flickrConnectionFactory = new FlickrConnectionFactory(consumerKey, consumerSecret);
 	OAuth1Operations oauthOperations = flickrConnectionFactory.getOAuthOperations();
 	OAuthToken fetchRequestToken = oauthOperations.fetchRequestToken(callbackUrl, null);
@@ -60,12 +60,16 @@ public class FlickrServiceProviderTest {
     @Test
     public void getPeopleInfoTest(){	
 	HttpHeaders responseHeaders = new HttpHeaders();
-	    responseHeaders.setContentType(MediaType.APPLICATION_JSON);
-	    mockServer.expect(requestTo("https://testpeople.json"))
+	    responseHeaders.setContentType(MediaType.TEXT_PLAIN);
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.test.login&format=json&nojsoncallback=1"))
 	        .andExpect(method(GET))
 	        .andRespond(withResponse(jsonResource("peopleinfo"), responseHeaders));
 	    
 	    FlickrProfile profile = flickr.getUserProfile();
+	    System.out.println(profile.getStat());
+	    System.out.println(profile.getUser().getId());
+	    System.out.println(profile.getUser().getUsername().get_content());
+	    //System.out.println(profile.getUsername());
 	    assertNotNull(profile);
     }
     

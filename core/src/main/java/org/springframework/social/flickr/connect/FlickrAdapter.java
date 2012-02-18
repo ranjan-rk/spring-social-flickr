@@ -19,6 +19,7 @@ import org.springframework.social.connect.ApiAdapter;
 import org.springframework.social.connect.ConnectionValues;
 import org.springframework.social.connect.UserProfile;
 import org.springframework.social.flickr.api.Flickr;
+import org.springframework.social.flickr.api.FlickrProfile;
 import org.springframework.web.client.HttpClientErrorException;
 
 public class FlickrAdapter implements ApiAdapter<Flickr> {
@@ -40,8 +41,15 @@ public class FlickrAdapter implements ApiAdapter<Flickr> {
     }
 
     @Override
-    public void setConnectionValues(Flickr api, ConnectionValues values) {
-	// TODO Auto-generated method stub
+    public void setConnectionValues(Flickr flickr, ConnectionValues values) {
+    	FlickrProfile profile = flickr.getUserProfile();
+    	System.out.println(profile.getStat());
+    	System.out.println(profile.getUser().getId());
+    	System.out.println(profile.getUser().getUsername().get_content());
+    	
+		values.setProviderUserId("testflickrproveruseid");
+		values.setDisplayName("testdisplayname");
+		
 
     }
 
