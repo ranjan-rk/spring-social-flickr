@@ -18,34 +18,50 @@ package org.springframework.social.flickr.api.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.Flickr;
-import org.springframework.social.flickr.api.FlickrProfile;
+import org.springframework.social.flickr.api.UserOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
-    private String URL_TO_ACCESS_PROFILE = "http://api.flickr.com/services/rest/?method=flickr.test.login&format=json&nojsoncallback=1";
-    
+    //private String URL_TO_ACCESS_PROFILE = "http://api.flickr.com/services/rest/?method=flickr.test.login&format=json&nojsoncallback=1";
+	private UserOperations userOperations;
     
 
-    public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
+
+
+	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
     	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
+    	initSubApis();
+    }
+    
+	public FlickrTemplate(){
+    	super();
+    	initSubApis();
     }
 
+	private void initSubApis() {
+		System.out.println("isAuthorized() :"+isAuthorized());
+		this.userOperations = new UserTemplate(getRestTemplate(),isAuthorized());
+		
+	}
+	/*
     @Override
     public FlickrProfile getUserProfile() {
     System.out.println("And the url is :  " + URL_TO_ACCESS_PROFILE);
 	FlickrProfile flickrProfile = getRestTemplate().getForObject(URL_TO_ACCESS_PROFILE, FlickrProfile.class);
 	return flickrProfile;
     }
-    
+    */
     @Override
     protected MappingJacksonHttpMessageConverter getJsonMessageConverter() {
-		MappingJacksonHttpMessageConverter converter = super.getJsonMessageConverter();
-		ObjectMapper objectMapper = new ObjectMapper();
+		MappingJacksonHttpMessageConverter converter = super.getJsonMessageConverter();			
+		FlickrObjectMapper objectMapper = new FlickrObjectMapper();
 		objectMapper.registerModule(new FlickrModule());
+		objectMapper.disable(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES);
+		objectMapper.enable(DeserializationConfig.Feature.UNWRAP_ROOT_VALUE);
 		List<MediaType> supportedMediaTypes = new ArrayList<MediaType>();
 		supportedMediaTypes.add(MediaType.TEXT_PLAIN);
 		supportedMediaTypes.add(MediaType.TEXT_XML);
@@ -54,4 +70,9 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		converter.setObjectMapper(objectMapper);
 		return converter;
     }
+    
+    public UserOperations userOperations() {
+		return userOperations;
+	}
+
 }

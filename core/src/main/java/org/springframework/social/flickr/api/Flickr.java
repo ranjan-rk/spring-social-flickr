@@ -19,6 +19,7 @@ import org.springframework.social.ApiBinding;
 
 public interface Flickr extends ApiBinding{
 
-    FlickrProfile getUserProfile();
+	UserOperations userOperations();
+    
 
 }

@@ -37,7 +37,8 @@ public class HomeController {
 	public String home(Model model) {
 		//FlickrProfile fp = flickr.getUserProfile();
 		//System.out.println(fp.getStat());
-		model.addAttribute("welcomeMessage","Welcome to spring social flickr,  "+ flickr.getUserProfile().getUser().getUsername().get_content());
+		System.out.println(flickr.userOperations().getUserProfile().getUsername());
+		model.addAttribute("welcomeMessage","Welcome to spring social flickr,  "+ flickr.userOperations().getUserProfile().getUsername());
 		return "welcomePage";
 	}
 

@@ -15,6 +15,11 @@
  */
 package org.springframework.social.flickr.connect;
 
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.social.test.client.RequestMatchers.method;
+import static org.springframework.social.test.client.RequestMatchers.requestTo;
+import static org.springframework.social.test.client.ResponseCreators.withResponse;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -24,37 +29,19 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
-import org.springframework.social.flickr.api.Flickr;
-import org.springframework.social.flickr.api.FlickrProfile;
+import org.springframework.social.flickr.api.Person;
 import org.springframework.social.flickr.api.impl.FlickrTemplate;
 import org.springframework.social.test.client.MockRestServiceServer;
 
-import static org.junit.Assert.*;
-import static org.springframework.social.test.client.RequestMatchers.*;
-import static org.springframework.social.test.client.ResponseCreators.*;
-import static org.springframework.http.HttpMethod.*;
-
 public class FlickrServiceProviderTest {
-    private String consumerKey = "748cc1ca21b7ee6f251b80d3cf4733f6";
-    private String consumerSecret = "ceea1d67ec2096ad";
-    private String callbackUrl = "https://my-callback-url";
     MockRestServiceServer mockServer;
     FlickrTemplate flickr;
 
     @Before
     public void getFlickrTemplate() {
-	/* 
-	FlickrConnectionFactory flickrConnectionFactory = new FlickrConnectionFactory(consumerKey, consumerSecret);
-	OAuth1Operations oauthOperations = flickrConnectionFactory.getOAuthOperations();
-	OAuthToken fetchRequestToken = oauthOperations.fetchRequestToken(callbackUrl, null);
-	*/
-	
-	flickr = new FlickrTemplate("consumerKey", "consumerSecret", "accessToken", "accessTokenSecret");
-	mockServer = MockRestServiceServer.createServer(flickr.getRestTemplate());
+    	flickr = new FlickrTemplate("consumerKey", "consumerSecret", "accessToken", "accessTokenSecret");
+		mockServer = MockRestServiceServer.createServer(flickr.getRestTemplate());
 
-	/*Flickr flickr = new FlickrTemplate(consumerKey, consumerSecret, fetchRequestToken.getValue(), fetchRequestToken.getSecret());
-	FlickrProfile userProfile = flickr.getUserProfile();
-	System.out.println(userProfile);*/
     }
     
     @Test
@@ -63,14 +50,15 @@ public class FlickrServiceProviderTest {
 	    responseHeaders.setContentType(MediaType.TEXT_PLAIN);
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.test.login&format=json&nojsoncallback=1"))
 	        .andExpect(method(GET))
-	        .andRespond(withResponse(jsonResource("peopleinfo"), responseHeaders));
+	        .andRespond(withResponse(jsonResource("testuser"), responseHeaders));
 	    
-	    FlickrProfile profile = flickr.getUserProfile();
-	    System.out.println(profile.getStat());
-	    System.out.println(profile.getUser().getId());
-	    System.out.println(profile.getUser().getUsername().get_content());
-	    //System.out.println(profile.getUsername());
-	    assertNotNull(profile);
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?user_id=73562874%40N08&method=flickr.people.getInfo&format=json&nojsoncallback=1"))
+        .andExpect(method(GET))
+        .andRespond(withResponse(jsonResource("peopleinfo"), responseHeaders));
+	    
+	    Person profile = flickr.userOperations().getUserProfile();
+	    System.out.println(profile.getUsername());
+	    	    
     }
     
     private Resource jsonResource(String filename) {
@@ -80,7 +68,6 @@ public class FlickrServiceProviderTest {
 		    File f = r.getFile();
 		    System.out.println(f.getAbsolutePath());
 		} catch (IOException e) {
-		    // TODO Auto-generated catch block
 		    e.printStackTrace();
 		}
 	    return  r;

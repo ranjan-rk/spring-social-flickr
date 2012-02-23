@@ -18,48 +18,14 @@ package org.springframework.social.flickr.api;
 public class FlickrProfile {
 
 	String stat;
-	User user;
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
+	Person person;
 	
-	public static class UserName{
-		String _content;
-
-		public String get_content() {
-			return _content;
-		}
-
-		public void set_content(String _content) {
-			this._content = _content;
-		}
+	public Person getPerson() {
+		return person;
 	}
-	
-	public static class User{
-		String id ;
-		UserName username;
-		
-		
 
-		public UserName getUsername() {
-			return username;
-		}
-
-		public void setUsername(UserName username) {
-			this.username = username;
-		}
-
-		public String getId() {
-			return id;
-		}
-
-		public void setId(String id) {
-			this.id = id;
-		}
+	public void setPerson(Person person) {
+		this.person = person;
 	}
 
 	public String getStat() {
