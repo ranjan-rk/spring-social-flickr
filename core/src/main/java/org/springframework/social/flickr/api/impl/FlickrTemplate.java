@@ -22,12 +22,12 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.Flickr;
-import org.springframework.social.flickr.api.UserOperations;
+import org.springframework.social.flickr.api.PeopleOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     //private String URL_TO_ACCESS_PROFILE = "http://api.flickr.com/services/rest/?method=flickr.test.login&format=json&nojsoncallback=1";
-	private UserOperations userOperations;
+	private PeopleOperations userOperations;
     
 
 
@@ -43,8 +43,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
 
 	private void initSubApis() {
-		System.out.println("isAuthorized() :"+isAuthorized());
-		this.userOperations = new UserTemplate(getRestTemplate(),isAuthorized());
+		this.userOperations = new PeopleTemplate(getRestTemplate(),isAuthorized());
 		
 	}
 	/*
@@ -71,7 +70,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		return converter;
     }
     
-    public UserOperations userOperations() {
+    public PeopleOperations personOperations() {
 		return userOperations;
 	}
 

@@ -1,7 +1,6 @@
-{ "person": { "id": "7354@T08", "nsid": "73562874@N08", "ispro": 0, "iconserver": "7043", "iconfarm": 8, "path_alias": "hemant2423", 
-    "username": { "_content": "hesch234" }, 
+{ "person": { "id": "73562874@N08", "nsid": "73562874@N08", "ispro": 0, "iconserver": "7043", "iconfarm": 8, "path_alias": "hemant24", 
+    "username": { "_content": "hemantsch" }, 
     "realname": { "_content": "Hemant Sachdeva" }, 
-    "mbox_sha1sum": { "_content": "60c1fe753d9985d91582bd6634362f688232b76e" }, 
     "location": { "_content": "" }, 
     "timezone": { "label": "Chennai, Kolkata, Mumbai, New Delhi", "offset": "+05:30" }, 
     "description": { "_content": "I am the person who love to see natural scenery." }, 
@@ -11,5 +10,4 @@
     "photos": { 
       "firstdatetaken": { "_content": "2011-12-03 17:56:31" }, 
       "firstdate": { "_content": "1329756277" }, 
-      "count": { "_content": 4 }, 
-      "views": { "_content": 0 } } }, "stat": "ok" }
+      "count": { "_content": 4 } } }, "stat": "ok" }

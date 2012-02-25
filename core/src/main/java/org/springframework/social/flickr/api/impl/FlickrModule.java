@@ -17,8 +17,6 @@ package org.springframework.social.flickr.api.impl;
 
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.module.SimpleModule;
-import org.springframework.social.flickr.api.FlickrProfile;
-import org.springframework.social.flickr.api.FlickrProfileMixin;
 import org.springframework.social.flickr.api.Person;
 import org.springframework.social.flickr.api.PersonMixin;
 import org.springframework.social.flickr.api.User;
@@ -27,16 +25,15 @@ import org.springframework.social.flickr.api.UserMixin;
 public class FlickrModule extends SimpleModule {
 
     public FlickrModule(String name, Version version) {
-	super(name, version);
+    	super(name, version);
     }
 
     public FlickrModule() {
-	super("FlickrModule", new Version(1, 0, 0, null));
+    	super("FlickrModule", new Version(1, 0, 0, null));
     }
 
     @Override
     public void setupModule(SetupContext context) {
-		//context.setMixInAnnotations(FlickrProfile.class, FlickrProfileMixin.class);
 		context.setMixInAnnotations(User.class, UserMixin.class);
 		context.setMixInAnnotations(Person.class, PersonMixin.class);
     }

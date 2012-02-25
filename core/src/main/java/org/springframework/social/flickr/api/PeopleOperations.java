@@ -1,9 +1,9 @@
 package org.springframework.social.flickr.api;
 
-public interface UserOperations {
+public interface PeopleOperations {
 	
 	String getProfileId();
 	
-	Person getUserProfile();
+	Person getPersonProfile();
 	
 }

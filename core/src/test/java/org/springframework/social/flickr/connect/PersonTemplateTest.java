@@ -33,16 +33,8 @@ import org.springframework.social.flickr.api.Person;
 import org.springframework.social.flickr.api.impl.FlickrTemplate;
 import org.springframework.social.test.client.MockRestServiceServer;
 
-public class FlickrServiceProviderTest {
-    MockRestServiceServer mockServer;
-    FlickrTemplate flickr;
-
-    @Before
-    public void getFlickrTemplate() {
-    	flickr = new FlickrTemplate("consumerKey", "consumerSecret", "accessToken", "accessTokenSecret");
-		mockServer = MockRestServiceServer.createServer(flickr.getRestTemplate());
-
-    }
+public class PersonTemplateTest extends AbstractFlickrApiTest {
+   
     
     @Test
     public void getPeopleInfoTest(){	
@@ -56,21 +48,9 @@ public class FlickrServiceProviderTest {
         .andExpect(method(GET))
         .andRespond(withResponse(jsonResource("peopleinfo"), responseHeaders));
 	    
-	    Person profile = flickr.userOperations().getUserProfile();
-	    System.out.println(profile.getUsername());
+	    Person person = flickr.personOperations().getPersonProfile();
+	    System.out.println(person.getUserName());
 	    	    
     }
     
-    private Resource jsonResource(String filename) {
-    	System.out.println(getClass());
-		Resource r =new ClassPathResource(filename + ".json", getClass());		
-		try {
-		    File f = r.getFile();
-		    System.out.println(f.getAbsolutePath());
-		} catch (IOException e) {
-		    e.printStackTrace();
-		}
-	    return  r;
-    }
-		
 }
