@@ -15,6 +15,7 @@ public class AbstractFlickrApiTest {
 	protected FlickrTemplate unauthorizedFlickr;
 	
 	protected MockRestServiceServer mockServer;
+	protected MockRestServiceServer unauthorizedMockServer;
 	
 	protected HttpHeaders responseHeaders;
 	
@@ -26,7 +27,7 @@ public class AbstractFlickrApiTest {
 			responseHeaders.setContentType(MediaType.TEXT_PLAIN);
 			unauthorizedFlickr = new FlickrTemplate();
 			// create a mock server just to avoid hitting real flickr if something gets past the authorization check
-			MockRestServiceServer.createServer(unauthorizedFlickr.getRestTemplate());//TODO: Hemant Need to check this code.
+			unauthorizedMockServer = MockRestServiceServer.createServer(unauthorizedFlickr.getRestTemplate());//TODO: Hemant Need to check this code.
 	    }
 	
 	 protected Resource jsonResource(String filename) {

@@ -24,10 +24,10 @@ import org.springframework.http.converter.json.MappingJacksonHttpMessageConverte
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.PeopleOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
+import org.springframework.web.client.RestTemplate;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
-    //private String URL_TO_ACCESS_PROFILE = "http://api.flickr.com/services/rest/?method=flickr.test.login&format=json&nojsoncallback=1";
-	private PeopleOperations userOperations;
+	private PeopleOperations peopleOperations;
     
 
 
@@ -43,17 +43,11 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
 
 	private void initSubApis() {
-		this.userOperations = new PeopleTemplate(getRestTemplate(),isAuthorized());
+		this.peopleOperations = new PeopleTemplate(getRestTemplate(),isAuthorized());
 		
 	}
-	/*
-    @Override
-    public FlickrProfile getUserProfile() {
-    System.out.println("And the url is :  " + URL_TO_ACCESS_PROFILE);
-	FlickrProfile flickrProfile = getRestTemplate().getForObject(URL_TO_ACCESS_PROFILE, FlickrProfile.class);
-	return flickrProfile;
-    }
-    */
+	
+	
     @Override
     protected MappingJacksonHttpMessageConverter getJsonMessageConverter() {
 		MappingJacksonHttpMessageConverter converter = super.getJsonMessageConverter();			
@@ -69,9 +63,11 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		converter.setObjectMapper(objectMapper);
 		return converter;
     }
-    
-    public PeopleOperations personOperations() {
-		return userOperations;
+
+	public PeopleOperations peopleOperations() {
+		return peopleOperations;
 	}
+    
+   
 
 }

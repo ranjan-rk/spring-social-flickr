@@ -26,7 +26,7 @@ public class FlickrAdapter implements ApiAdapter<Flickr> {
 
     public boolean test(Flickr flickr) {
 	try {
-	    flickr.personOperations().getPersonProfile();
+	    flickr.peopleOperations().getPersonProfile();
 	    return true;
 	} catch (HttpClientErrorException e) {
 	    e.printStackTrace();
@@ -36,21 +36,15 @@ public class FlickrAdapter implements ApiAdapter<Flickr> {
 
     @Override
     public UserProfile fetchUserProfile(Flickr api) {
-    	
     	System.out.println("TODO : Implement fetchUserProfile");
-	return null;
+    	return null;
     }
 
     @Override
     public void setConnectionValues(Flickr flickr, ConnectionValues values) {
-    	Person person = flickr.personOperations().getPersonProfile();
-    	System.out.println(person.getId());
-    	System.out.println(person.getNsid());
-    	System.out.println(person.getUserName());
-		values.setProviderUserId("testflickrproveruseid");
-		values.setDisplayName("testdisplayname");
-		
-
+    	Person person = flickr.peopleOperations().getPersonProfile();
+		values.setProviderUserId(person.getId());
+		values.setDisplayName(person.getUserName());
     }
 
     public void updateStatus(Flickr flickr, String message) {

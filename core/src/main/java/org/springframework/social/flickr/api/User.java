@@ -16,7 +16,7 @@ public class User {
 		return username;
 	}
 	public void setUsername(LinkedHashMap<String, String> username) {
-		this.username = username.get("_content");
+		this.username = username.get(FlickrConstant.JSONCONTENT);
 	}	
 	
 	

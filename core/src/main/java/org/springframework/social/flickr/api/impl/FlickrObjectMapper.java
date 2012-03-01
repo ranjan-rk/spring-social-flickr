@@ -1,11 +1,15 @@
 package org.springframework.social.flickr.api.impl;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonNode;
 import org.codehaus.jackson.JsonParseException;
 import org.codehaus.jackson.JsonParser;
 import org.codehaus.jackson.JsonToken;
 import org.codehaus.jackson.io.SerializedString;
+import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.DeserializationContext;
 import org.codehaus.jackson.map.JsonDeserializer;
 import org.codehaus.jackson.map.JsonMappingException;
@@ -18,6 +22,25 @@ public class FlickrObjectMapper extends ObjectMapper{
             DeserializationContext ctxt, JsonDeserializer<Object> deser)
         throws IOException, JsonParseException, JsonMappingException
     {
+		
+		ObjectMapper mapper = new ObjectMapper();
+	    mapper.setDeserializationConfig(ctxt.getConfig());
+	    mapper.disable(DeserializationConfig.Feature.UNWRAP_ROOT_VALUE);
+	    jp.setCodec(mapper);
+        JsonNode tree = jp.readValueAsTree();
+		JsonNode statNode = tree.get("stat");
+		String status  = statNode.getTextValue();
+		if(!"ok".equals(status)){
+			JsonNode msgNode = tree.get("message");
+			String errorMsg = msgNode.getTextValue();
+			JsonNode codeNode = tree.get("code");
+			String errorCode = codeNode.getTextValue();
+			//Based on error Code send diffrent type of exceptions.
+			throw new FlickrException(errorMsg);
+		}
+		jp = jp.getCodec().treeAsTokens(tree);
+		
+		jp.nextToken();
 		
         SerializedString rootName = _deserializerProvider.findExpectedRootName(ctxt.getConfig(), rootType);
         if (jp.getCurrentToken() != JsonToken.START_OBJECT) {
@@ -49,5 +72,6 @@ public class FlickrObjectMapper extends ObjectMapper{
                     +rootName+"'), but "+jp.getCurrentToken());
         }
         return result;
+        //return null;
     }
 }

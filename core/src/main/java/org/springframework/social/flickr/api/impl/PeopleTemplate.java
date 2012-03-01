@@ -16,13 +16,20 @@ public class PeopleTemplate extends AbstractFlickrOperations implements PeopleOp
 
 	@Override
 	public String getProfileId() {
+		requireAuthorization();
 		User user = restTemplate.getForObject(buildUri("flickr.test.login"),  User.class);
 		return user.getId();
 	}
 
 	@Override
 	public Person getPersonProfile() {
+		requireAuthorization();
 		return restTemplate.getForObject(buildUri("flickr.people.getInfo","user_id",getProfileId()),  Person.class);
+	}
+
+	@Override
+	public Person getPersonProfile(String userId) {
+		return restTemplate.getForObject(buildUri("flickr.people.getInfo","user_id",userId),  Person.class);
 	}
 
 }
