@@ -1,0 +1,5 @@
+{ "groups": { 
+    "group": [
+      { "nsid": "1867214@N25", "name": "Kashid", "iconfarm": 8, "iconserver": "7068", "admin": 1, "eighteenplus": 0, "invitation_only": 0, "members": 1, "pool_count": 1 },
+      { "nsid": "1878057@N24", "name": "GoaGroup", "iconfarm": 0, "iconserver": 0, "admin": 1, "eighteenplus": 0, "invitation_only": 1, "members": 1, "pool_count": 3 }
+    ] }, "stat": "ok" }

@@ -23,7 +23,11 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.springframework.social.MissingAuthorizationException;
+import org.springframework.social.flickr.api.Groups;
 import org.springframework.social.flickr.api.Person;
+import org.springframework.social.flickr.api.PhotoSizeEnum;
+import org.springframework.social.flickr.api.Photos;
+import org.springframework.social.flickr.api.User;
 import org.springframework.social.flickr.api.impl.FlickrException;
 
 public class PeopleTemplateTest extends AbstractFlickrApiTest {
@@ -62,6 +66,61 @@ public class PeopleTemplateTest extends AbstractFlickrApiTest {
     	String profileId = flickr.peopleOperations().getProfileId();
     	Assert.assertNotNull(profileId);
     }
+    
+    @Test
+    public void getUserByEmail(){
+    	mockServer.expect(requestTo("http://api.flickr.com/services/rest/?find_email=testemailid&method=flickr.people.findByEmail&format=json&nojsoncallback=1"))
+        .andExpect(method(GET))
+        .andRespond(withResponse(jsonResource("user"), responseHeaders));
+    	User user = flickr.peopleOperations().getUserByEmail("testemailid");
+    	assertUser(user);
+    }
+    
+    @Test
+    public void getUserByUserName(){
+    	mockServer.expect(requestTo("http://api.flickr.com/services/rest/?username=testusername&method=flickr.people.findByUsername&format=json&nojsoncallback=1"))
+        .andExpect(method(GET))
+        .andRespond(withResponse(jsonResource("user"), responseHeaders));
+    	User user = flickr.peopleOperations().getUserByUserName("testusername");
+    	assertUser(user);
+    }
+
+    @Test
+    public void getGroups(){
+    	mockServer.expect(requestTo("http://api.flickr.com/services/rest/?user_id=testuserid&method=flickr.people.getGroups&format=json&nojsoncallback=1"))
+        .andExpect(method(GET))
+        .andRespond(withResponse(jsonResource("groups"), responseHeaders));
+    	Groups groups = flickr.peopleOperations().getGroups("testuserid");
+    	asserGroups(groups);
+    }
+    
+    @Test
+    public void getPublicGroups(){
+    	mockServer.expect(requestTo("http://api.flickr.com/services/rest/?user_id=testuserid&method=flickr.people.getPublicGroups&format=json&nojsoncallback=1"))
+        .andExpect(method(GET))
+        .andRespond(withResponse(jsonResource("groups"), responseHeaders));
+    	Groups groups = flickr.peopleOperations().getPublicGroups("testuserid");
+    	asserGroups(groups);
+    }
+    
+    @Test
+    public void getPhotos(){
+    	mockServer.expect(requestTo("http://api.flickr.com/services/rest/?user_id=testuserid&method=flickr.people.getPhotos&format=json&nojsoncallback=1"))
+        .andExpect(method(GET))
+        .andRespond(withResponse(jsonResource("photos"), responseHeaders));
+    	Photos photos= flickr.peopleOperations().getPhotos("testuserid");
+    	assertPhotos(photos);
+    }
+    
+    @Test
+    public void getPublicPhotos(){
+    	mockServer.expect(requestTo("http://api.flickr.com/services/rest/?user_id=testuserid&method=flickr.people.getPublicPhotos&format=json&nojsoncallback=1"))
+        .andExpect(method(GET))
+        .andRespond(withResponse(jsonResource("photos"), responseHeaders));
+    	Photos photos= flickr.peopleOperations().getPublicPhotos("testuserid");
+    	assertPhotos(photos);
+    }
+    
     //For Negative Testing
     @Test(expected = MissingAuthorizationException.class)
     public void missingAccessToken(){
@@ -85,7 +144,15 @@ public class PeopleTemplateTest extends AbstractFlickrApiTest {
     
 	private void assertPersonProfile(Person person) {
 		Assert.assertEquals("73562874@N08", person.getId());
-		
+	}
+	private void assertUser(User user){
+		Assert.assertEquals("hemantsch", user.getUsername());
+	}
+	private void asserGroups(Groups groups){
+		Assert.assertEquals(2, groups.getGroup().size());
+	}
+	private void assertPhotos(Photos photos){
+		Assert.assertEquals(5, photos.getPhoto().size());
 	}
     
 }

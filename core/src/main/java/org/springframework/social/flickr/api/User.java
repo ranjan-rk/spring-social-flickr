@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 public class User {
 	
 	String id ;
+	String nsid;
 	String username;
 	public String getId() {
 		return id;
@@ -17,6 +18,12 @@ public class User {
 	}
 	public void setUsername(LinkedHashMap<String, String> username) {
 		this.username = username.get(FlickrConstant.JSONCONTENT);
+	}
+	public String getNsid() {
+		return nsid;
+	}
+	public void setNsid(String nsid) {
+		this.nsid = nsid;
 	}	
 	
 	
