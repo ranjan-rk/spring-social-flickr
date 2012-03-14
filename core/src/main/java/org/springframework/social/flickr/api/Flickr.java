@@ -21,5 +21,6 @@ public interface Flickr extends ApiBinding{
 
 	PeopleOperations peopleOperations();
     
-
+	PhotoOperations photoOperations();
+	
 }

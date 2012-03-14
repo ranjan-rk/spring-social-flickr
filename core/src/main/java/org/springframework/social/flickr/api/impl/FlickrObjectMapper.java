@@ -53,8 +53,11 @@ public class FlickrObjectMapper extends ObjectMapper{
         }
         String actualName = jp.getCurrentName();
         
+        /*Following is done for response object in case of POST method */
+        if("stat".equals(actualName)){
+        	return null;
+        }
         /*This check can removed completely if required */
-        
         if (!rootName.getValue().equalsIgnoreCase(actualName)) {
             throw JsonMappingException.from(jp, "Root name '"+actualName+"' does not match expected ('"+rootName
                     +"') for type "+rootType);

@@ -25,10 +25,10 @@ import org.junit.Test;
 import org.springframework.social.MissingAuthorizationException;
 import org.springframework.social.flickr.api.Groups;
 import org.springframework.social.flickr.api.Person;
-import org.springframework.social.flickr.api.PhotoSizeEnum;
 import org.springframework.social.flickr.api.Photos;
 import org.springframework.social.flickr.api.User;
 import org.springframework.social.flickr.api.impl.FlickrException;
+import org.springframework.social.flickr.api.impl.PhotoTemplate;
 
 public class PeopleTemplateTest extends AbstractFlickrApiTest {
    
@@ -120,6 +120,7 @@ public class PeopleTemplateTest extends AbstractFlickrApiTest {
     	Photos photos= flickr.peopleOperations().getPublicPhotos("testuserid");
     	assertPhotos(photos);
     }
+    
     
     //For Negative Testing
     @Test(expected = MissingAuthorizationException.class)

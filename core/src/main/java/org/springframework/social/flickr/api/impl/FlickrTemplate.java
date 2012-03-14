@@ -23,12 +23,13 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.PeopleOperations;
+import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 import org.springframework.web.client.RestTemplate;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 	private PeopleOperations peopleOperations;
-    
+    private PhotoOperations photoOperations;
 
 
 
@@ -44,7 +45,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 
 	private void initSubApis() {
 		this.peopleOperations = new PeopleTemplate(getRestTemplate(),isAuthorized());
-		
+		this.photoOperations = new PhotoTemplate(getRestTemplate(),isAuthorized()); 
 	}
 	
 	
@@ -66,6 +67,11 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 
 	public PeopleOperations peopleOperations() {
 		return peopleOperations;
+	}
+
+	@Override
+	public PhotoOperations photoOperations() {
+		return photoOperations;
 	}
     
    
