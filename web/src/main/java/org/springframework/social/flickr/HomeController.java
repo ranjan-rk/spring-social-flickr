@@ -18,11 +18,11 @@ package org.springframework.social.flickr;
 import javax.inject.Inject;
 
 import org.springframework.social.flickr.api.Flickr;
-import org.springframework.social.flickr.api.FlickrProfile;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
@@ -35,11 +35,14 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model) {
-		//FlickrProfile fp = flickr.getUserProfile();
-		//System.out.println(fp.getStat());
-		System.out.println(flickr.userOperations().getUserProfile().getUsername());
-		model.addAttribute("welcomeMessage","Welcome to spring social flickr,  "+ flickr.userOperations().getUserProfile().getUsername());
+		model.addAttribute("welcomeMessage","Welcome to spring social flickr,  "+ flickr.peopleOperations().getPersonProfile().getUserName());
 		return "welcomePage";
 	}
 
+	@RequestMapping(value = "/addtags", method = RequestMethod.POST)
+	public String addtags(@RequestParam("photoid") String photoId,@RequestParam("tags") String tags,Model model) {
+		flickr.photoOperations().addTags(photoId, tags);
+		model.addAttribute("messages","tags : "+tags+" Added successfully..");
+		return "welcomePage";
+	}
 }

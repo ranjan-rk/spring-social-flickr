@@ -22,6 +22,15 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		return false;
 	}
 	
+	@Override
+	public boolean addTags(String photoId, String tags) {
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("photo_id", photoId);
+		parameters.set("tags", tags);
+		restTemplate.postForObject(buildUri("flickr.photos.addTags",parameters), new LinkedMultiValueMap<String, String>(), Object.class);
+		return false;
+	}
+	
 	private String toCommaList(String[] a){
 		if (a == null)
             return "null";
