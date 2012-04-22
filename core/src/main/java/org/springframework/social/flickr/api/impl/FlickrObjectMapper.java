@@ -38,7 +38,10 @@ public class FlickrObjectMapper extends ObjectMapper{
 			//Based on error Code send diffrent type of exceptions.
 			throw new FlickrException(errorMsg);
 		}
+		
 		jp = jp.getCodec().treeAsTokens(tree);
+		
+		
 		
 		jp.nextToken();
 		

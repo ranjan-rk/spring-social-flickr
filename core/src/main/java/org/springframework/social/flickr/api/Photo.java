@@ -1,6 +1,6 @@
 package org.springframework.social.flickr.api;
 
-public class Photo {
+public class Photo extends Extras{
 	String id;
 	String owner;
 	String secret;

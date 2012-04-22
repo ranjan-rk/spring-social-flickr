@@ -17,5 +17,11 @@
 		<input type="submit" value="add tags"/>
 	</form>
 	
+	<h2>delete photo</h2>
+	<form action="deletephoto" method="POST">
+		<label>Photo Id : </label><input type="text" name="photoid"/>
+		<input type="submit" value="delete photo"/>
+	</form>
+	
 </body>
 </html>

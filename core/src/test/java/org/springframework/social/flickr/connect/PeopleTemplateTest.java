@@ -28,7 +28,6 @@ import org.springframework.social.flickr.api.Person;
 import org.springframework.social.flickr.api.Photos;
 import org.springframework.social.flickr.api.User;
 import org.springframework.social.flickr.api.impl.FlickrException;
-import org.springframework.social.flickr.api.impl.PhotoTemplate;
 
 public class PeopleTemplateTest extends AbstractFlickrApiTest {
    

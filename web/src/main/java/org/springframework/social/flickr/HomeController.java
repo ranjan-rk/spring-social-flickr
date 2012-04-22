@@ -18,6 +18,7 @@ package org.springframework.social.flickr;
 import javax.inject.Inject;
 
 import org.springframework.social.flickr.api.Flickr;
+import org.springframework.social.flickr.api.impl.FlickrException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,6 +44,18 @@ public class HomeController {
 	public String addtags(@RequestParam("photoid") String photoId,@RequestParam("tags") String tags,Model model) {
 		flickr.photoOperations().addTags(photoId, tags);
 		model.addAttribute("messages","tags : "+tags+" Added successfully..");
+		return "welcomePage";
+	}
+	
+	@RequestMapping(value = "/deletephoto", method = RequestMethod.POST)
+	public String addtags(@RequestParam("photoid") String photoId , Model model) {
+		try{
+			flickr.photoOperations().delete(photoId);
+		}catch(FlickrException e){
+			model.addAttribute("messages",e.getMessage());
+			return "welcomePage";
+		}
+		model.addAttribute("messages","Photo Id : "+photoId+" delete successfully..");
 		return "welcomePage";
 	}
 }

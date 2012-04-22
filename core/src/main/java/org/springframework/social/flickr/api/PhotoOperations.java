@@ -24,4 +24,23 @@ public interface PhotoOperations {
 	 * @return true, if successful
 	 */
 	boolean addTags(String photoId,String tags);
+	
+	/**
+	 * Delete the photoT
+	 * This method require 'delete' permission
+	 * @param photoId the photo id
+	 * @return true, if successful
+	 */
+	boolean delete(String photoId);
+	
+	/**
+	 * Gets the recent.
+	 *
+	 * @param perPage the per page
+	 * @param page the page
+	 * @param List of extras
+	 * @return the recent
+	 */
+	Photos getRecent(String perPage, String page , String[] extras);
+	
 }
