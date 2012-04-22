@@ -1,5 +1,6 @@
 package org.springframework.social.flickr.api.impl;
 
+import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.Photos;
 import org.springframework.util.LinkedMultiValueMap;
@@ -16,6 +17,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 	
 	@Override
 	public boolean addTags(String photoId, String[] tagList) {
+		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.set("photo_id", photoId);
 		parameters.set("tags", toCommaList(tagList));
@@ -25,6 +27,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 	
 	@Override
 	public boolean addTags(String photoId, String tags) {
+		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.set("photo_id", photoId);
 		parameters.set("tags", tags);
@@ -34,6 +37,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 	
 	@Override
 	public boolean delete(String photoId) {
+		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.set("photo_id", photoId);
 		restTemplate.postForObject(buildUri("flickr.photos.delete"), parameters, Object.class);
@@ -47,6 +51,14 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		parameters.set("page", page);
 		parameters.set("extras", toCommaList(extras));
 		return restTemplate.getForObject(buildUri("flickr.photos.getRecent",parameters), Photos.class);		 
+	}
+	
+	@Override
+	public Photo getFavorites(String perPage, String page, String photoId) {
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("per_page", perPage);
+		parameters.set("page", page);
+		return restTemplate.getForObject(buildUri("flickr.photos.getFavorites",parameters), Photo.class);	
 	}
 	
 	private String toCommaList(String[] a){
@@ -65,6 +77,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
             b.append(",");
         }
 	}
+
 
 
 

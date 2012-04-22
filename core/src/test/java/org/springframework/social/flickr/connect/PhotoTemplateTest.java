@@ -8,6 +8,7 @@ import junit.framework.Assert;
 
 import org.junit.Test;
 import org.springframework.social.flickr.api.ExtrasConstant;
+import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.Photos;
 
 public class PhotoTemplateTest extends AbstractFlickrApiTest{
@@ -38,11 +39,23 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	        .andRespond(withResponse(jsonResource("recent"), responseHeaders));
 	    String extras [] = {ExtrasConstant.DATE_UPLOAD,ExtrasConstant.OWNER_NAME};
 	    Photos photos	=  flickr.photoOperations().getRecent("3", "2",extras );
-	    System.out.println(photos.getPhoto().get(0).getUrl());
 	    assertPhotos(photos);
     }
     
+    @Test
+    public void getFavoriteTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?per_page=3&page=2&method=flickr.photos.getFavorites&format=json&nojsoncallback=1"))
+	        .andExpect(method(GET))
+	        .andRespond(withResponse(jsonResource("favorite"), responseHeaders));
+	    Photo photo	=  flickr.photoOperations().getFavorites("3", "2","2679305152" );
+	    assertPersonList(photo);
+    }
+    
+    
     private void assertPhotos(Photos photos){
 		Assert.assertEquals(3, photos.getPhoto().size());
+	}
+	private void assertPersonList(Photo photo) {
+		Assert.assertEquals(10, photo.getPerson2().size());
 	}
 }

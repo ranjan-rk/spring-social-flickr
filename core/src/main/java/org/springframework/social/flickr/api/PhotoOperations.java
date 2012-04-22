@@ -43,4 +43,14 @@ public interface PhotoOperations {
 	 */
 	Photos getRecent(String perPage, String page , String[] extras);
 	
+	/**
+	 * Returns the list of people who have favorited a given photo.
+	 *
+	 * @param perPage the per page
+	 * @param page the page
+	 * @param photoId the photo id
+	 * @return the favorites
+	 */
+	Photo getFavorites(String perPage, String page,String photoId);
+	
 }

@@ -20,6 +20,7 @@ public class Person {
 	String mobileurl;
 	PhotosInfo photos;
 	
+
 	public String getUserName() {
 		return userName;
 	}
@@ -104,5 +105,6 @@ public class Person {
 	public void setPhotos(PhotosInfo photos) {
 		this.photos = photos;
 	}
+	
 	
 }

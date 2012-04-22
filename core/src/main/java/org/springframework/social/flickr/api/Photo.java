@@ -1,5 +1,7 @@
 package org.springframework.social.flickr.api;
 
+import java.util.ArrayList;
+
 public class Photo extends Extras{
 	String id;
 	String owner;
@@ -11,6 +13,11 @@ public class Photo extends Extras{
 	boolean isFriend;
 	boolean isFamily;
 	String url;
+	String page;
+	String pages;
+	String perpage;
+	String total;
+	ArrayList<Person2> person2; //Persons who favorited this photo
 
 	public String getId() {
 		return id;
@@ -98,5 +105,45 @@ public class Photo extends Extras{
 		String tempUrl = "http://farm"+getFarm()+".staticflickr.com/"+getServer()+"/"+getId()+"_"+getSecret()+"_"+size+".jpg";
 		url = tempUrl;
 		return url;
+	}
+
+	public ArrayList<Person2> getPerson2() {
+		return person2;
+	}
+
+	public void setPerson2(ArrayList<Person2> person2) {
+		this.person2 = person2;
+	}
+
+	public String getPage() {
+		return page;
+	}
+
+	public void setPage(String page) {
+		this.page = page;
+	}
+
+	public String getPages() {
+		return pages;
+	}
+
+	public void setPages(String pages) {
+		this.pages = pages;
+	}
+
+	public String getPerpage() {
+		return perpage;
+	}
+
+	public void setPerpage(String perpage) {
+		this.perpage = perpage;
+	}
+
+	public String getTotal() {
+		return total;
+	}
+
+	public void setTotal(String total) {
+		this.total = total;
 	}
 }

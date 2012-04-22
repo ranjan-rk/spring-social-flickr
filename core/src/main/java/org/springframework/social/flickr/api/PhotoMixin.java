@@ -27,4 +27,5 @@ public class PhotoMixin {
 	@JsonProperty("urlc" ) String urlC;
 	@JsonProperty("urll" ) String urlL;
 	@JsonProperty("urlo") String urlO;
+	@JsonProperty("person") Person2 person2;
 }

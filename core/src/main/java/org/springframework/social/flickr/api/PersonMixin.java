@@ -1,10 +1,14 @@
 package org.springframework.social.flickr.api;
 
+import java.util.LinkedHashMap;
+
+import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonMixin {
+
 	@JsonProperty("username") String userName;
 	@JsonProperty("iconserver") String iconServer;
 	@JsonProperty("iconfarm") String iconFarm;
