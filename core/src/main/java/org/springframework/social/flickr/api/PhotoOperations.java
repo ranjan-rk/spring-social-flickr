@@ -35,6 +35,7 @@ public interface PhotoOperations {
 	
 	/**
 	 * Gets the recent.
+	 * 
 	 * @param perPage the per page
 	 * @param page the page
 	 * @param List of extras
