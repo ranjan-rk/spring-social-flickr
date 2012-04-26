@@ -60,11 +60,11 @@ public class FlickrObjectMapper extends ObjectMapper{
         if("stat".equals(actualName)){
         	return null;
         }
-        /*This check can removed completely if required */
+        /*This check can removed completely if required 
         if (!rootName.getValue().equalsIgnoreCase(actualName)) {
             throw JsonMappingException.from(jp, "Root name '"+actualName+"' does not match expected ('"+rootName
                     +"') for type "+rootType);
-        }
+        }*/
         // ok, then move to value itself....
         jp.nextToken();
         

@@ -9,6 +9,7 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.social.flickr.api.ExtrasConstant;
 import org.springframework.social.flickr.api.Photo;
+import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.Photos;
 
 public class PhotoTemplateTest extends AbstractFlickrApiTest{
@@ -44,11 +45,20 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
     
     @Test
     public void getFavoriteTest(){	
-	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?per_page=3&page=2&method=flickr.photos.getFavorites&format=json&nojsoncallback=1"))
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?per_page=3&page=2&photo_id=2679305152&method=flickr.photos.getFavorites&format=json&nojsoncallback=1"))
 	        .andExpect(method(GET))
 	        .andRespond(withResponse(jsonResource("favorite"), responseHeaders));
 	    Photo photo	=  flickr.photoOperations().getFavorites("3", "2","2679305152" );
 	    assertPersonList(photo);
+    }
+    
+    @Test
+    public void getInfoTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?photo_id=23&method=flickr.photos.getInfo&format=json&nojsoncallback=1"))
+	        .andExpect(method(GET))
+	        .andRespond(withResponse(jsonResource("photodetail"), responseHeaders));
+	    PhotoDetail photoDetail	=  flickr.photoOperations().getInfo("23");
+	    assertPhotoDetail(photoDetail);
     }
     
     
@@ -57,5 +67,8 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	}
 	private void assertPersonList(Photo photo) {
 		Assert.assertEquals(10, photo.getPerson2().size());
+	}
+	private void assertPhotoDetail(PhotoDetail photoDetail) {
+		Assert.assertEquals("6955318342", photoDetail.getId());
 	}
 }

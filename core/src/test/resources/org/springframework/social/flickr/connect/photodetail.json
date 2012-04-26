@@ -1,0 +1,26 @@
+{ "photo": { "id": "6955318342", "secret": "1e77a29be3", "server": "7249", "farm": 8, "dateuploaded": "1335082534", "isfavorite": 0, "license": 0, "safety_level": 0, "rotation": 0, 
+    "owner": { "nsid": "73562874@N08", "username": "hemantsch", "realname": "Hemant Sachdeva", "location": "", "iconserver": "7043", "iconfarm": 8 }, 
+    "title": { "_content": "pune vs chennai ipl" }, 
+    "description": { "_content": "" }, 
+    "visibility": { "ispublic": 1, "isfriend": 0, "isfamily": 0 }, 
+    "dates": { "posted": "1335082534", "taken": "2012-04-14 15:38:55", "takengranularity": 0, "lastupdate": "1335434242" }, 
+    "permissions": { "permcomment": 3, "permaddmeta": 2 }, "views": 1, 
+    "editability": { "cancomment": 1, "canaddmeta": 1 }, 
+    "publiceditability": { "cancomment": 1, "canaddmeta": 0 }, 
+    "usage": { "candownload": 1, "canblog": 1, "canprint": 1, "canshare": 0 }, 
+    "comments": { "_content": 1 }, 
+    "notes": { 
+      "note": [
+        { "id": "72157629903332753", "author": "73562874@N08", "authorname": "hemantsch", "x": "431", "y": "140", "w": 31, "h": 31, "_content": "pune flag" }
+      ] }, 
+    "people": { "haspeople": 0 }, 
+    "tags": { 
+      "tag": [
+        { "id": "73470061-6955318342-550565", "author": "73562874@N08", "raw": "hemant", "_content": "hemant", "machine_tag": 0 },
+        { "id": "73470061-6955318342-8044517", "author": "73562874@N08", "raw": "shreyash", "_content": "shreyash", "machine_tag": 0 },
+        { "id": "73470061-6955318342-87476527", "author": "73562874@N08", "raw": "laxmi ipl pune chennai", "_content": "laxmiiplpunechennai", "machine_tag": 0 }
+      ] }, 
+    "urls": { 
+      "url": [
+        { "type": "photopage", "_content": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/" }
+      ] }, "media": "photo" }, "stat": "ok" }

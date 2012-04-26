@@ -1,6 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
 import org.springframework.social.flickr.api.Photo;
+import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.Photos;
 import org.springframework.util.LinkedMultiValueMap;
@@ -58,8 +59,16 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.set("per_page", perPage);
 		parameters.set("page", page);
+		parameters.set("photo_id", photoId);
 		return restTemplate.getForObject(buildUri("flickr.photos.getFavorites",parameters), Photo.class);	
 	}
+	
+	@Override
+	public PhotoDetail getInfo(String photoId) {
+		return restTemplate.getForObject(buildUri("flickr.photos.getInfo","photo_id",photoId), PhotoDetail.class);	
+	}
+
+
 	
 	private String toCommaList(String[] a){
 		if (a == null)

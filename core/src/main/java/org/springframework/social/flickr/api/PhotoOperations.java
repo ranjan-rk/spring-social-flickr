@@ -53,4 +53,12 @@ public interface PhotoOperations {
 	 */
 	Photo getFavorites(String perPage, String page,String photoId);
 	
+	/**
+	 * Get information about a photo. The calling user must have permission to view the photo.
+	 *
+	 * @param photoId the photo id
+	 * @return the info
+	 */
+	PhotoDetail getInfo(String photoId);
+	
 }

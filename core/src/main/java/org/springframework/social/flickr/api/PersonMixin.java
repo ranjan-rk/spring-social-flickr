@@ -1,8 +1,5 @@
 package org.springframework.social.flickr.api;
 
-import java.util.LinkedHashMap;
-
-import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
