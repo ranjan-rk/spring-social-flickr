@@ -4,11 +4,9 @@ package org.springframework.social.flickr.api;
 public class Person2 {
 	String nsid;
 	String userName;
-	String realName;
 	String faveDate; //Need to convert it into Date
 	String iconServer;
 	String iconFarm;
-	String location;
 	public String getNsid() {
 		return nsid;
 	}
@@ -38,17 +36,5 @@ public class Person2 {
 	}
 	public void setIconFarm(String iconFarm) {
 		this.iconFarm = iconFarm;
-	}
-	public String getRealName() {
-		return realName;
-	}
-	public void setRealName(String realName) {
-		this.realName = realName;
-	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
 	}
 }
