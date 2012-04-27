@@ -7,7 +7,9 @@ import static org.springframework.social.test.client.ResponseCreators.withRespon
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.springframework.social.flickr.api.ContentTypeEnum;
 import org.springframework.social.flickr.api.ExtrasConstant;
+import org.springframework.social.flickr.api.Perms;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.Photos;
@@ -23,7 +25,16 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    
 	   String[] tags  ={"tag"};
 	   boolean result = flickr.photoOperations().addTags("id", tags);
-	    	    
+	   assertStat(result);	        
+    }
+    
+    @Test
+    public void removeTagsTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.removeTag&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	   boolean result = flickr.photoOperations().removeTag("23");
+	    assertStat(result);	    
     }
     
     @Test
@@ -32,6 +43,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
 	    boolean result = flickr.photoOperations().delete("id");
+	    assertStat(result);	    
     }
     
     @Test
@@ -72,12 +84,34 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
     }
     
     
+    @Test
+    public void getPerms(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?photo_id=23&method=flickr.photos.getPerms&format=json&nojsoncallback=1"))
+	        .andExpect(method(GET))
+	        .andRespond(withResponse(jsonResource("perms"), responseHeaders));
+	    Perms perms=  flickr.photoOperations().getPerms("23");
+	    assertPermission(perms);
+    }
     
-    private void assertPhotoSizes(Sizes sizes) {
-    	Assert.assertEquals(9, sizes.getSize().size());
-		
+    @Test
+    public void setContentType(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.setContentType&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result=  flickr.photoOperations().setContentType("23", ContentTypeEnum.SCREENSHORT);
+	    assertStat(result);
+    }
+    
+    private void assertStat(boolean result){
+    	Assert.assertEquals(true, result);
+    }
+    private void assertPermission(Perms perms) {
+    	Assert.assertEquals("6955318342", perms.getId());
 	}
 
+	private void assertPhotoSizes(Sizes sizes) {
+    	Assert.assertEquals(9, sizes.getSize().size());
+	}
 	private void assertPhotos(Photos photos){
 		Assert.assertEquals(3, photos.getPhoto().size());
 	}

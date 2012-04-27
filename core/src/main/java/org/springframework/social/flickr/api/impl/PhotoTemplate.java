@@ -1,5 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
+import org.springframework.social.flickr.api.ContentTypeEnum;
+import org.springframework.social.flickr.api.Perms;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.PhotoOperations;
@@ -24,7 +26,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		parameters.set("photo_id", photoId);
 		parameters.set("tags", toCommaList(tagList));
 		restTemplate.postForObject(buildUri("flickr.photos.addTags"), parameters, Object.class);
-		return false;
+		return true;
 	}
 	
 	@Override
@@ -34,7 +36,17 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		parameters.set("photo_id", photoId);
 		parameters.set("tags", tags);
 		restTemplate.postForObject(buildUri("flickr.photos.addTags"), parameters, Object.class);
-		return false;
+		return true;
+	}
+	
+
+	@Override
+	public boolean removeTag(String tagId) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("tag_id", tagId);
+		restTemplate.postForObject(buildUri("flickr.photos.removeTag"), parameters, Object.class);
+		return true;
 	}
 	
 	@Override
@@ -43,7 +55,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.set("photo_id", photoId);
 		restTemplate.postForObject(buildUri("flickr.photos.delete"), parameters, Object.class);
-		return false;
+		return true;
 	}
 	
 	@Override
@@ -75,6 +87,23 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		return restTemplate.getForObject(buildUri("flickr.photos.getSizes","photo_id",photoId), Sizes.class);	
 	}
 	
+	@Override
+	public Perms getPerms(String photoId) {
+		requireAuthorization();
+		return restTemplate.getForObject(buildUri("flickr.photos.getPerms","photo_id",photoId), Perms.class);	
+	}
+
+	@Override
+	public boolean setContentType(String photoId, ContentTypeEnum contentTypeEnum) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("photo_id", photoId);
+		parameters.set("content_type", contentTypeEnum.getType());
+		restTemplate.postForObject(buildUri("flickr.photos.setContentType"), parameters, Object.class);
+		return true;
+	}
+
+	
 	
 	private String toCommaList(String[] a){
 		if (a == null)
@@ -92,6 +121,9 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
             b.append(",");
         }
 	}
+
+
+
 
 
 

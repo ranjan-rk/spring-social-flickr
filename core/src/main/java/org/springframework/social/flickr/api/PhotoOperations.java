@@ -25,6 +25,16 @@ public interface PhotoOperations {
 	 */
 	boolean addTags(String photoId,String tags);
 	
+
+	/**Remove a tag from a photo.
+	 * 
+	 * This method requires authentication with 'write' permission.
+	 * 
+	 * @param tagId
+	 * @return
+	 */
+	boolean removeTag(String tagId);
+	
 	/**
 	 * Delete the photoT
 	 * This method require 'delete' permission
@@ -68,5 +78,25 @@ public interface PhotoOperations {
 	 * @return the sizes
 	 */
 	Sizes getSizes(String photoId);
+	
+	/**Get permissions for a photo.
+	 * 
+	 * This method requires authentication with 'read' permission.
+	 * 
+	 * @param photoId
+	 * @return
+	 */
+	Perms getPerms(String photoId);
+	
+	/**
+	 * Set the content type of a photo.
+	 * 
+	 * This method requires authentication with 'write' permission.
+	 * 
+	 * @param photoId
+	 * @param contentType
+	 * @return
+	 */
+	boolean setContentType(String photoId, ContentTypeEnum contentTypeEnum);
 	
 }
