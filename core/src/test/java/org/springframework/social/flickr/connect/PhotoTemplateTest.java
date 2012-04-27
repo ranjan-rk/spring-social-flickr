@@ -11,6 +11,7 @@ import org.springframework.social.flickr.api.ExtrasConstant;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.Photos;
+import org.springframework.social.flickr.api.Sizes;
 
 public class PhotoTemplateTest extends AbstractFlickrApiTest{
     
@@ -61,8 +62,23 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    assertPhotoDetail(photoDetail);
     }
     
+    @Test
+    public void getSizesTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?photo_id=23&method=flickr.photos.getSizes&format=json&nojsoncallback=1"))
+	        .andExpect(method(GET))
+	        .andRespond(withResponse(jsonResource("sizes"), responseHeaders));
+	    Sizes sizes =  flickr.photoOperations().getSizes("23");
+	    assertPhotoSizes(sizes);
+    }
     
-    private void assertPhotos(Photos photos){
+    
+    
+    private void assertPhotoSizes(Sizes sizes) {
+    	Assert.assertEquals(9, sizes.getSize().size());
+		
+	}
+
+	private void assertPhotos(Photos photos){
 		Assert.assertEquals(3, photos.getPhoto().size());
 	}
 	private void assertPersonList(Photo photo) {

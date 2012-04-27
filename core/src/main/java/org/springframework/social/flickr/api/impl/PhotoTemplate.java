@@ -4,6 +4,7 @@ import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.Photos;
+import org.springframework.social.flickr.api.Sizes;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -69,6 +70,11 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 	}
 
 
+	@Override
+	public Sizes getSizes(String photoId) {
+		return restTemplate.getForObject(buildUri("flickr.photos.getSizes","photo_id",photoId), Sizes.class);	
+	}
+	
 	
 	private String toCommaList(String[] a){
 		if (a == null)
@@ -86,6 +92,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
             b.append(",");
         }
 	}
+
 
 
 

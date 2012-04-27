@@ -1,0 +1,12 @@
+{ "sizes": { "canblog": 1, "canprint": 1, "candownload": 1, 
+    "size": [
+      { "label": "Square", "width": 75, "height": 75, "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_s.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/sq\/", "media": "photo" },
+      { "label": "Large Square", "width": "150", "height": "150", "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_q.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/q\/", "media": "photo" },
+      { "label": "Thumbnail", "width": 100, "height": 75, "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_t.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/t\/", "media": "photo" },
+      { "label": "Small", "width": "240", "height": "180", "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_m.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/s\/", "media": "photo" },
+      { "label": "Small 320", "width": "320", "height": "240", "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_n.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/n\/", "media": "photo" },
+      { "label": "Medium", "width": "500", "height": "375", "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/m\/", "media": "photo" },
+      { "label": "Medium 640", "width": "640", "height": "480", "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_z.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/z\/", "media": "photo" },
+      { "label": "Medium 800", "width": "800", "height": "600", "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_c.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/c\/", "media": "photo" },
+      { "label": "Large", "width": "1024", "height": "768", "source": "http:\/\/farm8.staticflickr.com\/7249\/6955318342_1e77a29be3_b.jpg", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/6955318342\/sizes\/l\/", "media": "photo" }
+    ] }, "stat": "ok" }

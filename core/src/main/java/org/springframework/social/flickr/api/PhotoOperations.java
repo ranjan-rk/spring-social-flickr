@@ -61,4 +61,12 @@ public interface PhotoOperations {
 	 */
 	PhotoDetail getInfo(String photoId);
 	
+	/**
+	 * Returns the available sizes for a photo. The calling user must have permission to view the photo.
+	 *
+	 * @param photoId the photo id
+	 * @return the sizes
+	 */
+	Sizes getSizes(String photoId);
+	
 }
