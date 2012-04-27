@@ -89,6 +89,15 @@ public interface PhotoOperations {
 	Perms getPerms(String photoId);
 	
 	/**
+	 * Set permissions for a photo.
+	 * 
+	 * This method requires authentication with 'write' permission.
+	 * 
+	 * @param perms
+	 * @return
+	 */
+	PhotoId setPerms(Perms perms);
+	/**
 	 * Set the content type of a photo.
 	 * 
 	 * This method requires authentication with 'write' permission.

@@ -9,9 +9,11 @@ import junit.framework.Assert;
 import org.junit.Test;
 import org.springframework.social.flickr.api.ContentTypeEnum;
 import org.springframework.social.flickr.api.ExtrasConstant;
+import org.springframework.social.flickr.api.PermissionEnum;
 import org.springframework.social.flickr.api.Perms;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
+import org.springframework.social.flickr.api.PhotoId;
 import org.springframework.social.flickr.api.Photos;
 import org.springframework.social.flickr.api.Sizes;
 
@@ -85,7 +87,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
     
     
     @Test
-    public void getPerms(){	
+    public void getPermsTest(){	
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?photo_id=23&method=flickr.photos.getPerms&format=json&nojsoncallback=1"))
 	        .andExpect(method(GET))
 	        .andRespond(withResponse(jsonResource("perms"), responseHeaders));
@@ -94,13 +96,33 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
     }
     
     @Test
-    public void setContentType(){	
+    public void setPermsTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.setPerms&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("photoid"), responseHeaders));
+	    Perms perms = new Perms();
+	    perms.setId("23");
+	    perms.setIsfamily(true);
+	    perms.setIsfriend(true);
+	    perms.setIspublic(true);
+	    perms.setPermaddmeta(PermissionEnum.CONTACTS);
+	    perms.setPermcomment(PermissionEnum.CONTACTS);
+	    PhotoId photoid=  flickr.photoOperations().setPerms(perms);
+	    assertPhotoId(photoid);
+    }
+    
+	@Test
+    public void setContentTypeTest(){	
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.setContentType&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
 	    boolean result=  flickr.photoOperations().setContentType("23", ContentTypeEnum.SCREENSHORT);
 	    assertStat(result);
     }
+    
+    private void assertPhotoId(PhotoId photoid) {
+		Assert.assertEquals("1e77a29be3", photoid.getSecret());
+	}
     
     private void assertStat(boolean result){
     	Assert.assertEquals(true, result);

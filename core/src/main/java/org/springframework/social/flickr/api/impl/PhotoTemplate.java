@@ -4,6 +4,7 @@ import org.springframework.social.flickr.api.ContentTypeEnum;
 import org.springframework.social.flickr.api.Perms;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
+import org.springframework.social.flickr.api.PhotoId;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.Photos;
 import org.springframework.social.flickr.api.Sizes;
@@ -92,6 +93,31 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		requireAuthorization();
 		return restTemplate.getForObject(buildUri("flickr.photos.getPerms","photo_id",photoId), Perms.class);	
 	}
+	
+	@Override
+	public PhotoId setPerms(Perms perms) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("photo_id", perms.getId());
+		if(perms.isIspublic()){
+			parameters.set("is_public", "1");
+		}else{
+			parameters.set("is_public", "0");
+		}
+		if(perms.isIsfamily()){
+			parameters.set("is_family", "1");
+		}else{
+			parameters.set("is_family", "0");
+		}
+		if(perms.isIsfriend()){
+			parameters.set("is_friend", "1");
+		}else{
+			parameters.set("is_friend", "0");
+		}
+		parameters.set("perm_comment",perms.getPermcomment().getPermision());
+		parameters.set("perm_addmeta",perms.getPermcomment().getPermision());
+		return restTemplate.postForObject(buildUri("flickr.photos.setPerms"), parameters, PhotoId.class);
+	}
 
 	@Override
 	public boolean setContentType(String photoId, ContentTypeEnum contentTypeEnum) {
@@ -121,6 +147,8 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
             b.append(",");
         }
 	}
+
+
 
 
 

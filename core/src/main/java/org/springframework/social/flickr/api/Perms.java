@@ -6,8 +6,8 @@ public class Perms {
 	private boolean ispublic;
 	private boolean isfriend; 
 	private boolean isfamily;
-	private String permcomment;
-	private String permaddmeta;
+	private PermissionEnum permcomment;
+	private PermissionEnum permaddmeta;
 	public String getId() {
 		return id;
 	}
@@ -32,16 +32,16 @@ public class Perms {
 	public void setIsfamily(boolean isfamily) {
 		this.isfamily = isfamily;
 	}
-	public String getPermcomment() {
+	public PermissionEnum getPermcomment() {
 		return permcomment;
 	}
-	public void setPermcomment(String permcomment) {
+	public void setPermcomment(PermissionEnum permcomment) {
 		this.permcomment = permcomment;
 	}
-	public String getPermaddmeta() {
+	public PermissionEnum getPermaddmeta() {
 		return permaddmeta;
 	}
-	public void setPermaddmeta(String permaddmeta) {
+	public void setPermaddmeta(PermissionEnum permaddmeta) {
 		this.permaddmeta = permaddmeta;
 	} 
 }
