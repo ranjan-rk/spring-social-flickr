@@ -17,9 +17,11 @@ package org.springframework.social.flickr.api.impl;
 
 import org.codehaus.jackson.Version;
 import org.codehaus.jackson.map.module.SimpleModule;
+import org.springframework.social.flickr.api.Comments;
+import org.springframework.social.flickr.api.CommentsMixin;
+import org.springframework.social.flickr.api.Group;
 import org.springframework.social.flickr.api.GroupMixin;
 import org.springframework.social.flickr.api.Person;
-import org.springframework.social.flickr.api.Group;
 import org.springframework.social.flickr.api.PersonMixin;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoMixin;
@@ -42,5 +44,6 @@ public class FlickrModule extends SimpleModule {
 		context.setMixInAnnotations(Person.class, PersonMixin.class);
 		context.setMixInAnnotations(Group.class, GroupMixin.class);
 		context.setMixInAnnotations(Photo.class, PhotoMixin.class);
+		context.setMixInAnnotations(Comments.class, CommentsMixin.class);
     }
 }

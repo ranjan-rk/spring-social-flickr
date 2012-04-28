@@ -1,20 +1,27 @@
 package org.springframework.social.flickr.connect;
 
-import static org.springframework.http.HttpMethod.*;
+import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 import static org.springframework.social.test.client.RequestMatchers.method;
 import static org.springframework.social.test.client.RequestMatchers.requestTo;
 import static org.springframework.social.test.client.ResponseCreators.withResponse;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.springframework.social.flickr.api.Comment;
+import org.springframework.social.flickr.api.Comments;
 import org.springframework.social.flickr.api.ContentTypeEnum;
 import org.springframework.social.flickr.api.ExtrasConstant;
+import org.springframework.social.flickr.api.LicenseEnum;
+import org.springframework.social.flickr.api.Licenses;
+import org.springframework.social.flickr.api.Note;
 import org.springframework.social.flickr.api.PermissionEnum;
 import org.springframework.social.flickr.api.Perms;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.PhotoId;
 import org.springframework.social.flickr.api.Photos;
+import org.springframework.social.flickr.api.RotateEnum;
 import org.springframework.social.flickr.api.SafetyLevelEnum;
 import org.springframework.social.flickr.api.Sizes;
 
@@ -138,8 +145,126 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    boolean result=  flickr.photoOperations().setMeta("23", "title","desc");
 	    assertStat(result);
     }
+	
+	//For photo comments
+	
+	@Test
+    public void addCommentTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.addComment&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("comment"), responseHeaders));
+	    Comment comment =  flickr.PhotoCommentOperations().addComment("23", "commentText");
+	    assertComment(comment);
+    }
+	
+	@Test
+    public void deleteCommentTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.deleteComment&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result=  flickr.PhotoCommentOperations().deleteComment("commentID");
+	    assertStat(result);
+    }
     
-    private void assertPhotoId(PhotoId photoid) {
+	@Test
+    public void editCommentTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.editComment&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result=  flickr.PhotoCommentOperations().editComment("commentID","commenTtext");
+	    assertStat(result);
+    }
+    
+	@Test
+    public void getCommentListTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("comments"), responseHeaders));
+	    Comments comments=  flickr.PhotoCommentOperations().getList("23", null, null);
+	    assertComments(comments);
+    }
+    
+	//Photo License 
+	@Test
+    public void getLicenseInfoTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.licenses.getInfo&format=json&nojsoncallback=1"))
+	        .andExpect(method(GET))
+	        .andRespond(withResponse(jsonResource("licenses"), responseHeaders));
+	    Licenses licenses=  flickr.PhotoLicenseOperations().getInfo();
+	    assertLicense(licenses);
+    }
+	
+	@Test
+    public void setLicenseTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.licenses.setLicense&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result=  flickr.PhotoLicenseOperations().setLicense("23", LicenseEnum.AllRightsReserved);
+	    assertStat(result);
+    }
+	
+	//Photo Note
+    
+	@Test
+    public void addNoteTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.notes.add&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("note"), responseHeaders));
+	    Note note = new Note();
+	    note.set_content("test");
+	    note.setH(2);
+	    String id=  flickr.PhotoNoteOperations().add("23",note );
+	    assertNoteId(id);
+    }
+	
+	@Test
+    public void deleteNoteTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.notes.delete&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result =  flickr.PhotoNoteOperations().delete("23");
+	    assertStat(result);
+    }
+	
+	@Test
+    public void editNoteTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.notes.edit&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    Note note = new Note();
+	    note.set_content("test");
+	    note.setH(2);
+	    boolean result =  flickr.PhotoNoteOperations().edit("23",note);
+	    assertStat(result);
+    }
+	
+	//Photo Rotation
+	@Test
+    public void rotateTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.transform.rotate&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result =  flickr.photoOperations().rotate("23", RotateEnum.NINETY);
+	    assertStat(result);
+    }
+	
+    private void assertNoteId(String id) {
+    	Assert.assertEquals("72157629917179921", id);
+	}
+
+	private void assertLicense(Licenses licenses) {
+    	Assert.assertEquals(9, licenses.getLicense().size());
+	}
+
+	private void assertComments(Comments comments) {
+    	Assert.assertEquals(2, comments.getComment().size());
+	}
+
+	private void assertComment(Comment comment) {
+    	Assert.assertEquals("73470061-6955318342-72157629916928349", comment.getId());
+	}
+
+	private void assertPhotoId(PhotoId photoid) {
 		Assert.assertEquals("1e77a29be3", photoid.getSecret());
 	}
     

@@ -7,6 +7,7 @@ import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.PhotoId;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.Photos;
+import org.springframework.social.flickr.api.RotateEnum;
 import org.springframework.social.flickr.api.SafetyLevelEnum;
 import org.springframework.social.flickr.api.Sizes;
 import org.springframework.util.LinkedMultiValueMap;
@@ -163,6 +164,17 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		return true;
 	}
 	
+	@Override
+	public boolean rotate(String photoId, RotateEnum rotation) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("photo_id", photoId);
+		parameters.set("degrees",rotation.getRotation());
+		restTemplate.postForObject(buildUri("flickr.photos.transform.rotate"), parameters, Object.class);
+		return true;
+	}
+
+	
 	private String toCommaList(String[] a){
 		if (a == null)
             return "null";
@@ -179,15 +191,5 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
             b.append(",");
         }
 	}
-
-
-
-
-
-
-
-
-
-
 
 }

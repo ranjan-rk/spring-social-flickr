@@ -23,13 +23,18 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.PeopleOperations;
+import org.springframework.social.flickr.api.PhotoCommentOperations;
+import org.springframework.social.flickr.api.PhotoLicenseOperations;
+import org.springframework.social.flickr.api.PhotoNoteOperations;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
-import org.springframework.web.client.RestTemplate;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 	private PeopleOperations peopleOperations;
     private PhotoOperations photoOperations;
+    private PhotoCommentOperations photoCommentOperations;
+    private PhotoLicenseOperations photoLicenseOperations;
+    private PhotoNoteOperations photoNoteOperations; 
 
 
 
@@ -46,6 +51,9 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 	private void initSubApis() {
 		this.peopleOperations = new PeopleTemplate(getRestTemplate(),isAuthorized());
 		this.photoOperations = new PhotoTemplate(getRestTemplate(),isAuthorized()); 
+		this.photoCommentOperations = new PhotoCommentTemplate(getRestTemplate(),isAuthorized() );
+		this.photoLicenseOperations = new PhotoLicenseTemplate(getRestTemplate(), isAuthorized());
+		this.photoNoteOperations = new PhotoNoteTemplate(getRestTemplate(), isAuthorized());
 	}
 	
 	
@@ -69,9 +77,21 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		return peopleOperations;
 	}
 
-	@Override
+
 	public PhotoOperations photoOperations() {
 		return photoOperations;
+	}
+
+	public PhotoCommentOperations PhotoCommentOperations() {
+		return photoCommentOperations;
+	}
+
+	public PhotoLicenseOperations PhotoLicenseOperations() {
+		return photoLicenseOperations;
+	}
+
+	public PhotoNoteOperations PhotoNoteOperations() {
+		return photoNoteOperations;
 	}
     
    

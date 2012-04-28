@@ -1,7 +1,10 @@
 package org.springframework.social.flickr.api;
 
 
-// TODO: Auto-generated Javadoc
+/**
+ * @author HemantS
+ *
+ */
 /**
  * The Interface PhotoOperations.
  */
@@ -132,5 +135,16 @@ public interface PhotoOperations {
 	 * @return
 	 */
 	boolean setMeta(String photoId , String title , String description);
+	
+	/**
+	 * Rotate a photo.
+	 * 
+	 * This method requires authentication with 'write' permission.
+	 * 
+	 * @param photoId
+	 * @param rotation The amount of degrees by which to rotate the photo (clockwise) from it's current orientation. Valid values are 90, 180 and 270.
+	 * @return
+	 */
+	boolean rotate(String photoId,RotateEnum rotation);
 	
 }
