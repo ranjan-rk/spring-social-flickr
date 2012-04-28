@@ -8,6 +8,7 @@ public class PhotoMixin {
 	@JsonProperty("ispublic") boolean isPublic;
 	@JsonProperty("isfriend") boolean isFriend;
 	@JsonProperty("isfamily") boolean isFamily;
+	@JsonProperty("is_faved") boolean isFaved;
 	@JsonProperty("dateupload") String dateUpload;
 	@JsonProperty("datetaken" ) String dateTaken;
 	@JsonProperty("ownername") String ownerName;

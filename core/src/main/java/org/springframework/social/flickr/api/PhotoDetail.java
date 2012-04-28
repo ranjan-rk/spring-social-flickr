@@ -13,7 +13,7 @@ public class PhotoDetail{
    	private String farm;
    	private String id;
    	private boolean isfavorite;
-   	private String license;
+   	private LicenseEnum license;
    	private String media;
    	private Notes notes;
    	private Owner owner;
@@ -79,10 +79,10 @@ public class PhotoDetail{
 	public void setIsfavorite(boolean isfavorite){
 		this.isfavorite = isfavorite;
 	}
- 	public String getLicense(){
+ 	public LicenseEnum getLicense(){
 		return this.license;
 	}
-	public void setLicense(String license){
+	public void setLicense(LicenseEnum license){
 		this.license = license;
 	}
  	public String getMedia(){

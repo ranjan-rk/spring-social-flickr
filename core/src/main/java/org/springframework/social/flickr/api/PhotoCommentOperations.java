@@ -2,9 +2,7 @@ package org.springframework.social.flickr.api;
 
 /**
  * @author HemantS
- *
- */
-/**
+ * 
  * The Interface PhotoCommentOperations.
  */
 public interface PhotoCommentOperations {

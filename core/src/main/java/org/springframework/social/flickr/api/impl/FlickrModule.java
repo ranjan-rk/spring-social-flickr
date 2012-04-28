@@ -25,6 +25,8 @@ import org.springframework.social.flickr.api.Person;
 import org.springframework.social.flickr.api.PersonMixin;
 import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoMixin;
+import org.springframework.social.flickr.api.Photoset;
+import org.springframework.social.flickr.api.PhotosetMixin;
 import org.springframework.social.flickr.api.User;
 import org.springframework.social.flickr.api.UserMixin;
 
@@ -45,5 +47,7 @@ public class FlickrModule extends SimpleModule {
 		context.setMixInAnnotations(Group.class, GroupMixin.class);
 		context.setMixInAnnotations(Photo.class, PhotoMixin.class);
 		context.setMixInAnnotations(Comments.class, CommentsMixin.class);
+		context.setMixInAnnotations(Photoset.class, PhotosetMixin.class);
+		
     }
 }

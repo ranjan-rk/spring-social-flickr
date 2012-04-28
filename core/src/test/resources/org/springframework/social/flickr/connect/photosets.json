@@ -1,0 +1,15 @@
+{ "photosets": { "cancreate": 1, "page": 1, "pages": 1, "perpage": 4, "total": 4, 
+    "photoset": [
+      { "id": "72157629917337143", "primary": "6974984242", "secret": "89bfdffce6", "server": "7132", "farm": 8, "photos": 2, "videos": 0, 
+        "title": { "_content": "talentica holi celebration" }, 
+        "description": { "_content": "talentica holi celebration" }, "needs_interstitial": 0, "visibility_can_see_set": 1, "count_views": 0, "count_comments": 0, "can_comment": 1, "date_create": "1335614673", "date_update": "1335615989" },
+      { "id": "72157629507480244", "primary": "6955318230", "secret": "ac4de4f840", "server": "7205", "farm": 8, "photos": 2, "videos": 0, 
+        "title": { "_content": "IPL set" }, 
+        "description": { "_content": "set for ipls" }, "needs_interstitial": 0, "visibility_can_see_set": 1, "count_views": 0, "count_comments": 0, "can_comment": 1, "date_create": "1335082637", "date_update": "1335517791" },
+      { "id": "72157629552220359", "primary": "6822877484", "secret": "b8ae762f4e", "server": "7039", "farm": 8, "photos": 1, "videos": 0, 
+        "title": { "_content": "Kashid" }, 
+        "description": { "_content": "Bike trip to kashid with talentica folks." }, "needs_interstitial": 0, "visibility_can_see_set": 1, "count_views": 0, "count_comments": 0, "can_comment": 1, "date_create": "1331374643", "date_update": 0 },
+      { "id": "72157629403392519", "primary": "6910476339", "secret": "e91a39f802", "server": "7057", "farm": 8, "photos": 3, "videos": 0, 
+        "title": { "_content": "Goa" }, 
+        "description": { "_content": "Trip to goa with hadoop group of my company talentica " }, "needs_interstitial": 0, "visibility_can_see_set": 1, "count_views": 0, "count_comments": 0, "can_comment": 1, "date_create": "1329756548", "date_update": "1335079018" }
+    ] }, "stat": "ok" }

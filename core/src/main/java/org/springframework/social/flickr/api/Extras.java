@@ -2,7 +2,7 @@ package org.springframework.social.flickr.api;
 
 public class Extras {
 	String description; 
-	String license; 
+	LicenseEnum license; 
 	String dateUpload; 
 	String dateTaken; 
 	String ownerName; 
@@ -38,10 +38,10 @@ public class Extras {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public String getLicense() {
+	public LicenseEnum getLicense() {
 		return license;
 	}
-	public void setLicense(String license) {
+	public void setLicense(LicenseEnum license) {
 		this.license = license;
 	}
 	public String getDateUpload() {

@@ -27,6 +27,7 @@ import org.springframework.social.flickr.api.PhotoCommentOperations;
 import org.springframework.social.flickr.api.PhotoLicenseOperations;
 import org.springframework.social.flickr.api.PhotoNoteOperations;
 import org.springframework.social.flickr.api.PhotoOperations;
+import org.springframework.social.flickr.api.PhotosetOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
@@ -35,6 +36,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private PhotoCommentOperations photoCommentOperations;
     private PhotoLicenseOperations photoLicenseOperations;
     private PhotoNoteOperations photoNoteOperations; 
+    private PhotosetOperations photosetOperations;
 
 
 
@@ -54,6 +56,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.photoCommentOperations = new PhotoCommentTemplate(getRestTemplate(),isAuthorized() );
 		this.photoLicenseOperations = new PhotoLicenseTemplate(getRestTemplate(), isAuthorized());
 		this.photoNoteOperations = new PhotoNoteTemplate(getRestTemplate(), isAuthorized());
+		this.photosetOperations = new PhotosetTemplate(getRestTemplate(), isAuthorized());
 	}
 	
 	
@@ -92,6 +95,10 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 
 	public PhotoNoteOperations PhotoNoteOperations() {
 		return photoNoteOperations;
+	}
+
+	public PhotosetOperations PhotosetOperations() {
+		return photosetOperations;
 	}
     
    

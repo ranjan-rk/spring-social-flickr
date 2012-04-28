@@ -243,9 +243,9 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
     public void rotateTest(){	
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.transform.rotate&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
-	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
-	    boolean result =  flickr.photoOperations().rotate("23", RotateEnum.NINETY);
-	    assertStat(result);
+	        .andRespond(withResponse(jsonResource("photoid"), responseHeaders));
+	    PhotoId photoid=  flickr.photoOperations().rotate("23", RotateEnum.NINETY);
+	    assertPhotoId(photoid);
     }
 	
     private void assertNoteId(String id) {

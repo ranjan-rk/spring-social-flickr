@@ -165,13 +165,12 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 	}
 	
 	@Override
-	public boolean rotate(String photoId, RotateEnum rotation) {
+	public PhotoId rotate(String photoId, RotateEnum rotation) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		parameters.set("photo_id", photoId);
 		parameters.set("degrees",rotation.getRotation());
-		restTemplate.postForObject(buildUri("flickr.photos.transform.rotate"), parameters, Object.class);
-		return true;
+		return restTemplate.postForObject(buildUri("flickr.photos.transform.rotate"), parameters, PhotoId.class);
 	}
 
 	

@@ -12,6 +12,9 @@ public class Photo extends Extras{
 	boolean isPublic;
 	boolean isFriend;
 	boolean isFamily;
+	boolean isFaved;
+	String thumb;
+	String media;
 	String url;
 	String page;
 	String pages;
@@ -146,4 +149,29 @@ public class Photo extends Extras{
 	public void setTotal(String total) {
 		this.total = total;
 	}
+
+	public boolean isFaved() {
+		return isFaved;
+	}
+
+	public void setFaved(boolean isFaved) {
+		this.isFaved = isFaved;
+	}
+
+	public String getThumb() {
+		return thumb;
+	}
+
+	public void setThumb(String thumb) {
+		this.thumb = thumb;
+	}
+
+	public String getMedia() {
+		return media;
+	}
+
+	public void setMedia(String media) {
+		this.media = media;
+	}
+
 }

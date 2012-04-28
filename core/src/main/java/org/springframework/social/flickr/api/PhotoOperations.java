@@ -145,6 +145,6 @@ public interface PhotoOperations {
 	 * @param rotation The amount of degrees by which to rotate the photo (clockwise) from it's current orientation. Valid values are 90, 180 and 270.
 	 * @return
 	 */
-	boolean rotate(String photoId,RotateEnum rotation);
+	PhotoId rotate(String photoId,RotateEnum rotation);
 	
 }
