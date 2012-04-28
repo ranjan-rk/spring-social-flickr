@@ -7,6 +7,7 @@ import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.PhotoId;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.Photos;
+import org.springframework.social.flickr.api.SafetyLevelEnum;
 import org.springframework.social.flickr.api.Sizes;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -129,7 +130,38 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		return true;
 	}
 
-	
+	@Override
+	public boolean setSafetyLevel(String photoId, SafetyLevelEnum safetyLevel,Boolean hidden) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("photo_id", photoId);
+		parameters.set("safety_level", safetyLevel.getSafetyLevel());
+		if(hidden!=null){
+			if(hidden == true){
+				parameters.set("hidden", "1");
+			}else{
+				parameters.set("hidden", "0");
+			}
+		}
+		restTemplate.postForObject(buildUri("flickr.photos.setSafetyLevel"), parameters, Object.class);
+		return true;
+	}
+
+	@Override
+	public boolean setSafetyLevel(String photoId, SafetyLevelEnum safetyLevel) {
+		return setSafetyLevel(photoId,safetyLevel,null );
+	}
+
+	@Override
+	public boolean setMeta(String photoId, String title, String description) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		parameters.set("photo_id", photoId);
+		parameters.set("title", title);
+		parameters.set("description", description);
+		restTemplate.postForObject(buildUri("flickr.photos.setMeta"), parameters, Object.class);
+		return true;
+	}
 	
 	private String toCommaList(String[] a){
 		if (a == null)

@@ -108,4 +108,29 @@ public interface PhotoOperations {
 	 */
 	boolean setContentType(String photoId, ContentTypeEnum contentTypeEnum);
 	
+	/**
+	 * Set the safety level of a photo.
+	 * 
+	 * This method requires authentication with 'write' permission.
+	 * 
+	 * @param photoId
+	 * @param safetyLevel
+	 * @param hidden
+	 * @return
+	 */
+	boolean setSafetyLevel(String photoId, SafetyLevelEnum safetyLevel, Boolean hidden);
+	boolean setSafetyLevel(String photoId, SafetyLevelEnum safetyLevel);
+	
+	/**
+	 * Set the meta information for a photo.
+	 * 
+	 * This method requires authentication with 'write' permission.
+	 * 
+	 * @param photoId
+	 * @param title
+	 * @param description
+	 * @return
+	 */
+	boolean setMeta(String photoId , String title , String description);
+	
 }

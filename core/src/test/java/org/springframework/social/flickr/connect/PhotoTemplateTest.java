@@ -15,6 +15,7 @@ import org.springframework.social.flickr.api.Photo;
 import org.springframework.social.flickr.api.PhotoDetail;
 import org.springframework.social.flickr.api.PhotoId;
 import org.springframework.social.flickr.api.Photos;
+import org.springframework.social.flickr.api.SafetyLevelEnum;
 import org.springframework.social.flickr.api.Sizes;
 
 public class PhotoTemplateTest extends AbstractFlickrApiTest{
@@ -96,6 +97,15 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
     }
     
     @Test
+    public void setSafetyLevelTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.setSafetyLevel&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result=  flickr.photoOperations().setSafetyLevel("23", SafetyLevelEnum.MODERATE);
+	    assertStat(result);
+    }
+    
+    @Test
     public void setPermsTest(){	
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.setPerms&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
@@ -117,6 +127,15 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
 	    boolean result=  flickr.photoOperations().setContentType("23", ContentTypeEnum.SCREENSHORT);
+	    assertStat(result);
+    }
+	
+	@Test
+    public void setMetaTest(){	
+	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.setMeta&format=json&nojsoncallback=1"))
+	        .andExpect(method(POST))
+	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
+	    boolean result=  flickr.photoOperations().setMeta("23", "title","desc");
 	    assertStat(result);
     }
     
