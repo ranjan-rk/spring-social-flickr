@@ -29,6 +29,10 @@ import org.springframework.social.flickr.api.Photos;
 import org.springframework.social.flickr.api.User;
 import org.springframework.social.flickr.api.impl.FlickrException;
 
+/**
+ * @author HemantS
+ *
+ */
 public class PeopleTemplateTest extends AbstractFlickrApiTest {
    
     

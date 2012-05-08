@@ -2,6 +2,10 @@
 package org.springframework.social.flickr.api;
 
 
+/**
+ * @author HemantS
+ *
+ */
 public class Usage{
    	private boolean canblog;
    	private boolean candownload;

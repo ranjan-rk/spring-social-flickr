@@ -6,6 +6,10 @@ import org.springframework.social.support.URIBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 
+/**
+ * @author HemantS
+ *
+ */
 public class AbstractFlickrOperations {
 
 	private final boolean isAuthorized;

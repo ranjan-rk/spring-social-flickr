@@ -7,6 +7,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author HemantS
+ *
+ */
 public class PhotoLicenseTemplate extends AbstractFlickrOperations implements PhotoLicenseOperations {
 	
 private final RestTemplate restTemplate;

@@ -30,6 +30,10 @@ import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.PhotosetOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
+/**
+ * @author HemantS
+ *
+ */
 public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 	private PeopleOperations peopleOperations;
     private PhotoOperations photoOperations;

@@ -14,6 +14,10 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author HemantS
+ *
+ */
 public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOperations {
 	private final RestTemplate restTemplate;
 	

@@ -30,6 +30,10 @@ import org.springframework.social.flickr.api.PhotosetMixin;
 import org.springframework.social.flickr.api.User;
 import org.springframework.social.flickr.api.UserMixin;
 
+/**
+ * @author HemantS
+ *
+ */
 public class FlickrModule extends SimpleModule {
 
     public FlickrModule(String name, Version version) {

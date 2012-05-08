@@ -7,6 +7,10 @@ import org.springframework.social.flickr.api.User;
 import org.springframework.social.flickr.api.PeopleOperations;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author HemantS
+ *
+ */
 public class PeopleTemplate extends AbstractFlickrOperations implements PeopleOperations{
 
 	private final RestTemplate restTemplate;

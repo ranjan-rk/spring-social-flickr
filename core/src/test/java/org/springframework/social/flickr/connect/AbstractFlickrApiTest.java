@@ -8,6 +8,10 @@ import org.springframework.social.test.client.MockRestServiceServer;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+/**
+ * @author HemantS
+ *
+ */
 public class AbstractFlickrApiTest {
 	
 	protected FlickrTemplate flickr;

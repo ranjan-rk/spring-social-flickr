@@ -2,7 +2,6 @@ package org.springframework.social.flickr.api.impl;
 
 import java.util.List;
 
-import org.springframework.social.flickr.api.PhotoCount;
 import org.springframework.social.flickr.api.Photoset;
 import org.springframework.social.flickr.api.PhotosetOperations;
 import org.springframework.social.flickr.api.Photosets;
@@ -11,6 +10,10 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * @author HemantS
+ *
+ */
 public class PhotosetTemplate extends AbstractFlickrOperations implements PhotosetOperations {
 	private final RestTemplate restTemplate;
 	
