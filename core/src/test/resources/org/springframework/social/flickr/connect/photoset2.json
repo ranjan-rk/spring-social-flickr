@@ -1,0 +1,5 @@
+{ "photoset": { "id": "72157629917337143", "primary": "6974984242", "owner": "73562874@N08", "ownername": "hemantsch", 
+    "photo": [
+      { "id": "7121067083", "secret": "b7962c76b0", "server": "7252", "farm": 8, "title": "2012-03-08 13.44.27", "isprimary": 0 },
+      { "id": "6974984242", "secret": "89bfdffce6", "server": "7132", "farm": 8, "title": "2012-03-08 13.43.57", "isprimary": 1 }
+    ], "page": 1, "per_page": "500", "perpage": "500", "pages": 1, "total": 2 }, "stat": "ok" }

@@ -2,7 +2,9 @@ package org.springframework.social.flickr.api;
 
 import java.util.List;
 
-
+/**
+ * The Interface PhotosetOperations.
+ */
 public interface PhotosetOperations {
 
 	/**
@@ -102,5 +104,65 @@ public interface PhotosetOperations {
 	 * @return
 	 */
 	Photosets getList(String userId, String page, String perPage);
+
+	/**
+	 * Delete.
+	 *
+	 * @param photosetId the photoset id
+	 */
+	boolean delete( String photosetId);
+
+	/**
+	 * Gets the photos.
+	 *
+	 * @param photosetId the photoset id
+	 * @param extras the extras
+	 * @param privacyFilter the privacy filter
+	 * @param perPage the per page
+	 * @param page the page
+	 * @param media the media
+	 * @return the photos
+	 */
+	Photoset getPhotos( String photosetId, String[] extras,
+			PrivacyFilterEnum privacyFilter, String perPage, String page, MediaEnum media);// extras,privacyFilter,perPage,page,media optional
+
+	/**
+	 * Order sets.
+	 *
+	 * @param photosetIds the photoset ids
+	 */
+	boolean orderSets( String[] photosetIds);
+
+	/**
+	 * Removes the photo.
+	 *
+	 * @param photosetId the photoset id
+	 * @param photoId the photo id
+	 */
+	boolean removePhoto( String photosetId, String photoId);
+
+	/**
+	 * Removes the photos.
+	 *
+	 * @param photosetId the photoset id
+	 * @param photoIds the photo ids
+	 */
+	boolean removePhotos( String photosetId, String[] photoIds);
+
+	/**
+	 * Reorder photos.
+	 *
+	 * @param photosetId the photoset id
+	 * @param photoIds the photo ids
+	 */
+	boolean reorderPhotos( String photosetId, String[] photoIds);
+
+	/**
+	 * Sets the primary photo.
+	 *
+	 * @param photosetId the photoset id
+	 * @param photoId the photo id
+	 */
+	boolean setPrimaryPhoto( String photosetId, String photoId);
 
 }
