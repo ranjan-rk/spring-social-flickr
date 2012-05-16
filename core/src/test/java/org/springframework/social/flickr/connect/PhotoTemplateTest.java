@@ -153,7 +153,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.addComment&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("comment"), responseHeaders));
-	    Comment comment =  flickr.PhotoCommentOperations().addComment("23", "commentText");
+	    Comment comment =  flickr.photoCommentOperations().addComment("23", "commentText");
 	    assertComment(comment);
     }
 	
@@ -162,7 +162,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.deleteComment&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
-	    boolean result=  flickr.PhotoCommentOperations().deleteComment("commentID");
+	    boolean result=  flickr.photoCommentOperations().deleteComment("commentID");
 	    assertStat(result);
     }
     
@@ -171,7 +171,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.editComment&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
-	    boolean result=  flickr.PhotoCommentOperations().editComment("commentID","commenTtext");
+	    boolean result=  flickr.photoCommentOperations().editComment("commentID","commenTtext");
 	    assertStat(result);
     }
     
@@ -180,7 +180,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.comments.getList&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("comments"), responseHeaders));
-	    Comments comments=  flickr.PhotoCommentOperations().getList("23", null, null);
+	    Comments comments=  flickr.photoCommentOperations().getList("23", null, null);
 	    assertComments(comments);
     }
     
@@ -190,7 +190,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.licenses.getInfo&format=json&nojsoncallback=1"))
 	        .andExpect(method(GET))
 	        .andRespond(withResponse(jsonResource("licenses"), responseHeaders));
-	    Licenses licenses=  flickr.PhotoLicenseOperations().getInfo();
+	    Licenses licenses=  flickr.photoLicenseOperations().getInfo();
 	    assertLicense(licenses);
     }
 	
@@ -199,7 +199,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.licenses.setLicense&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
-	    boolean result=  flickr.PhotoLicenseOperations().setLicense("23", LicenseEnum.AllRightsReserved);
+	    boolean result=  flickr.photoLicenseOperations().setLicense("23", LicenseEnum.AllRightsReserved);
 	    assertStat(result);
     }
 	
@@ -213,7 +213,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    Note note = new Note();
 	    note.set_content("test");
 	    note.setH(2);
-	    String id=  flickr.PhotoNoteOperations().add("23",note );
+	    String id=  flickr.photoNoteOperations().add("23",note );
 	    assertNoteId(id);
     }
 	
@@ -222,7 +222,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    mockServer.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photos.notes.delete&format=json&nojsoncallback=1"))
 	        .andExpect(method(POST))
 	        .andRespond(withResponse(jsonResource("stat"), responseHeaders));
-	    boolean result =  flickr.PhotoNoteOperations().delete("23");
+	    boolean result =  flickr.photoNoteOperations().delete("23");
 	    assertStat(result);
     }
 	
@@ -234,7 +234,7 @@ public class PhotoTemplateTest extends AbstractFlickrApiTest{
 	    Note note = new Note();
 	    note.set_content("test");
 	    note.setH(2);
-	    boolean result =  flickr.PhotoNoteOperations().edit("23",note);
+	    boolean result =  flickr.photoNoteOperations().edit("23",note);
 	    assertStat(result);
     }
 	

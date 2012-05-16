@@ -25,7 +25,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andExpect(method(POST))
 				.andRespond(
 						withResponse(jsonResource("photoset"), responseHeaders));
-		Photoset photoset = flickr.PhotosetOperations().create("title",
+		Photoset photoset = flickr.photosetOperations().create("title",
 				"description", "23");
 		assertPhotoset(photoset);
 	}
@@ -36,7 +36,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photosets.addPhoto&format=json&nojsoncallback=1"))
 				.andExpect(method(POST))
 				.andRespond(withResponse(jsonResource("stat"), responseHeaders));
-		boolean result = flickr.PhotosetOperations().addPhoto("23", "23");
+		boolean result = flickr.photosetOperations().addPhoto("23", "23");
 		assertStat(result);
 	}
 
@@ -46,7 +46,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.photosets.editMeta&format=json&nojsoncallback=1"))
 				.andExpect(method(POST))
 				.andRespond(withResponse(jsonResource("stat"), responseHeaders));
-		boolean result = flickr.PhotosetOperations().editMeta("23", "title",
+		boolean result = flickr.photosetOperations().editMeta("23", "title",
 				"desc");
 		assertStat(result);
 	}
@@ -60,7 +60,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 		List<String> listOfPhots = new ArrayList<String>();
 		listOfPhots.add("24");
 		listOfPhots.add("25");
-		boolean result = flickr.PhotosetOperations().editPhotos("23", "title",
+		boolean result = flickr.photosetOperations().editPhotos("23", "title",
 				listOfPhots);
 		assertStat(result);
 	}
@@ -73,7 +73,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andRespond(
 						withResponse(jsonResource("photosetdetail"),
 								responseHeaders));
-		Photoset photoset = flickr.PhotosetOperations().getInfo("23");
+		Photoset photoset = flickr.photosetOperations().getInfo("23");
 		assertPhotoset(photoset);
 	}
 
@@ -84,7 +84,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andExpect(method(POST))
 				.andRespond(
 						withResponse(jsonResource("photosets"), responseHeaders));
-		Photosets photosets = flickr.PhotosetOperations().getList("23", null,
+		Photosets photosets = flickr.photosetOperations().getList("23", null,
 				null);
 		assertPhotosets(photosets);
 	}
@@ -96,7 +96,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andExpect(method(POST))
 				.andRespond(
 						withResponse(jsonResource("stat"), responseHeaders));
-		boolean result = flickr.PhotosetOperations().delete("2");
+		boolean result = flickr.photosetOperations().delete("2");
 		assertStat(result);
 	}
 
@@ -107,7 +107,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("photoset2"), responseHeaders));
-		Photoset  photoset = flickr.PhotosetOperations().getPhotos("23",null,null, null, null, null);
+		Photoset  photoset = flickr.photosetOperations().getPhotos("23",null,null, null, null, null);
 		assertPhotoset(photoset);
 	}
 
@@ -118,7 +118,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andExpect(method(POST))
 				.andRespond(withResponse(jsonResource("stat"), responseHeaders));
 		String ids[]={"1","2"};
-		boolean result = flickr.PhotosetOperations().orderSets(ids);
+		boolean result = flickr.photosetOperations().orderSets(ids);
 		assertStat(result);
 	}
 
@@ -129,7 +129,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andExpect(method(POST))
 				.andRespond(
 						withResponse(jsonResource("stat"), responseHeaders));
-		boolean result = flickr.PhotosetOperations().removePhoto("2", "3");
+		boolean result = flickr.photosetOperations().removePhoto("2", "3");
 		assertStat(result);
 	}
 
@@ -141,7 +141,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andRespond(
 						withResponse(jsonResource("stat"), responseHeaders));
 		String ids[]={"1","2"};
-		boolean result = flickr.PhotosetOperations().removePhotos("2",ids);
+		boolean result = flickr.photosetOperations().removePhotos("2",ids);
 		assertStat(result);
 	}
 
@@ -153,7 +153,7 @@ public class PhotosetTemplateTest extends AbstractFlickrApiTest {
 				.andRespond(
 						withResponse(jsonResource("stat"), responseHeaders));
 		String ids[]={"1","2"};
-		boolean result = flickr.PhotosetOperations().reorderPhotos("2",ids);
+		boolean result = flickr.photosetOperations().reorderPhotos("2",ids);
 		assertStat(result);
 	}
 

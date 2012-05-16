@@ -1,0 +1,15 @@
+{ "galleries": { "total": 4, "page": 1, "pages": 1, "per_page": 100, "user_id": "73562874@N08", 
+    "gallery": [
+      { "id": "73470061-72157629720185926", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/galleries\/72157629720185926", "owner": "73562874@N08", "username": "hemantsch", "iconserver": "7043", "iconfarm": 8, "primary_photo_id": "", "date_create": "1336979754", "date_update": "1336979754", "count_photos": 0, "count_videos": 0, "count_views": 0, "count_comments": 0, 
+        "title": { "_content": "api test" }, 
+        "description": { "_content": "api test" } },
+      { "id": "73470061-72157629552242573", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/galleries\/72157629552242573", "owner": "73562874@N08", "username": "hemantsch", "iconserver": "7043", "iconfarm": 8, "primary_photo_id": "4937501369", "date_create": "1331375002", "date_update": "1336979249", "count_photos": 4, "count_videos": 0, "count_views": 0, "count_comments": 0, 
+        "title": { "_content": "random" }, 
+        "description": { "_content": "this gallery is created to get the awesome stuff from flickr" }, "primary_photo_server": "4123", "primary_photo_farm": 5, "primary_photo_secret": "02a9e78f9d" },
+      { "id": "73470061-72157629552234721", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/galleries\/72157629552234721", "owner": "73562874@N08", "username": "hemantsch", "iconserver": "7043", "iconfarm": 8, "primary_photo_id": "6822883072", "date_create": "1331374875", "date_update": "1331375387", "count_photos": 1, "count_videos": 0, "count_views": 1, "count_comments": 0, 
+        "title": { "_content": "wedding" }, 
+        "description": { "_content": "this is pic is added to test the gallery creation,, anyways this is awesome pic click by someone else. fo wedding.." }, "primary_photo_server": "7047", "primary_photo_farm": 8, "primary_photo_secret": "5c1223c85d" },
+      { "id": "73470061-72157629427992861", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/galleries\/72157629427992861", "owner": "73562874@N08", "username": "hemantsch", "iconserver": "7043", "iconfarm": 8, "primary_photo_id": "", "date_create": "1329915726", "date_update": "1329915726", "count_photos": 0, "count_videos": 0, "count_views": 0, "count_comments": 0, 
+        "title": { "_content": "test" }, 
+        "description": { "_content": "test" } }
+    ] }, "stat": "ok" }

@@ -21,6 +21,8 @@ import org.springframework.social.flickr.user.SecurityContext;
 import org.springframework.social.flickr.user.SimpleConnectionSignUp;
 import org.springframework.social.flickr.user.SimpleSignInAdapter;
 import org.springframework.social.flickr.user.User;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Configuration
 
@@ -82,5 +84,15 @@ public class SocialConfig {
 				new SimpleSignInAdapter());
 		return psc;
 	}
-
+	
+	/*peding 
+	@Bean 
+	@Scope(value = WebApplicationContext.SCOPE_SESSION,proxyMode = ScopedProxyMode.TARGET_CLASS) 
+	public CommonsMultipartResolver getMultipartResolver(){
+		System.out.println("calling CommonsMultipartResolver");
+		CommonsMultipartResolver c = new CommonsMultipartResolver();
+		c.setMaxUploadSize(10000);
+		return c;
+	}
+	*/
 }

@@ -6,6 +6,7 @@ import org.springframework.social.flickr.api.Gallery;
 import org.springframework.social.flickr.api.Photos;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.RestTemplate;
 
 /**
@@ -23,29 +24,25 @@ public class GalleriesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void addPhoto(String apiKey, String galleryId, String photoId,
+	public boolean addPhoto(String galleryId, String photoId,
 			String comment) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (galleryId != null)
 			parameters.set("gallery_id", galleryId);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (comment != null)
 			parameters.set("comment", comment);
-		restTemplate.postForObject(buildUri("flickr.galleries.addPhoto"),
-				parameters, Object.class);
+		restTemplate.postForObject(buildUri("flickr.galleries.addPhoto"),parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public Gallery create(String apiKey, String title, String description,
+	public Gallery create(String title, String description,
 			String primaryPhotoId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (title != null)
 			parameters.set("title", title);
 		if (description != null)
@@ -57,12 +54,10 @@ public class GalleriesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void editMeta(String apiKey, String galleryId, String title,
+	public boolean editMeta(String galleryId, String title,
 			String description) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (galleryId != null)
 			parameters.set("gallery_id", galleryId);
 		if (title != null)
@@ -71,15 +66,14 @@ public class GalleriesTemplate extends AbstractFlickrOperations implements
 			parameters.set("description", description);
 		restTemplate.postForObject(buildUri("flickr.galleries.editMeta"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void editPhoto(String apiKey, String galleryId, String photoId,
+	public boolean editPhoto(String galleryId, String photoId,
 			String comment) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (galleryId != null)
 			parameters.set("gallery_id", galleryId);
 		if (photoId != null)
@@ -88,30 +82,28 @@ public class GalleriesTemplate extends AbstractFlickrOperations implements
 			parameters.set("comment", comment);
 		restTemplate.postForObject(buildUri("flickr.galleries.editPhoto"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void editPhotos(String apiKey, String galleryId,
-			String primaryPhotoId, String photoIds) {
+	public boolean editPhotos(String galleryId,
+			String primaryPhotoId, String[] photoIds) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (galleryId != null)
 			parameters.set("gallery_id", galleryId);
 		if (primaryPhotoId != null)
 			parameters.set("primary_photo_id", primaryPhotoId);
 		if (photoIds != null)
-			parameters.set("photo_ids", photoIds);
+			parameters.set("photo_ids", StringUtils.arrayToCommaDelimitedString(photoIds));
 		restTemplate.postForObject(buildUri("flickr.galleries.editPhotos"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public Gallery getInfo(String apiKey, String galleryId) {
+	public Gallery getInfo(String galleryId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (galleryId != null)
 			parameters.set("gallery_id", galleryId);
 		return restTemplate
@@ -120,11 +112,11 @@ public class GalleriesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Galleries getList(String apiKey, String userId, String perPage,
+	public Galleries getList(String userId, String perPage,
 			String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
+		
+			
 		if (userId != null)
 			parameters.set("user_id", userId);
 		if (perPage != null)
@@ -137,28 +129,28 @@ public class GalleriesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void getListForPhoto(String apiKey, String photoId, String perPage,
+	public Galleries getListForPhoto(String photoId, String perPage,
 			String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
+		
+			
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (perPage != null)
 			parameters.set("per_page", perPage);
 		if (page != null)
 			parameters.set("page", page);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.galleries.getListForPhoto", parameters),
-				Object.class);
+				Galleries.class);
 	}
 
 	@Override
-	public Photos getPhotos(String apiKey, String galleryId, String extras,
+	public Photos getPhotos(String galleryId, String extras,
 			String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
+		
+			
 		if (galleryId != null)
 			parameters.set("gallery_id", galleryId);
 		if (extras != null)

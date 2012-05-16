@@ -1,0 +1,9 @@
+{ "galleries": { "total": 2, "page": 1, "pages": 1, "per_page": 100, "photo_id": "4937501369", 
+    "gallery": [
+      { "id": "73470061-72157629552242573", "url": "http:\/\/www.flickr.com\/photos\/hemant24\/galleries\/72157629552242573", "owner": "73562874@N08", "username": "hemantsch", "iconserver": "7043", "iconfarm": 8, "primary_photo_id": "4937501369", "date_create": "1331375002", "date_update": "1336979249", "count_photos": 4, "count_videos": 0, "count_views": 0, "count_comments": 0, 
+        "title": { "_content": "random" }, 
+        "description": { "_content": "this gallery is created to get the awesome stuff from flickr" }, "primary_photo_server": "4123", "primary_photo_farm": 5, "primary_photo_secret": "02a9e78f9d" },
+      { "id": "5427575-72157622246834429", "url": "http:\/\/www.flickr.com\/photos\/mwboeckmann\/galleries\/72157622246834429", "owner": "75567359@N00", "username": "mwboeckmann", "iconserver": "5230", "iconfarm": 6, "primary_photo_id": "399719318", "date_create": "1252968412", "date_update": "1335359490", "count_photos": 18, "count_videos": 0, "count_views": "13655", "count_comments": 52, 
+        "title": { "_content": "Vespa" }, 
+        "description": { "_content": "Vespa scooters are so unique." }, "primary_photo_server": "162", "primary_photo_farm": 1, "primary_photo_secret": "c5c5ff44be" }
+    ] }, "stat": "ok" }

@@ -23,5 +23,13 @@
 		<input type="submit" value="delete photo"/>
 	</form>
 	
+	<h2>upload  photo</h2>
+	<form action="uploadphoto" method="POST" enctype="multipart/form-data">
+		<label>Photo : </label>
+		<input type="file" name="photo"/>
+		<input type="text" name="title"/>
+		<input type="submit" value="upload photo"/>
+	</form>
+	
 </body>
 </html>

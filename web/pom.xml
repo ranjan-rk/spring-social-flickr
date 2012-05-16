@@ -74,6 +74,20 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>h2</artifactId>
 			<version>1.3.159</version>
 	    </dependency>
+	     <!-- Apache Commons Upload --> 
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+	 
+		<!-- Apache Commons Upload --> 
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>spring-social-flickr-web</finalName>

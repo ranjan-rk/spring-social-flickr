@@ -1,5 +1,7 @@
 package org.springframework.social.flickr.api;
 
+import java.io.File;
+
 
 /**
  * @author HemantS
@@ -146,5 +148,9 @@ public interface PhotoOperations {
 	 * @return
 	 */
 	PhotoId rotate(String photoId,RotateEnum rotation);
+	
+	/*peding */
+	Object upload(File photo,String title , String description , String[] tags,Perms perms,  ContentTypeEnum contentType , HiddenEnum hiddenType);
+	
 	
 }

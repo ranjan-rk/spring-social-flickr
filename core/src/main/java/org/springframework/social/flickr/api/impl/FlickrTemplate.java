@@ -22,6 +22,7 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.Flickr;
+import org.springframework.social.flickr.api.GalleriesOperations;
 import org.springframework.social.flickr.api.PeopleOperations;
 import org.springframework.social.flickr.api.PhotoCommentOperations;
 import org.springframework.social.flickr.api.PhotoLicenseOperations;
@@ -41,6 +42,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private PhotoLicenseOperations photoLicenseOperations;
     private PhotoNoteOperations photoNoteOperations; 
     private PhotosetOperations photosetOperations;
+    private GalleriesOperations galleriesOperations;
 
 
 
@@ -61,6 +63,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.photoLicenseOperations = new PhotoLicenseTemplate(getRestTemplate(), isAuthorized());
 		this.photoNoteOperations = new PhotoNoteTemplate(getRestTemplate(), isAuthorized());
 		this.photosetOperations = new PhotosetTemplate(getRestTemplate(), isAuthorized());
+		this.galleriesOperations = new GalleriesTemplate(getRestTemplate(), isAuthorized());
 	}
 	
 	
@@ -89,20 +92,24 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		return photoOperations;
 	}
 
-	public PhotoCommentOperations PhotoCommentOperations() {
+	public PhotoCommentOperations photoCommentOperations() {
 		return photoCommentOperations;
 	}
 
-	public PhotoLicenseOperations PhotoLicenseOperations() {
+	public PhotoLicenseOperations photoLicenseOperations() {
 		return photoLicenseOperations;
 	}
 
-	public PhotoNoteOperations PhotoNoteOperations() {
+	public PhotoNoteOperations photoNoteOperations() {
 		return photoNoteOperations;
 	}
 
-	public PhotosetOperations PhotosetOperations() {
+	public PhotosetOperations photosetOperations() {
 		return photosetOperations;
+	}
+
+	public GalleriesOperations galleriesOperations() {
+		return galleriesOperations;
 	}
     
    

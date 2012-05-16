@@ -24,11 +24,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 @Controller
 public class HomeController {
 
 	private final Flickr flickr;
+	
+	@Inject
+	private CommonsMultipartResolver c ; 
 	
 	@Inject
 	public HomeController(Flickr flickr) {
@@ -58,4 +63,20 @@ public class HomeController {
 		model.addAttribute("messages","Photo Id : "+photoId+" delete successfully..");
 		return "welcomePage";
 	}
+	/*Pending
+	@RequestMapping(value = "/uploadphoto", method = RequestMethod.POST)
+	public String addtags(@RequestParam("photo")  MultipartFile  photo ,@RequestParam("title") String title, Model model ) {
+		Object obj =null; 
+		try{
+				System.out.println(c);
+				System.out.println(photo);
+			//obj = flickr.photoOperations().upload(photo , title, null , null , null , null , null );
+		}catch(FlickrException e){
+			model.addAttribute("messages",e.getMessage());
+			return "welcomePage";
+		}
+		if(obj!=null)
+			model.addAttribute("messages","Photo Id : "+obj.toString()+" added successfully..");
+		return "welcomePage";
+	}*/
 }
