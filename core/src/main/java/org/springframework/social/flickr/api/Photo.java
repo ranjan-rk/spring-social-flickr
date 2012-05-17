@@ -20,6 +20,7 @@ public class Photo extends Extras{
 	String pages;
 	String perpage;
 	String total;
+	String dateFaved;
 	ArrayList<Person2> person2; //Persons who favorited this photo
 
 	public String getId() {
@@ -172,6 +173,14 @@ public class Photo extends Extras{
 
 	public void setMedia(String media) {
 		this.media = media;
+	}
+
+	public String getDateFaved() {
+		return dateFaved;
+	}
+
+	public void setDateFaved(String dateFaved) {
+		this.dateFaved = dateFaved;
 	}
 
 }

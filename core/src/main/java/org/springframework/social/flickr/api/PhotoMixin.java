@@ -29,4 +29,5 @@ public class PhotoMixin {
 	@JsonProperty("urll" ) String urlL;
 	@JsonProperty("urlo") String urlO;
 	@JsonProperty("person") Person2 person2;
+	@JsonProperty("date_faved") String dateFaved;
 }

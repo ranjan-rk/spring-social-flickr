@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * @author HemantS
- *
+ * 
  */
 public class FavoritesTemplate extends AbstractFlickrOperations implements
 		FavoritesOperations {
@@ -22,22 +22,19 @@ public class FavoritesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void add(String apiKey, String photoId) {
+	public boolean add(String photoId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		restTemplate.postForObject(buildUri("flickr.favorites.add"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public Rsp getContext(String apiKey, String photoId, String userId) {
+	public Rsp getContext(String photoId, String userId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (userId != null)
@@ -47,12 +44,10 @@ public class FavoritesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Photos getList(String apiKey, String userId, String minFaveDate,
+	public Photos getList(String userId, String minFaveDate,
 			String maxFaveDate, String extras, String perPage, String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (userId != null)
 			parameters.set("user_id", userId);
 		if (minFaveDate != null)
@@ -70,12 +65,9 @@ public class FavoritesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Photos getPublicList(String apiKey, String userId,
-			String minFaveDate, String maxFaveDate, String extras,
-			String perPage, String page) {
+	public Photos getPublicList(String userId, String minFaveDate,
+			String maxFaveDate, String extras, String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (userId != null)
 			parameters.set("user_id", userId);
 		if (minFaveDate != null)
@@ -94,14 +86,13 @@ public class FavoritesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void remove(String apiKey, String photoId) {
+	public boolean remove(String photoId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		restTemplate.postForObject(buildUri("flickr.favorites.remove"),
 				parameters, Object.class);
+		return true;
 	}
 }
