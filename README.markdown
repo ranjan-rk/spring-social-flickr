@@ -6,7 +6,7 @@ Spring social flickr is project that helps to integrate your application with fl
 This project also contains web module to show some of working APIs example. After deploying web module you require to hit URL : 
 http://localhost:8080/spring-social-flickr-web/signin.jsp
 
-#Api Supported##
+##APIs Supported##
 Following api is currently supported in this project:
 
 * favorites
