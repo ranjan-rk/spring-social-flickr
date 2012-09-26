@@ -85,14 +85,12 @@ public class SocialConfig {
 		return psc;
 	}
 	
-	/*peding 
+	 
 	@Bean 
-	@Scope(value = WebApplicationContext.SCOPE_SESSION,proxyMode = ScopedProxyMode.TARGET_CLASS) 
-	public CommonsMultipartResolver getMultipartResolver(){
+	public CommonsMultipartResolver multipartResolver(){
 		System.out.println("calling CommonsMultipartResolver");
 		CommonsMultipartResolver c = new CommonsMultipartResolver();
-		c.setMaxUploadSize(10000);
+		c.setMaxUploadSize(100000);
 		return c;
 	}
-	*/
 }

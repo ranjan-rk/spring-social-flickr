@@ -1,5 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
+
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -16,6 +18,7 @@ import org.springframework.social.flickr.api.Photos;
 import org.springframework.social.flickr.api.RotateEnum;
 import org.springframework.social.flickr.api.SafetyLevelEnum;
 import org.springframework.social.flickr.api.Sizes;
+import org.springframework.social.support.URIBuilder;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -217,7 +220,7 @@ public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOper
 		
 		parameters.set("photo", photo.toString());
 		parameters.set("title",title);
-		return restTemplate.postForObject(buildUri("flickr.photos.transform.rotate"), parameters, Object.class);
+		return restTemplate.postForObject( URIBuilder.fromUri("http://api.flickr.com/services/upload/").build(), parameters, Object.class);
 	}
 
 }
