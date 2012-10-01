@@ -16,7 +16,7 @@ public interface ActivityOperations {
 	 * @param page the page
 	 * @return the items
 	 */
-	Items userComments(String apiKey, String perPage, String page);// perPage,page,
+	UserComment userComments(String apiKey, String perPage, String page);// perPage,page,
 
 	/**
 	 * User photos.
@@ -27,6 +27,6 @@ public interface ActivityOperations {
 	 * @param page the page
 	 * @return the items
 	 */
-	Items userPhotos(String apiKey, String timeframe, String perPage,
+	UserComment userPhotos(String apiKey, String timeframe, String perPage,
 			String page);// timeframe,perPage,page,
 }

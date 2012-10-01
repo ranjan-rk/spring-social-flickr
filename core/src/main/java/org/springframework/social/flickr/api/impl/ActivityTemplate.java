@@ -1,7 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
 import org.springframework.social.flickr.api.ActivityOperations;
-import org.springframework.social.flickr.api.Items;
+import org.springframework.social.flickr.api.UserComment;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -21,7 +21,7 @@ public class ActivityTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Items userComments(String apiKey, String perPage, String page) {
+	public UserComment userComments(String apiKey, String perPage, String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
@@ -32,11 +32,11 @@ public class ActivityTemplate extends AbstractFlickrOperations implements
 			parameters.set("page", page);
 		return restTemplate.getForObject(
 				buildUri("flickr.activity.userComments", parameters),
-				Items.class);
+				UserComment.class);
 	}
 
 	@Override
-	public Items userPhotos(String apiKey, String timeframe, String perPage,
+	public UserComment userPhotos(String apiKey, String timeframe, String perPage,
 			String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
@@ -51,6 +51,6 @@ public class ActivityTemplate extends AbstractFlickrOperations implements
 		return restTemplate
 				.getForObject(
 						buildUri("flickr.activity.userPhotos", parameters),
-						Items.class);
+						UserComment.class);
 	}
 }

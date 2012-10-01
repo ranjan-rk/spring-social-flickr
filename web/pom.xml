@@ -80,7 +80,6 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.2.2</version>
 		</dependency>
-	 
 		<!-- Apache Commons Upload --> 
 		<dependency>
 			<groupId>commons-io</groupId>
