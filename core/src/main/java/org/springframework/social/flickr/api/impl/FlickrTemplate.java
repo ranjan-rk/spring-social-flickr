@@ -22,6 +22,7 @@ import org.codehaus.jackson.map.DeserializationConfig;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.ActivityOperations;
+import org.springframework.social.flickr.api.BlogsOperations;
 import org.springframework.social.flickr.api.FavoritesOperations;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.GalleriesOperations;
@@ -47,6 +48,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private GalleriesOperations galleriesOperations;
     private FavoritesOperations favoritesOperations;
     private ActivityOperations activityOperations;
+    private BlogsOperations blogsOperations;
 
 
 
@@ -70,6 +72,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.galleriesOperations = new GalleriesTemplate(getRestTemplate(), isAuthorized());
 		this.favoritesOperations = new FavoritesTemplate(getRestTemplate(), isAuthorized());
 		this.activityOperations = new ActivityTemplate(getRestTemplate(), isAuthorized());
+		this.blogsOperations = new BlogsTemplate(getRestTemplate(), isAuthorized());
 	}
 	
 	
@@ -126,6 +129,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		return activityOperations;
 	}
     
-   
+    public BlogsOperations blogsOperations(){
+    	return blogsOperations;
+    }
 
 }
