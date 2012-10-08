@@ -1,6 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
 import org.springframework.social.flickr.api.CommonsOperations;
+import org.springframework.social.flickr.api.Institutions;
 import org.springframework.social.flickr.api.Rsp;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
@@ -21,12 +22,12 @@ public class CommonsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Rsp getInstitutions(String apiKey) {
+	public Institutions getInstitutions(String apiKey) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
 			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.commons.getInstitutions", parameters),
-				Rsp.class);
+				Institutions.class);
 	}
 }

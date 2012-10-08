@@ -14,5 +14,5 @@ public interface CommonsOperations {
 	 * @param apiKey the api key
 	 * @return the institutions
 	 */
-	Rsp getInstitutions(String apiKey);
+	Institutions getInstitutions(String apiKey);
 }

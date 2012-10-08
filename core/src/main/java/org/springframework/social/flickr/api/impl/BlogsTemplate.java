@@ -41,7 +41,7 @@ public class BlogsTemplate extends AbstractFlickrOperations implements
 				buildUri("flickr.blogs.getServices", parameters),
 				Services.class);
 	}
-
+	//TODO : PENDING
 	@Override
 	public void postPhoto(String apiKey, String blogId, String photoId,
 			String title, String description, String blogPassword,

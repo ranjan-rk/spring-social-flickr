@@ -36,6 +36,7 @@ public interface BlogsOperations {
 	 * @param blogPassword the blog password
 	 * @param service the service
 	 */
+	//TODO : PENDING
 	void postPhoto(String apiKey, String blogId, String photoId, String title,
 			String description, String blogPassword, String service);// blogId,blogPassword,service,
 }
