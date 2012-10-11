@@ -36,5 +36,5 @@ public interface GroupsOperations {
 	 * @param lang the lang
 	 * @return the info
 	 */
-	Group getInfo(String apiKey, String groupId, String lang);
+	Group2 getInfo(String apiKey, String groupId, String lang);
 }

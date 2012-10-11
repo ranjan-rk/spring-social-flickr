@@ -1,7 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
 import org.springframework.social.flickr.api.Category;
-import org.springframework.social.flickr.api.Group;
+import org.springframework.social.flickr.api.Group2;
 import org.springframework.social.flickr.api.Groups;
 import org.springframework.social.flickr.api.GroupsOperations;
 import org.springframework.util.LinkedMultiValueMap;
@@ -34,7 +34,7 @@ public class GroupsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Group getInfo(String apiKey, String groupId, String lang) {
+	public Group2 getInfo(String apiKey, String groupId, String lang) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
 			parameters.set("api_key", apiKey);
@@ -43,7 +43,7 @@ public class GroupsTemplate extends AbstractFlickrOperations implements
 		if (lang != null)
 			parameters.set("lang", lang);
 		return restTemplate.getForObject(
-				buildUri("flickr.groups.getInfo", parameters), Group.class);
+				buildUri("flickr.groups.getInfo", parameters), Group2.class);
 	}
 
 	@Override

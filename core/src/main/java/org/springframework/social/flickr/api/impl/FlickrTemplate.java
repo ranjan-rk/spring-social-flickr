@@ -27,6 +27,7 @@ import org.springframework.social.flickr.api.CommonsOperations;
 import org.springframework.social.flickr.api.FavoritesOperations;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.GalleriesOperations;
+import org.springframework.social.flickr.api.GroupsOperations;
 import org.springframework.social.flickr.api.PeopleOperations;
 import org.springframework.social.flickr.api.PhotoCommentOperations;
 import org.springframework.social.flickr.api.PhotoLicenseOperations;
@@ -51,6 +52,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private ActivityOperations activityOperations;
     private BlogsOperations blogsOperations;
     private CommonsOperations commonsOperations;
+    private GroupsOperations groupsOperations;
 
 
 
@@ -76,6 +78,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.activityOperations = new ActivityTemplate(getRestTemplate(), isAuthorized());
 		this.blogsOperations = new BlogsTemplate(getRestTemplate(), isAuthorized());
 		this.commonsOperations = new CommonsTemplate(getRestTemplate(), isAuthorized());
+		this.groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized());
 	}
 	
 	
@@ -137,6 +140,9 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
     public CommonsOperations commonsOperations(){
     	return commonsOperations;
+    }
+    public GroupsOperations groupsOperations(){
+    	return groupsOperations;
     }
 
 }
