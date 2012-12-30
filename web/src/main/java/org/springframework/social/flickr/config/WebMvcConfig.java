@@ -29,6 +29,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 public class WebMvcConfig extends WebMvcConfigurerAdapter {
 
 	public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/").setViewName("signin");
 		registry.addViewController("/signin");
 		registry.addViewController("/signout");
 	}
