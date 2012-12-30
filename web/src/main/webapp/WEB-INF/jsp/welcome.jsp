@@ -31,8 +31,12 @@ ${messages}
 <form action="uploadphoto" method="POST" enctype="multipart/form-data">
     <label>Photo : </label>
     <input type="file" name="photo"/>
-    <input type="text" name="title"/>
+    title: <input type="text" name="title"/> <br/>
+    description: <textarea rows="10" name="description"></textarea> <br/>
     <input type="submit" value="upload photo"/>
+
+    <b>${photoId}</b>
+
 </form>
 
 </body>

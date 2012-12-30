@@ -1,6 +1,7 @@
 package org.springframework.social.flickr.config;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
@@ -50,10 +51,11 @@ public class SocialConfig {
     }
 
     @Bean
+    @Inject
     @Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)
-    public ConnectionRepository connectionRepository(){
+    public ConnectionRepository connectionRepository( HttpServletRequest request){
     	logger.debug("inside the connectionRepository");
-    	User user = SecurityContext.getCurrentUser();
+    	User user = SecurityContext.getCurrentUser( request);
 	    return usersConnectionRepository().createConnectionRepository(user.getId());
     }
 
@@ -69,19 +71,22 @@ public class SocialConfig {
 
 
 	@Bean
+    @Inject
 	@Scope(value="request", proxyMode=ScopedProxyMode.INTERFACES)
-	public Flickr flickr() {
+	public Flickr flickr(HttpServletRequest request) {
 		logger.debug("inside the flickr");
-	    return connectionRepository().getPrimaryConnection(Flickr.class).getApi();
+	    return connectionRepository(request).getPrimaryConnection(Flickr.class).getApi();
 	}
 
 	@Bean
 	public ProviderSignInController providerSignInController() {
 		logger.debug("inside the providerSignInController");
-        return new ProviderSignInController(
+        ProviderSignInController providerSignInController =  new ProviderSignInController(
                 connectionFactoryLocator(),
                 usersConnectionRepository(),
                 new SimpleSignInAdapter());
+        providerSignInController.setPostSignInUrl("/welcome");
+        return providerSignInController;
 	}
 	
 	 
