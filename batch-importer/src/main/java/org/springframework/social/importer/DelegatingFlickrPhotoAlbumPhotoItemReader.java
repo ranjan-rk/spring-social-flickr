@@ -18,14 +18,14 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  */
 public class DelegatingFlickrPhotoAlbumPhotoItemReader implements ItemReader<Photo>, ItemStream {
 
-    private JdbcCursorItemReader<PhotoSet> delegatingPhotoSetItemReader;
+    private JdbcCursorItemReader<PhotoSet> masterAlbumDelegate;
     private FlickrTemplate flickrTemplate;
     private PhotoSet photoSet;
     private Queue<org.springframework.social.flickr.api.Photo> photoCollection = new ConcurrentLinkedQueue<org.springframework.social.flickr.api.Photo>();
 
-    public DelegatingFlickrPhotoAlbumPhotoItemReader(FlickrTemplate flickrTemplate, JdbcCursorItemReader<PhotoSet> delegatingPhotoSetItemReader) {
+    public DelegatingFlickrPhotoAlbumPhotoItemReader(FlickrTemplate flickrTemplate, JdbcCursorItemReader<PhotoSet> masterAlbumDelegate) {
         this.flickrTemplate = flickrTemplate;
-        this.delegatingPhotoSetItemReader = delegatingPhotoSetItemReader;
+        this.masterAlbumDelegate = masterAlbumDelegate;
     }
 
     @Override
@@ -35,7 +35,7 @@ public class DelegatingFlickrPhotoAlbumPhotoItemReader implements ItemReader<Pho
         if (photoCollection.isEmpty() ) {
 
             // then load a PhotoSet
-            photoSet = this.delegatingPhotoSetItemReader.read();
+            photoSet = this.masterAlbumDelegate.read();
 
             // if theres no PhotoSet, then we're done, no more photos to read
             if (null == photoSet)
@@ -59,16 +59,17 @@ public class DelegatingFlickrPhotoAlbumPhotoItemReader implements ItemReader<Pho
 
     @Override
     public void open(ExecutionContext executionContext) throws ItemStreamException {
-        delegatingPhotoSetItemReader.open(executionContext);
+
+        masterAlbumDelegate.open(executionContext);
     }
 
     @Override
     public void update(ExecutionContext executionContext) throws ItemStreamException {
-        delegatingPhotoSetItemReader.update(executionContext);
+        masterAlbumDelegate.update(executionContext);
     }
 
     @Override
     public void close() throws ItemStreamException {
-        delegatingPhotoSetItemReader.close();
+        masterAlbumDelegate.close();
     }
 }

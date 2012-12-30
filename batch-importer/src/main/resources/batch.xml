@@ -8,24 +8,21 @@
 		        ">
 
 
-    <job id="flickrImportJob" job-repository="jobRepository">
+    <job id="flickrImportJob" restartable="true" job-repository="jobRepository">
+
         <!--
-            // step one: load up all the photo_albums    -->
-<!--
-        &ndash;&gt;
+          // step one: load all the photo albums into the database
+        -->
         <step id="step1">
             <tasklet transaction-manager="transactionManager">
                 <chunk reader="photoAlbumItemReader" writer="photoAlbumItemWriter" commit-interval="10"/>
             </tasklet>
             <next on="*" to="step2"/>
         </step>
--->
-
 
         <!--
-         // step two: load all the photos for a given photo_album into the database
-       -->
-<!--
+          // step two: load all the photo details into the database
+        -->
         <step id="step2">
             <tasklet transaction-manager="transactionManager">
                 <chunk reader="delegatingFlickrPhotoAlbumPhotoItemReader" writer="photoDetailItemWriter"
@@ -33,7 +30,7 @@
             </tasklet>
             <next on="*" to="step3"/>
         </step>
--->
+
 
         <!--
           // step three: download 'em!

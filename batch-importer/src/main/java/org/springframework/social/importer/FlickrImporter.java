@@ -54,7 +54,6 @@ public class FlickrImporter implements Lifecycle {
         Assert.isTrue(file.canWrite(), "we must be able to write to " + file.getAbsolutePath() + ".");
 
         JobParameters jp = new JobParametersBuilder()
-                .addDate("when", new Date())
                 .addString("accessToken", at)
                 .addString("accessTokenSecret", atSecret)
                 .addString("consumerKey", consumerKey)
