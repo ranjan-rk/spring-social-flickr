@@ -1,28 +1,33 @@
-
 package org.springframework.social.flickr.user;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class SecurityContext {
 
-	private static final ThreadLocal<User> currentUser = new ThreadLocal<User>();
+    private static Map<String, User> mapOfSessionsToUsers = new ConcurrentHashMap<String, User>();
 
-	public static User getCurrentUser() {
-		User user = currentUser.get();
-		if (user == null) {
-			throw new IllegalStateException("No user is currently signed in");
-		}
-		return user;
-	}
+    public static User getCurrentUser(HttpServletRequest r) {
+        String sessionId = r.getSession(true).getId();
+        return mapOfSessionsToUsers.get(sessionId);
+    }
 
-	public static void setCurrentUser(User user) {
-		currentUser.set(user);
-	}
+    public static void setCurrentUser(HttpServletRequest r, User user) {
+        mapOfSessionsToUsers.put(session(r).getId(), user);
+    }
 
-	public static boolean userSignedIn() {
-		return currentUser.get() != null;
-	}
+    private static HttpSession session(HttpServletRequest request) {
+        return request.getSession(true);
+    }
 
-	public static void remove() {
-		currentUser.remove();
-	}
+    public static boolean userSignedIn(HttpServletRequest request) {
+        return getCurrentUser(request) != null;
+    }
+
+    public static void remove(HttpServletRequest request) {
+        mapOfSessionsToUsers.remove(session(request).getId());
+    }
 
 }

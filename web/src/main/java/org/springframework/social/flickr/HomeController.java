@@ -15,129 +15,83 @@
  */
 package org.springframework.social.flickr;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-
-import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
+import org.apache.commons.io.IOUtils;
 import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.impl.FlickrException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.ObjectError;
+import org.springframework.util.Assert;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
+import javax.inject.Inject;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 @Controller
 public class HomeController {
 
-	private final Flickr flickr;
-	
-	
-	@Inject
-	private CommonsMultipartResolver multipartResolver ; 
-	
-	@Inject
-	public HomeController(Flickr flickr) {
-		this.flickr = flickr;
-	}
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Model model) {
-		System.out.println(multipartResolver);
-		model.addAttribute("welcomeMessage","Welcome to spring social flickr,  "+ flickr.peopleOperations().getPersonProfile().getUserName());
-		return "welcomePage";
-	}
+    private Flickr flickr;
+    private CommonsMultipartResolver multipartResolver;
 
-	@RequestMapping(value = "/addtags", method = RequestMethod.POST)
-	public String addtags(@RequestParam("photoid") String photoId,@RequestParam("tags") String tags,Model model) {
-		flickr.photoOperations().addTags(photoId, tags);
-		model.addAttribute("messages","tags : "+tags+" Added successfully..");
-		return "welcomePage";
-	}
-	
-	@RequestMapping(value = "/deletephoto", method = RequestMethod.POST)
-	public String addtags(@RequestParam("photoid") String photoId , Model model) {
-		try{
-			flickr.photoOperations().delete(photoId);
-		}catch(FlickrException e){
-			model.addAttribute("messages",e.getMessage());
-			return "welcomePage";
-		}
-		model.addAttribute("messages","Photo Id : "+photoId+" delete successfully..");
-		return "welcomePage";
-	}
-	
-	 @RequestMapping(value = "/uploadphoto",method = RequestMethod.POST)
-     public String create(UploadItem uploadItem, BindingResult result,
-                     HttpServletRequest request, HttpServletResponse response,
-                     HttpSession session) {
-             if (result.hasErrors()) {
-                     for (ObjectError error : result.getAllErrors()) {
-                             System.err.println("Error: " + error.getCode() + " - "
-                                             + error.getDefaultMessage());
-                     }
-                     return "/uploadfile";
-             }
+    @Inject
+    public HomeController(CommonsMultipartResolver multipartResolver, Flickr flickr) {
+        this.flickr = flickr;
+        this.multipartResolver = multipartResolver;
+    }
 
-             // Some type of file processing...
-             System.err.println("-------------------------------------------");
-             try {
-                     MultipartFile file = uploadItem.getFileData();
-                     String fileName = null;
-                     InputStream inputStream = null;
+    @RequestMapping(value = "/welcome", method = RequestMethod.GET)
+    public String welcome(Model m) {
+        m.addAttribute("flickrUser", flickr.peopleOperations().getPersonProfile().getUserName());
+        return "welcome";
+    }
 
-                     if (file.getSize() > 0) {
-                             inputStream = file.getInputStream();
-                             if (file.getSize() > 100000) {
-                                     System.out.println("File Size:::" + file.getSize());
-                                     return "/uploadfile";
-                             }
-                             System.out.println("size::" + file.getSize());
-                             
-                             
-                             System.out.println("fileName:" + file.getOriginalFilename());
+    @RequestMapping(value = "/addtags", method = RequestMethod.POST)
+    public String addTagsToPhotos(@RequestParam("photoid") String photoId, @RequestParam("tags") String tags, Model model) {
+        flickr.photoOperations().addTags(photoId, tags);
+        model.addAttribute("messages", "tags : " + tags + " Added successfully..");
+        return "welcome";
+    }
 
-                             int readBytes = 0;
-                             byte[] buffer = new byte[10000];
-                             while ((readBytes = inputStream.read(buffer, 0, 10000)) != -1) {
-                                     System.out.println(readBytes);
-                             }
-                             //Object obj = flickr.photoOperations().upload(photo , title, null , null , null , null , null )
-                             inputStream.close();
-                     }
+    @RequestMapping(value = "/deletephoto", method = RequestMethod.POST)
+    public String deletePhoto(@RequestParam("photoid") String photoId, Model model) {
+        try {
+            flickr.photoOperations().delete(photoId);
+            model.addAttribute("messages", "Photo Id : " + photoId + " delete successfully..");
+        } catch (FlickrException e) {
+            model.addAttribute("messages", e.getMessage());
+        }
+        return "welcome";
+    }
 
-                     // ..........................................
-                     session.setAttribute("uploadFile", file.getOriginalFilename());
-             } catch (Exception e) {
-                     e.printStackTrace();
-             }
-             return "welcomePage";
-     }
+    @RequestMapping(value = "/uploadphoto", method = RequestMethod.POST)
+    public String create(
+            @RequestParam(value = "title", required = false) String title,
+            @RequestParam(value = "description", required = false) String description,
+            @RequestParam("photo") MultipartFile photo,
+            Model model) throws Throwable {
 
-	/*Pending
-	@RequestMapping(value = "/uploadphoto", method = RequestMethod.POST, headers={"content-type=multipart/form-data"})
-	public String addtags(@RequestParam("photo")  byte[]  photo ,@RequestParam("title") String title, Model model ) {
-		Object obj =null; 
-		try{
-				//System.out.println(c);
-				System.out.println(photo);
-			//obj = flickr.photoOperations().upload(photo , title, null , null , null , null , null );
-		}catch(FlickrException e){
-			model.addAttribute("messages",e.getMessage());
-			return "welcomePage";
-		}
-		if(obj!=null)
-			model.addAttribute("messages","Photo Id : "+obj.toString()+" added successfully..");
-		return "welcomePage";
-	}
-	*/
-	
+        File tmpFile = File.createTempFile("tmp", photo.getOriginalFilename());
+        OutputStream outputStream = null;
+        InputStream inputStream = null;
+        try {
+            outputStream = new FileOutputStream(tmpFile);
+            IOUtils.copy(photo.getInputStream(), outputStream);
+            Assert.isTrue(tmpFile.exists() && tmpFile.length() > 0, "there must be a file to read from!");
+            String photoId = flickr.photoOperations().upload(tmpFile, title, description, null, null, null, null);
+            model.addAttribute("photoId", photoId);
+        } finally {
+            IOUtils.closeQuietly(outputStream);
+            IOUtils.closeQuietly(inputStream);
+            tmpFile.delete();
+        }
+        return "welcome";
+    }
+
+
 }

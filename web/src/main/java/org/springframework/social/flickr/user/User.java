@@ -15,11 +15,6 @@
  */
 package org.springframework.social.flickr.user;
 
-/**
- * Simple little User model. 
- * Just stores the user's id for simplicity.
- * @author Keith Donald
- */
 public final class User {
 	
 	private final String id;
