@@ -32,7 +32,7 @@ public class DelegatingFlickrPhotoAlbumPhotoItemReader implements ItemReader<Pho
     public Photo read() throws Exception, UnexpectedInputException, ParseException, NonTransientResourceException {
 
         // if theres nothing in the photo collection...
-        if (photoCollection.size() == 0) {
+        if (photoCollection.isEmpty() ) {
 
             // then load a PhotoSet
             photoSet = this.delegatingPhotoSetItemReader.read();
@@ -48,6 +48,7 @@ public class DelegatingFlickrPhotoAlbumPhotoItemReader implements ItemReader<Pho
             }
         }
 
+        // if were here, then the photoCollection might still be empty because it might be a flickr album with nothing in it
         org.springframework.social.flickr.api.Photo photo = photoCollection.isEmpty() ? null : photoCollection.remove();
         if (null == photo)
             return null;

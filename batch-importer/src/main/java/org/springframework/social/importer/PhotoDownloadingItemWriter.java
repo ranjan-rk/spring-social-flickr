@@ -6,13 +6,13 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.social.flickr.api.impl.FlickrTemplate;
+import org.springframework.util.Assert;
 import org.springframework.web.client.RestTemplate;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.List;
-import java.util.logging.Logger;
 
 /**
  * Downloads files from Flickr
@@ -32,6 +32,10 @@ public class PhotoDownloadingItemWriter implements ItemWriter<Photo> {
         this.outputDirectory = outputDirectory;
         this.flickrTemplate = flickrTemplate;
         this.restTemplate = flickrTemplate.getRestTemplate(); // this is used to handle downloading the images in an OAuth-complaint way
+        Assert.notNull(flickrTemplate, "the flickrTemplate must be non-null");
+        Assert.notNull(restTemplate, "the rest template must be non-null");
+        Assert.notNull(outputDirectory,"you must specify a non-null output directory");
+        Assert.isTrue(outputDirectory.exists(), "the output directory must exist");
     }
 
     @Override
@@ -41,11 +45,10 @@ public class PhotoDownloadingItemWriter implements ItemWriter<Photo> {
             String ext = extension(url);
             File output = new File(forPhoto(p), p.getId() + ext);
             if (!output.exists()) {
-                logger.info("downloading "+ url + " to "+output.getAbsolutePath()+".");
+                logger.info("downloading " + url + " to " + output.getAbsolutePath() + ".");
                 BufferedImage bi = this.restTemplate.getForObject(url, BufferedImage.class);
                 ImageIO.write(bi, ext.substring(1), output);
             }
-
         }
     }
 
