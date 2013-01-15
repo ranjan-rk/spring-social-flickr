@@ -3,3 +3,13 @@ target
 *iml
 *ipr
 *iws
+*.class
+*.classpath
+web/.settings
+web/.project
+core/.settings
+core/.project
+batch-importer/.settings
+batch-importer/.project
+.project
+.settings
