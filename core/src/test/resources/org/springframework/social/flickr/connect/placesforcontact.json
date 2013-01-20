@@ -1,0 +1,6 @@
+{ "places": { "total": 3, 
+    "place": [
+      { "place_id": "MlfeddJXVL2KttM", "woeid": "667931", "latitude": 50.941, "longitude": 6.955, "place_url": "\/Germany\/North+Rhine-Westphalia\/K%C3%B6ln", "place_type": "locality", "place_type_id": 7, "timezone": "Europe\/Berlin", "_content": "Cologne, North Rhine-Westphalia, Germany", "woe_name": "Cologne", "photo_count": 1 },
+      { "place_id": "Uvujcu1XVrp6hVQ", "woeid": "640161", "latitude": 50.732, "longitude": 7.101, "place_url": "\/Germany\/North+Rhine-Westphalia\/Bonn", "place_type": "locality", "place_type_id": 7, "timezone": "Europe\/Berlin", "_content": "Bonn, North Rhine-Westphalia, Germany", "woe_name": "Bonn", "photo_count": 1 },
+      { "place_id": "EsIQUYZXU79_kEA", "woeid": "615702", "latitude": 48.856, "longitude": 2.341, "place_url": "\/France\/Ile-de-France\/Paris", "place_type": "locality", "place_type_id": 7, "timezone": "Europe\/Paris", "_content": "Paris, Ile-de-France, France", "woe_name": "Paris", "photo_count": 1 }
+    ] }, "stat": "ok" }

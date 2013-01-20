@@ -1,0 +1,4 @@
+{ "places": { 
+    "place": [
+      { "place_id": "R5ua9x9TULOpg42W", "woeid": "2295412", "latitude": 18.531, "longitude": 73.853, "place_url": "\/India\/Maharashtra\/Pune", "place_type": "locality", "place_type_id": 7, "timezone": "Asia\/Kolkata", "name": "Pune, Maharashtra, India", "woe_name": "Pune" }
+    ], "latitude": 18.531, "longitude": 73.853, "accuracy": 10, "total": 1 }, "stat": "ok" }

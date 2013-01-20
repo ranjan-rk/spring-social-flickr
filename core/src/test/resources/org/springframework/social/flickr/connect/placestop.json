@@ -1,0 +1,5 @@
+{ "places": { "total": 2, 
+    "place": [
+      { "place_id": "gErf9OJQULhnBw", "woeid": "12216", "latitude": 50.854, "longitude": -1.004, "place_url": "\/United+Kingdom\/England\/Havant\/Bedhampton", "place_type": "neighbourhood", "place_type_id": 22, "timezone": "Europe\/London", "_content": "Bedhampton, Havant, England, GB, United Kingdom", "woe_name": "Bedhampton", "photo_count": "1006" },
+      { "place_id": "lpop5hpXV7yKgRU", "woeid": "656948", "latitude": 51.483, "longitude": 6.766, "place_url": "\/Germany\/North+Rhine-Westphalia\/Duisburg\/Hamborn", "place_type": "neighbourhood", "place_type_id": 22, "timezone": "Europe\/Berlin", "_content": "Hamborn, Duisburg, NW, DE, Germany", "woe_name": "Hamborn", "photo_count": "279" }
+    ], "date_start": "1358553600", "date_stop": "1358639999" }, "stat": "ok" }

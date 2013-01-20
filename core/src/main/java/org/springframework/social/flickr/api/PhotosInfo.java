@@ -2,6 +2,10 @@ package org.springframework.social.flickr.api;
 
 import java.util.LinkedHashMap;
 
+/**
+ * @author hemants
+ *
+ */
 public class PhotosInfo {
 	String firstdatetaken;
 	String firstdate;

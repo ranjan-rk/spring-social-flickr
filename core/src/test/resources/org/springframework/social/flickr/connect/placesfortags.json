@@ -1,0 +1,5 @@
+{ "places": { "total": 2, 
+    "place": [
+      { "place_id": "JjXZOYpUV7IbeGVOUQ", "woeid": "55864591", "latitude": 40.771, "longitude": -73.983, "place_url": "\/United+States\/New+York\/New+York\/West+Side", "place_type": "neighbourhood", "place_type_id": 22, "timezone": "America\/New_York", "_content": "West Side, New York, NY, US, United States", "woe_name": "West Side", "photo_count": "2069" },
+      { "place_id": "xfcEFYhWULKtjYI", "woeid": "728410", "latitude": 52.366, "longitude": 4.883, "place_url": "\/Netherlands\/North+Holland\/Amsterdam\/Jordaan", "place_type": "neighbourhood", "place_type_id": 22, "timezone": "Europe\/Amsterdam", "_content": "Jordaan, Amsterdam, NH, NL, Netherlands", "woe_name": "Jordaan", "photo_count": "1426" }
+    ] }, "stat": "ok" }

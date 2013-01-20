@@ -3,6 +3,10 @@ package org.springframework.social.flickr.api;
 
 import java.util.List;
 
+/**
+ * @author hemant
+ *
+ */
 public class Tags{
    	private List<Tag> tag;
 

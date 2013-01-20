@@ -115,7 +115,7 @@ public interface PlacesOperations {
 	 * @param minTakenDate the min taken date
 	 * @param maxTakenDate the max taken date
 	 */
-	void placesForContacts(String apiKey, String placeType, String placeTypeId,
+	Places placesForContacts(String apiKey, String placeType, String placeTypeId,
 			String woeId, String placeId, String threshold, String contacts,
 			String minUploadDate, String maxUploadDate, String minTakenDate,
 			String maxTakenDate);// placeType,placeTypeId,woeId,placeId,threshold,contacts,minUploadDate,maxUploadDate,minTakenDate,maxTakenDate,
@@ -137,7 +137,7 @@ public interface PlacesOperations {
 	 * @param minTakenDate the min taken date
 	 * @param maxTakenDate the max taken date
 	 */
-	void placesForTags(String apiKey, String placeTypeId, String woeId,
+	Places placesForTags(String apiKey, String placeTypeId, String woeId,
 			String placeId, String threshold, String tags, String tagMode,
 			String machineTags, String machineTagMode, String minUploadDate,
 			String maxUploadDate, String minTakenDate, String maxTakenDate);// woeId,placeId,threshold,tags,tagMode,machineTags,machineTagMode,minUploadDate,maxUploadDate,minTakenDate,maxTakenDate,
@@ -156,41 +156,11 @@ public interface PlacesOperations {
 	 * @param minTakenDate the min taken date
 	 * @param maxTakenDate the max taken date
 	 */
-	void placesForUser(String apiKey, String placeTypeId, String placeType,
+	Places placesForUser(String apiKey, String placeTypeId, String placeType,
 			String woeId, String placeId, String threshold,
 			String minUploadDate, String maxUploadDate, String minTakenDate,
 			String maxTakenDate);// placeTypeId,placeType,woeId,placeId,threshold,minUploadDate,maxUploadDate,minTakenDate,maxTakenDate,
 
-	/**
-	 * Resolve place id.
-	 *
-	 * @param apiKey the api key
-	 * @param placeId the place id
-	 * @return the location
-	 */
-	Location resolvePlaceId(String apiKey, String placeId);
-
-	/**
-	 * Resolve place url.
-	 *
-	 * @param apiKey the api key
-	 * @param url the url
-	 * @return the location
-	 */
-	Location resolvePlaceURL(String apiKey, String url);
-
-	/**
-	 * Tags for place.
-	 *
-	 * @param apiKey the api key
-	 * @param woeId the woe id
-	 * @param placeId the place id
-	 * @param minUploadDate the min upload date
-	 * @param maxUploadDate the max upload date
-	 * @param minTakenDate the min taken date
-	 * @param maxTakenDate the max taken date
-	 * @return the tags
-	 */
 	Tags tagsForPlace(String apiKey, String woeId, String placeId,
 			String minUploadDate, String maxUploadDate, String minTakenDate,
 			String maxTakenDate);// woeId,placeId,minUploadDate,maxUploadDate,minTakenDate,maxTakenDate,

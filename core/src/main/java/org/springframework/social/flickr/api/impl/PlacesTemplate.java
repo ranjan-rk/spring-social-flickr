@@ -148,13 +148,13 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 			parameters.set("place_type", placeType);
 		if (placeTypeId != null)
 			parameters.set("place_type_id", placeTypeId);
-		restTemplate.getForObject(
+		 restTemplate.getForObject(
 				buildUri("flickr.places.placesForBoundingBox", parameters),
-				Object.class);
+				Places.class);
 	}
 
 	@Override
-	public void placesForContacts(String apiKey, String placeType,
+	public Places placesForContacts(String apiKey, String placeType,
 			String placeTypeId, String woeId, String placeId, String threshold,
 			String contacts, String minUploadDate, String maxUploadDate,
 			String minTakenDate, String maxTakenDate) {
@@ -182,13 +182,13 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 			parameters.set("min_taken_date", minTakenDate);
 		if (maxTakenDate != null)
 			parameters.set("max_taken_date", maxTakenDate);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.places.placesForContacts", parameters),
-				Object.class);
+				Places.class);
 	}
 
 	@Override
-	public void placesForTags(String apiKey, String placeTypeId, String woeId,
+	public Places placesForTags(String apiKey, String placeTypeId, String woeId,
 			String placeId, String threshold, String tags, String tagMode,
 			String machineTags, String machineTagMode, String minUploadDate,
 			String maxUploadDate, String minTakenDate, String maxTakenDate) {
@@ -219,13 +219,13 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 			parameters.set("min_taken_date", minTakenDate);
 		if (maxTakenDate != null)
 			parameters.set("max_taken_date", maxTakenDate);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.places.placesForTags", parameters),
-				Object.class);
+				Places.class);
 	}
 
 	@Override
-	public void placesForUser(String apiKey, String placeTypeId,
+	public Places placesForUser(String apiKey, String placeTypeId,
 			String placeType, String woeId, String placeId, String threshold,
 			String minUploadDate, String maxUploadDate, String minTakenDate,
 			String maxTakenDate) {
@@ -251,33 +251,9 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 			parameters.set("min_taken_date", minTakenDate);
 		if (maxTakenDate != null)
 			parameters.set("max_taken_date", maxTakenDate);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.places.placesForUser", parameters),
-				Object.class);
-	}
-
-	@Override
-	public Location resolvePlaceId(String apiKey, String placeId) {
-		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
-		if (placeId != null)
-			parameters.set("place_id", placeId);
-		return restTemplate.getForObject(
-				buildUri("flickr.places.resolvePlaceId", parameters),
-				Location.class);
-	}
-
-	@Override
-	public Location resolvePlaceURL(String apiKey, String url) {
-		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
-		if (url != null)
-			parameters.set("url", url);
-		return restTemplate.getForObject(
-				buildUri("flickr.places.resolvePlaceURL", parameters),
-				Location.class);
+				Places.class);
 	}
 
 	@Override

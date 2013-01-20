@@ -13,6 +13,16 @@
     <packaging>war</packaging>
     <description>Spring Social extension with connection support and an API binding for Flickr</description>
     <url>https://github.com/ranjan-rk/spring-social-flickr</url>
+    <developers>
+    	<developer>
+            <name>Hemant Sachdeva</name>
+            <email>hemant.sachdeva04@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Ranjan Kumar</name>
+            <email>ranjan.rk@gmail.com</email>
+        </developer>
+    </developers>
     <dependencies>
         <dependency>
             <groupId>commons-dbcp</groupId>

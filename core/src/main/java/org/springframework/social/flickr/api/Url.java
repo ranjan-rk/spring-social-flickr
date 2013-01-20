@@ -2,6 +2,10 @@
 package org.springframework.social.flickr.api;
 
 
+/**
+ * @author hemant
+ *
+ */
 public class Url{
    	private String _content;
    	private String type;

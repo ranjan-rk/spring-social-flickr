@@ -2,14 +2,25 @@
 package org.springframework.social.flickr.api;
 
 
+/**
+ * @author hemant
+ *
+ */
 public class Tag{
    	private String _content;
    	private String author;
    	private String id;
    	private String machine_tag;
    	private String raw;
+   	private Number count;
 
- 	public String get_content(){
+ 	public Number getCount() {
+		return count;
+	}
+	public void setCount(Number count) {
+		this.count = count;
+	}
+	public String get_content(){
 		return this._content;
 	}
 	public void set_content(String _content){
