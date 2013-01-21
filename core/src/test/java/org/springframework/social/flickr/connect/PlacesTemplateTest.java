@@ -115,10 +115,13 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void placesForBoundingBoxTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.places.placesForBoundingBox&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&bbox=73.410645%2C18.208480%2C74.443359%2C18.604601&place_type_id=12&method=flickr.places.placesForBoundingBox&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
-						withResponse(jsonResource("testuser"), responseHeaders));
+						withResponse(jsonResource("placebbox"), responseHeaders));
+		Places places = flickr.placesOperations().placesForBoundingBox("id", "73.410645,18.208480,74.443359,18.604601", null, "12");
+		assertPhotosBBox(places);
+		
 	}
 
 	@Test
@@ -202,6 +205,8 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	}
 	private void assertTags(Tags tags) {
 		Assert.assertEquals(100, tags.getTag().size());		
-		
+	}
+	private void assertPhotosBBox(Places places){
+		Assert.assertEquals(1, places.getPage());
 	}
 }

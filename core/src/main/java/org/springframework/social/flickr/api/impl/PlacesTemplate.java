@@ -137,7 +137,7 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void placesForBoundingBox(String apiKey, String bbox,
+	public Places placesForBoundingBox(String apiKey, String bbox,
 			String placeType, String placeTypeId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
@@ -148,7 +148,7 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 			parameters.set("place_type", placeType);
 		if (placeTypeId != null)
 			parameters.set("place_type_id", placeTypeId);
-		 restTemplate.getForObject(
+		 return restTemplate.getForObject(
 				buildUri("flickr.places.placesForBoundingBox", parameters),
 				Places.class);
 	}

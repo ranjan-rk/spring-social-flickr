@@ -15,6 +15,34 @@ public class Places{
    	private String longitude;
    	private String accuracy;
    	private String date_start ;
+   	private String place_type;
+   	private Number pages;
+   	public String getPlace_type() {
+		return place_type;
+	}
+	public void setPlace_type(String place_type) {
+		this.place_type = place_type;
+	}
+	public Number getPages() {
+		return pages;
+	}
+	public void setPages(Number pages) {
+		this.pages = pages;
+	}
+	public Number getPage() {
+		return page;
+	}
+	public void setPage(Number page) {
+		this.page = page;
+	}
+	public String getBbox() {
+		return bbox;
+	}
+	public void setBbox(String bbox) {
+		this.bbox = bbox;
+	}
+	private Number page;
+   	private String bbox;
    	public String getDate_start() {
 		return date_start;
 	}

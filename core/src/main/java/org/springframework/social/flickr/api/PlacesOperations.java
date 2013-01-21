@@ -97,7 +97,7 @@ public interface PlacesOperations {
 	 * @param placeType the place type
 	 * @param placeTypeId the place type id
 	 */
-	void placesForBoundingBox(String apiKey, String bbox, String placeType,
+	Places placesForBoundingBox(String apiKey, String bbox, String placeType,
 			String placeTypeId);// placeType,placeTypeId,
 
 	/**

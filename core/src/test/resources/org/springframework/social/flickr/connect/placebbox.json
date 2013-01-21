@@ -1,0 +1,4 @@
+{ "places": { "place_type": "country", "total": 1, "pages": 1, "page": 1, "bbox": "73.410645,18.208480,74.443359,18.604601", 
+    "place": [
+      { "place_id": "kZ2lUVFTUb7CK_DAfA", "woeid": "23424848", "latitude": 21.786, "longitude": 82.794, "place_url": "\/India", "place_type": "country", "place_type_id": 12, "timezone": "Asia\/Kolkata", "_content": "India", "woe_name": "India" }
+    ] }, "stat": "ok" }
