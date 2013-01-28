@@ -35,6 +35,7 @@ import org.springframework.social.flickr.api.PhotoNoteOperations;
 import org.springframework.social.flickr.api.PhotoOperations;
 import org.springframework.social.flickr.api.PhotosetOperations;
 import org.springframework.social.flickr.api.PlacesOperations;
+import org.springframework.social.flickr.api.PrefsOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 /**
@@ -55,6 +56,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private CommonsOperations commonsOperations;
     private GroupsOperations groupsOperations;
     private PlacesOperations placesOperations;
+    private PrefsOperations prefsOperations;
 
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
@@ -81,6 +83,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.commonsOperations = new CommonsTemplate(getRestTemplate(), isAuthorized());
 		this.groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized());
 		this.placesOperations = new PlacesTemplate(getRestTemplate(), isAuthorized());
+		this.prefsOperations = new PrefsTemplate(getRestTemplate(), isAuthorized());
 	}
 	
 	
@@ -140,15 +143,21 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     public BlogsOperations blogsOperations(){
     	return blogsOperations;
     }
+    
     public CommonsOperations commonsOperations(){
     	return commonsOperations;
     }
+    
     public GroupsOperations groupsOperations(){
     	return groupsOperations;
     }
+    
     public PlacesOperations placesOperations(){
     	return placesOperations;
     }
     
+    public PrefsOperations prefsOperation(){
+    	return prefsOperations;
+    }
 
 }

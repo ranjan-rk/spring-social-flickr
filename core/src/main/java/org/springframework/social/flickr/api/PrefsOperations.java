@@ -14,7 +14,7 @@ public interface PrefsOperations {
 	 * @param apiKey the api key
 	 * @return the content type
 	 */
-	Rsp getContentType(String apiKey);
+	Person getContentType(String apiKey);
 
 	/**
 	 * Gets the geo perms.
@@ -22,7 +22,7 @@ public interface PrefsOperations {
 	 * @param apiKey the api key
 	 * @return the geo perms
 	 */
-	Rsp getGeoPerms(String apiKey);
+	Person getGeoPerms(String apiKey);
 
 	/**
 	 * Gets the hidden.
@@ -30,7 +30,7 @@ public interface PrefsOperations {
 	 * @param apiKey the api key
 	 * @return the hidden
 	 */
-	Rsp getHidden(String apiKey);
+	Person getHidden(String apiKey);
 
 	/**
 	 * Gets the privacy.
@@ -38,7 +38,7 @@ public interface PrefsOperations {
 	 * @param apiKey the api key
 	 * @return the privacy
 	 */
-	Rsp getPrivacy(String apiKey);
+	Person getPrivacy(String apiKey);
 
 	/**
 	 * Gets the safety level.
@@ -46,5 +46,5 @@ public interface PrefsOperations {
 	 * @param apiKey the api key
 	 * @return the safety level
 	 */
-	Rsp getSafetyLevel(String apiKey);
+	Person getSafetyLevel(String apiKey);
 }

@@ -1,7 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
 import org.springframework.social.flickr.api.PrefsOperations;
-import org.springframework.social.flickr.api.Rsp;
+import org.springframework.social.flickr.api.Person;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -20,52 +20,52 @@ public class PrefsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Rsp getContentType(String apiKey) {
+	public Person getContentType(String apiKey) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
 			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
-				buildUri("flickr.prefs.getContentType", parameters), Rsp.class);
+				buildUri("flickr.prefs.getContentType", parameters), Person.class);
 	}
 
 	@Override
-	public Rsp getGeoPerms(String apiKey) {
+	public Person getGeoPerms(String apiKey) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
 			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
-				buildUri("flickr.prefs.getGeoPerms", parameters), Rsp.class);
+				buildUri("flickr.prefs.getGeoPerms", parameters), Person.class);
 	}
 
 	@Override
-	public Rsp getHidden(String apiKey) {
+	public Person getHidden(String apiKey) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
 			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
-				buildUri("flickr.prefs.getHidden", parameters), Rsp.class);
+				buildUri("flickr.prefs.getHidden", parameters), Person.class);
 	}
 
 	@Override
-	public Rsp getPrivacy(String apiKey) {
+	public Person getPrivacy(String apiKey) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
 			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
-				buildUri("flickr.prefs.getPrivacy", parameters), Rsp.class);
+				buildUri("flickr.prefs.getPrivacy", parameters), Person.class);
 	}
 
 	@Override
-	public Rsp getSafetyLevel(String apiKey) {
+	public Person getSafetyLevel(String apiKey) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (apiKey != null)
 			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
-				buildUri("flickr.prefs.getSafetyLevel", parameters), Rsp.class);
+				buildUri("flickr.prefs.getSafetyLevel", parameters), Person.class);
 	}
 }

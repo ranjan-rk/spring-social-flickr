@@ -19,8 +19,50 @@ public class Person {
 	String profileurl;
 	String mobileurl;
 	PhotosInfo photos;
+	String content_type;
+	String geoperms;
+	String importgeoexif;
+	String hidden;
+	String privacy;
+	String safety_level;
 	
 
+	public String getSafety_level() {
+		return safety_level;
+	}
+	public void setSafety_level(String safety_level) {
+		this.safety_level = safety_level;
+	}
+	public String getPrivacy() {
+		return privacy;
+	}
+	public void setPrivacy(String privacy) {
+		this.privacy = privacy;
+	}
+	public String getHidden() {
+		return hidden;
+	}
+	public void setHidden(String hidden) {
+		this.hidden = hidden;
+	}
+	public String getGeoperms() {
+		return geoperms;
+	}
+	public void setGeoperms(String geoperms) {
+		this.geoperms = geoperms;
+	}
+	public String getImportgeoexif() {
+		return importgeoexif;
+	}
+	public void setImportgeoexif(String importgeoexif) {
+		this.importgeoexif = importgeoexif;
+	}
+	public String getContent_type() {
+		return content_type;
+	}
+	public void setContent_type(String content_type) {
+		this.content_type = content_type;
+	}
 	public String getUserName() {
 		return userName;
 	}
