@@ -7,7 +7,7 @@ This project also contains web module to show some of working APIs example. Afte
 http://localhost:8080/spring-social-flickr-web/signin.jsp
 
 ##APIs Supported##
-Following api is currently supported in this project:
+Following api are currently supported in this project:
 
 * favorites
 * galleries (partially)
@@ -20,8 +20,8 @@ Following api is currently supported in this project:
 * photos.transform
 * photosets
 * photosets.comments
-
-
+* places
+* prefs
 
 ###As this project is still under development do not use it in your applications.###
 
