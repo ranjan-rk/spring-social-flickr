@@ -18,6 +18,7 @@ public class Topic{
    	private String iconserver;
    	private boolean is_locked;
    	private Number is_pro;
+   	private Number count_replies;
    	private String is_sticky;
    	private String message;
    	private String name;
@@ -28,6 +29,8 @@ public class Topic{
    	private String subject;
    	private String topic_id;
    	private String total;
+   	private String id;
+   	private String last_reply;
 
  	public String getAuthor(){
 		return this.author;
@@ -172,5 +175,23 @@ public class Topic{
 	}
 	public void setTotal(String total){
 		this.total = total;
+	}
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public Number getCount_replies() {
+		return count_replies;
+	}
+	public void setCount_replies(Number count_replies) {
+		this.count_replies = count_replies;
+	}
+	public String getLast_reply() {
+		return last_reply;
+	}
+	public void setLast_reply(String last_reply) {
+		this.last_reply = last_reply;
 	}
 }

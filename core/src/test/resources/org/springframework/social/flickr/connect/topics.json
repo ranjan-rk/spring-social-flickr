@@ -1,0 +1,7 @@
+{ "topics": { "group_id": "1878057@N24", "iconserver": 0, "iconfarm": 0, "name": "GoaGroup", "members": 1, "privacy": 2, "lang": "en-us", "ispoolmoderated": 0, "total": 2, "page": 1, "per_page": 100, "pages": 1, 
+    "topic": [
+      { "id": "72157632833309573", "subject": "where do you live", 
+        "message": { "_content": "india" }, "author": "73562874@N08", "authorname": "hemantsch", "is_pro": 0, "role": "admin", "iconserver": "7043", "iconfarm": 8, "count_replies": 0, "can_edit": 1, "can_delete": 1, "can_reply": 1, "is_sticky": 0, "is_locked": 0, "datecreate": "1361624304", "datelastpost": "1361624304", "last_reply": 0 },
+      { "id": "72157632838001086", "subject": "Do you like goa?", 
+        "message": { "_content": "yes" }, "author": "73562874@N08", "authorname": "hemantsch", "is_pro": 0, "role": "admin", "iconserver": "7043", "iconfarm": 8, "count_replies": 3, "can_edit": 1, "can_delete": 1, "can_reply": 1, "is_sticky": 0, "is_locked": 0, "datecreate": "1361619561", "datelastpost": "1361620779", "last_reply": "72157632838090684" }
+    ] }, "stat": "ok" }

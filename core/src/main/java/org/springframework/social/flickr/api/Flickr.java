@@ -122,5 +122,12 @@ public interface Flickr extends ApiBinding {
 	 * @return the groups discuss replies operations
 	 */
 	GroupsDiscussRepliesOperations groupsDiscussRepliesOperations();
+	
+	/**
+	 * Groups discuss topics operations.
+	 *
+	 * @return the groups discuss topics operations
+	 */
+	GroupsDiscussTopicsOperations groupsDiscussTopicsOperations();
 
 }
