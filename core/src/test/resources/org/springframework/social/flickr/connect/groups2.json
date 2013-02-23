@@ -1,0 +1,6 @@
+{ "groups": { "page": 1, "pages": 1, "per_page": "400", "total": 3, 
+    "group": [
+      { "nsid": "1878057@N24", "id": "1878057@N24", "name": "GoaGroup", "admin": "1", "privacy": 2, "photos": 4, "iconserver": 0, "iconfarm": 0 },
+      { "nsid": "1867214@N25", "id": "1867214@N25", "name": "Kashid", "admin": "1", "privacy": 3, "photos": 1, "iconserver": "7068", "iconfarm": 8 },
+      { "nsid": "87272679@N00", "id": "87272679@N00", "name": "Nine", "admin": "", "privacy": 3, "photos": "7240", "iconserver": 27, "iconfarm": 1 }
+    ] }, "stat": "ok" }

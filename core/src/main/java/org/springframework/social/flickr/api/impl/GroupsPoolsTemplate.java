@@ -17,30 +17,27 @@ public class GroupsPoolsTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public GroupsPoolsTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser, String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public void add(String apiKey, String photoId, String groupId) {
+	public boolean add(String photoId, String groupId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (groupId != null)
 			parameters.set("group_id", groupId);
 		restTemplate.postForObject(buildUri("flickr.groups.pools.add"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public Prevphoto getContext(String apiKey, String photoId, String groupId) {
+	public Prevphoto getContext(String photoId, String groupId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (groupId != null)
@@ -51,11 +48,9 @@ public class GroupsPoolsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Groups getGroups(String apiKey, String page, String perPage) {
+	public Groups getGroups(String page, String perPage) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (page != null)
 			parameters.set("page", page);
 		if (perPage != null)
@@ -66,11 +61,9 @@ public class GroupsPoolsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Photos getPhotos(String apiKey, String groupId, String tags,
+	public Photos getPhotos(String groupId, String tags,
 			String userId, String extras, String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (groupId != null)
 			parameters.set("group_id", groupId);
 		if (tags != null)
@@ -89,16 +82,15 @@ public class GroupsPoolsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void remove(String apiKey, String photoId, String groupId) {
+	public boolean remove(String photoId, String groupId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (groupId != null)
 			parameters.set("group_id", groupId);
 		restTemplate.postForObject(buildUri("flickr.groups.pools.remove"),
 				parameters, Object.class);
+		return true;
 	}
 }

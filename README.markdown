@@ -24,6 +24,7 @@ Following api are currently supported in this project:
 * groups.discuss.replies
 * groups.discuss.topics
 * groups.members
+* groups.pools
 * places
 * prefs
 * cameras

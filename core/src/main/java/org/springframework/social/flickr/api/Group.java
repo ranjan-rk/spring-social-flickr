@@ -5,12 +5,14 @@ public class Group {
 	String nsid;
 	String iconFarm;
 	String iconServer;
-	boolean admin;
+	String admin;
 	boolean eighteenPlus;
 	boolean invitationOnly;
 	String members;
 	String poolCount;
 	String topicCount;
+	String privacy;
+	Number photos;
 
 	public String getName() {
 		return name;
@@ -20,11 +22,11 @@ public class Group {
 		this.name = name;
 	}
 
-	public boolean isAdmin() {
+	public String isAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(boolean admin) {
+	public void setAdmin(String admin) {
 		this.admin = admin;
 	}
 
@@ -90,5 +92,21 @@ public class Group {
 
 	public void setTopicCount(String topicCount) {
 		this.topicCount = topicCount;
+	}
+
+	public String getPrivacy() {
+		return privacy;
+	}
+
+	public void setPrivacy(String privacy) {
+		this.privacy = privacy;
+	}
+
+	public Number getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(Number photos) {
+		this.photos = photos;
 	}
 }
