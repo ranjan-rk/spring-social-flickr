@@ -23,6 +23,7 @@ Following api are currently supported in this project:
 * groups
 * places
 * prefs
+* cameras
 
 ###As this project is still under development do not use it in your applications.###
 
