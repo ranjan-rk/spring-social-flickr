@@ -21,6 +21,7 @@ Following api are currently supported in this project:
 * photosets
 * blogs
 * groups
+* groups.discuss.replies
 * places
 * prefs
 * cameras
