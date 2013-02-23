@@ -1,0 +1,4 @@
+{ "members": { "page": 1, "pages": 1, "perpage": 100, "total": 1, 
+    "member": [
+      { "nsid": "73562874@N08", "username": "hemantsch", "iconserver": "7043", "iconfarm": 8, "membertype": 4, "realname": "Hemant Sachdeva" }
+    ] }, "stat": "ok" }

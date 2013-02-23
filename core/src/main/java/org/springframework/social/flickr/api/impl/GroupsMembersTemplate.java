@@ -15,8 +15,8 @@ public class GroupsMembersTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public GroupsMembersTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 

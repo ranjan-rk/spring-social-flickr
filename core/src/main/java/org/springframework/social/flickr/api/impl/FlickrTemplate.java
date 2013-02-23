@@ -31,6 +31,7 @@ import org.springframework.social.flickr.api.Flickr;
 import org.springframework.social.flickr.api.GalleriesOperations;
 import org.springframework.social.flickr.api.GroupsDiscussRepliesOperations;
 import org.springframework.social.flickr.api.GroupsDiscussTopicsOperations;
+import org.springframework.social.flickr.api.GroupsMembersOperations;
 import org.springframework.social.flickr.api.GroupsOperations;
 import org.springframework.social.flickr.api.PeopleOperations;
 import org.springframework.social.flickr.api.PhotoCommentOperations;
@@ -65,6 +66,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private ContactsOperations contactsOperations;
     private GroupsDiscussRepliesOperations groupsDiscussRepliesOperations;
     private GroupsDiscussTopicsOperations groupsDiscussTopicsOperations;
+    private GroupsMembersOperations groupsMembersOperations;
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
     	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
@@ -95,6 +97,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.contactsOperations = new ContactsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.groupsDiscussRepliesOperations = new GroupsDiscussRepliesTemplate(getRestTemplate(), isAuthorized(), consumerKey);
 		this.groupsDiscussTopicsOperations  = new GroupsDiscussTopicsTemplate(getRestTemplate(), isAuthorized(), consumerKey);
+		this.groupsMembersOperations = new GroupsMembersTemplate(getRestTemplate(), isAuthorized(), consumerKey);
 	}
 
 	private void initSubApis() {
@@ -199,5 +202,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
     public GroupsDiscussTopicsOperations groupsDiscussTopicsOperations(){
     	return groupsDiscussTopicsOperations;
+    }
+    public GroupsMembersOperations groupsMembersOperations(){
+    	return groupsMembersOperations;
     }
 }
