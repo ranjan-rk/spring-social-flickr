@@ -15,8 +15,8 @@ public class ContactsTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public ContactsTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
@@ -51,15 +51,30 @@ public class ContactsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void getTaggingSuggestions(String perPage, String page) {
+	public Contacts getTaggingSuggestions(String perPage, String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
 		if (perPage != null)
 			parameters.set("per_page", perPage);
 		if (page != null)
 			parameters.set("page", page);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.contacts.getTaggingSuggestions", parameters),
-				Object.class);
+				Contacts.class);
+	}
+
+	@Override
+	public Contacts getList(String filter, String page, String perPage,String sort) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if (filter != null)
+			parameters.set("filter", filter);
+		if (perPage != null)
+			parameters.set("per_page", perPage);
+		if (page != null)
+			parameters.set("page", page);
+		if (sort != null)
+			parameters.set("sort", sort);
+		return restTemplate.getForObject(buildUri("flickr.contacts.getList", parameters),Contacts.class);
 	}
 }

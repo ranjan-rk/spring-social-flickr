@@ -108,6 +108,13 @@ public interface Flickr extends ApiBinding {
 	 * @return the cameras operations
 	 */
 	CamerasOperations camerasOperations();
+	
+	/**
+	 * Contacts operations.
+	 *
+	 * @return the contacts operations
+	 */
+	ContactsOperations contactsOperations();
 
 
 }

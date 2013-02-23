@@ -24,6 +24,7 @@ Following api are currently supported in this project:
 * places
 * prefs
 * cameras
+* contacts
 
 ###As this project is still under development do not use it in your applications.###
 

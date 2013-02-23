@@ -11,6 +11,19 @@ package org.springframework.social.flickr.api;
 public interface ContactsOperations {
 	
 	/**
+	 * Gets the list.
+	 *
+	 * @param filter the filter
+	 * @param page the page
+	 * @param perPage the per page
+	 * @param sort the sort
+	 * @return the list
+	 */
+	Contacts getList(String filter, String page, String perPage, String sort );
+	
+	/**
+	 * TODO: doubtful so leaving it for now
+	 * 
 	 * Gets the list recently uploaded.
 	 *
 	 * @param dateLastupload the date lastupload
@@ -38,5 +51,5 @@ public interface ContactsOperations {
 	 * @param page the page
 	 * @return the tagging suggestions
 	 */
-	void getTaggingSuggestions(String perPage, String page);// perPage,page,
+	Contacts getTaggingSuggestions(String perPage, String page);// perPage,page,
 }

@@ -7,6 +7,9 @@ import java.util.Collections;
  * The Interface CollectionsOperations.
  */
 /**
+ * TODO: collectoin is only availabe to  pro account as pointed here http://www.flickr.com/help/collections/
+ * I need pro account to implement this api, as i need .json to test 
+ * 
  * @author HemantS
  *
  */
