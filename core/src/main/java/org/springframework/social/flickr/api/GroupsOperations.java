@@ -9,13 +9,14 @@ package org.springframework.social.flickr.api;
 public interface GroupsOperations {
 	
 	/**
+	 * TODO: did not understand the purpose of this function
 	 * Browse.
 	 *
 	 * @param apiKey the api key
 	 * @param catId the cat id
 	 * @return the category
 	 */
-	Category browse(String apiKey, String catId);// catId,
+	Category browse(String catId);// catId,
 
 	/**
 	 * Search.
@@ -26,7 +27,7 @@ public interface GroupsOperations {
 	 * @param page the page
 	 * @return the groups
 	 */
-	Groups search(String apiKey, String text, String perPage, String page);// perPage,page,
+	Groups search(String text, String perPage, String page);// perPage,page,
 	
 	/**
 	 * Gets the info.
@@ -36,5 +37,33 @@ public interface GroupsOperations {
 	 * @param lang the lang
 	 * @return the info
 	 */
-	Group2 getInfo(String apiKey, String groupId, String lang);
+	Group2 getInfo(String groupId, String lang);
+	
+	/**
+	 * Join.
+	 *
+	 * @param groupId the group id
+	 * @param acceptRules the accept rules
+	 * @return true, if successful
+	 */
+	boolean join(String groupId ,String acceptRules );
+	
+	/**
+	 * Join request.
+	 *
+	 * @param groupId the group id
+	 * @param message the message
+	 * @param acceptRules the accept rules
+	 * @return true, if successful
+	 */
+	boolean joinRequest(String groupId, String message, String acceptRules);
+	
+	/**
+	 * Leave.
+	 *
+	 * @param groupId the group id
+	 * @param delete_photos the delete_photos
+	 * @return true, if successful
+	 */
+	boolean leave(String groupId ,String deletePhotos);
 }

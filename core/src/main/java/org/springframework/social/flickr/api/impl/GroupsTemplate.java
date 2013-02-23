@@ -22,11 +22,9 @@ public class GroupsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Category browse(String apiKey, String catId) {
+	public Category browse(String catId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (catId != null)
 			parameters.set("cat_id", catId);
 		return restTemplate.getForObject(
@@ -34,10 +32,8 @@ public class GroupsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Group2 getInfo(String apiKey, String groupId, String lang) {
+	public Group2 getInfo(String groupId, String lang) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (groupId != null)
 			parameters.set("group_id", groupId);
 		if (lang != null)
@@ -47,10 +43,8 @@ public class GroupsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Groups search(String apiKey, String text, String perPage, String page) {
+	public Groups search(String text, String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (text != null)
 			parameters.set("text", text);
 		if (perPage != null)
@@ -60,4 +54,45 @@ public class GroupsTemplate extends AbstractFlickrOperations implements
 		return restTemplate.getForObject(
 				buildUri("flickr.groups.search", parameters), Groups.class);
 	}
+
+	@Override
+	public boolean join(String groupId, String acceptRules) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if (groupId != null)
+			parameters.set("group_id", groupId);
+		if (acceptRules != null)
+			parameters.set("accept_rules", acceptRules);
+		restTemplate.postForObject(buildUri("flickr.groups.join"),parameters, Object.class);
+		return true;
+	}
+	
+	@Override
+	public boolean joinRequest(String groupId, String message,
+			String acceptRules) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if (groupId != null)
+			parameters.set("group_id", groupId);
+		if (message != null)
+			parameters.set("message", message);
+		if (acceptRules != null)
+			parameters.set("accept_rules", acceptRules);
+		restTemplate.postForObject(buildUri("flickr.groups.joinRequest"),parameters, Object.class);
+		return true;
+	}
+	
+	@Override
+	public boolean leave(String groupId, String deletePhotos) {
+		requireAuthorization();
+		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
+		if (groupId != null)
+			parameters.set("group_id", groupId);
+		if (deletePhotos != null)
+			parameters.set("delete_photos", deletePhotos);
+		restTemplate.postForObject(buildUri("flickr.groups.leave"),parameters, Object.class);
+		return true;
+	}
+
+
 }

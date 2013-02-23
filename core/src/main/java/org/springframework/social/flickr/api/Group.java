@@ -10,6 +10,7 @@ public class Group {
 	boolean invitationOnly;
 	String members;
 	String poolCount;
+	String topicCount;
 
 	public String getName() {
 		return name;
@@ -81,5 +82,13 @@ public class Group {
 
 	public void setMembers(String members) {
 		this.members = members;
+	}
+
+	public String getTopicCount() {
+		return topicCount;
+	}
+
+	public void setTopicCount(String topicCount) {
+		this.topicCount = topicCount;
 	}
 }
