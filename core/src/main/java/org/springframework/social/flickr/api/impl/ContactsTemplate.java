@@ -21,12 +21,10 @@ public class ContactsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void getListRecentlyUploaded(String apiKey, String dateLastupload,
+	public void getListRecentlyUploaded(String dateLastupload,
 			String filter) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (dateLastupload != null)
 			parameters.set("date_lastupload", dateLastupload);
 		if (filter != null)
@@ -38,11 +36,9 @@ public class ContactsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Contacts getPublicList(String apiKey, String userId, String page,
+	public Contacts getPublicList(String userId, String page,
 			String perPage) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (userId != null)
 			parameters.set("user_id", userId);
 		if (page != null)
@@ -55,11 +51,9 @@ public class ContactsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void getTaggingSuggestions(String apiKey, String perPage, String page) {
+	public void getTaggingSuggestions(String perPage, String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (perPage != null)
 			parameters.set("per_page", perPage);
 		if (page != null)

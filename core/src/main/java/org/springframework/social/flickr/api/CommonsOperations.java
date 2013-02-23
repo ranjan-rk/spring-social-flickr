@@ -11,8 +11,7 @@ public interface CommonsOperations {
 	/**
 	 * Gets the institutions.
 	 *
-	 * @param apiKey the api key
 	 * @return the institutions
 	 */
-	Institutions getInstitutions(String apiKey);
+	Institutions getInstitutions();
 }

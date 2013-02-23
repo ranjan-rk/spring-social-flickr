@@ -9,17 +9,18 @@ http://localhost:8080/spring-social-flickr-web/signin.jsp
 ##APIs Supported##
 Following api are currently supported in this project:
 
-* favorites
-* galleries (partially)
 * people
 * photos
+* activity
+* commons
+* favorites
+* galleries (partially)
 * photos.comments
 * photos.licenses
 * photos.notes
-* photos.people
-* photos.transform
 * photosets
-* photosets.comments
+* blogs
+* groups
 * places
 * prefs
 

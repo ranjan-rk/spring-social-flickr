@@ -11,17 +11,15 @@ public interface AuthOauthOperations {
 	/**
 	 * Check token.
 	 *
-	 * @param apiKey the api key
 	 * @param oauthToken the oauth token
 	 * @return the oauth
 	 */
-	Oauth checkToken(String apiKey, String oauthToken);
+	Oauth checkToken(String oauthToken);
 
 	/**
 	 * Gets the access token.
 	 *
-	 * @param apiKey the api key
 	 * @return the access token
 	 */
-	Auth getAccessToken(String apiKey);
+	Auth getAccessToken();
 }

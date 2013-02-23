@@ -15,17 +15,15 @@ public class BlogsTemplate extends AbstractFlickrOperations implements
 		BlogsOperations {
 	private final RestTemplate restTemplate;
 
-	public BlogsTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public BlogsTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public Blogs getList(String apiKey, String service) {
+	public Blogs getList(String service) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (service != null)
 			parameters.set("service", service);
 		return restTemplate.getForObject(
@@ -33,23 +31,19 @@ public class BlogsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Services getServices(String apiKey) {
+	public Services getServices() {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.blogs.getServices", parameters),
 				Services.class);
 	}
 	//TODO : PENDING
 	@Override
-	public void postPhoto(String apiKey, String blogId, String photoId,
+	public void postPhoto(String blogId, String photoId,
 			String title, String description, String blogPassword,
 			String service) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (blogId != null)
 			parameters.set("blog_id", blogId);
 		if (photoId != null)

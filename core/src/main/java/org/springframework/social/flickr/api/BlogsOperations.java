@@ -11,24 +11,21 @@ public interface BlogsOperations {
 	/**
 	 * Gets the list.
 	 *
-	 * @param apiKey the api key
 	 * @param service the service
 	 * @return the list
 	 */
-	Blogs getList(String apiKey, String service);// service,
+	Blogs getList(String service);// service,
 
 	/**
 	 * Gets the services.
 	 *
-	 * @param apiKey the api key
 	 * @return the services
 	 */
-	Services getServices(String apiKey);
+	Services getServices();
 
 	/**
 	 * Post photo.
 	 *
-	 * @param apiKey the api key
 	 * @param blogId the blog id
 	 * @param photoId the photo id
 	 * @param title the title
@@ -37,6 +34,6 @@ public interface BlogsOperations {
 	 * @param service the service
 	 */
 	//TODO : PENDING
-	void postPhoto(String apiKey, String blogId, String photoId, String title,
+	void postPhoto(String blogId, String photoId, String title,
 			String description, String blogPassword, String service);// blogId,blogPassword,service,
 }

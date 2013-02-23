@@ -19,16 +19,14 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 		PlacesOperations {
 	private final RestTemplate restTemplate;
 
-	public PlacesTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public PlacesTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser, String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public Places find(String apiKey, String query) {
+	public Places find(String query) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (query != null)
 			parameters.set("query", query);
 		return restTemplate.getForObject(
@@ -36,11 +34,9 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Places findByLatLon(String apiKey, String lat, String lon,
+	public Places findByLatLon(String lat, String lon,
 			String accuracy) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (lat != null)
 			parameters.set("lat", lat);
 		if (lon != null)
@@ -53,11 +49,9 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Places getChildrenWithPhotosPublic(String apiKey, String placeId,
+	public Places getChildrenWithPhotosPublic(String placeId,
 			String woeId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (placeId != null)
 			parameters.set("place_id", placeId);
 		if (woeId != null)
@@ -68,10 +62,8 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Place getInfo(String apiKey, String placeId, String woeId) {
+	public Place getInfo(String placeId, String woeId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (placeId != null)
 			parameters.set("place_id", placeId);
 		if (woeId != null)
@@ -81,10 +73,8 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Place getInfoByUrl(String apiKey, String url) {
+	public Place getInfoByUrl(String url) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (url != null)
 			parameters.set("url", url);
 		return restTemplate
@@ -94,20 +84,16 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Place_types getPlaceTypes(String apiKey) {
+	public Place_types getPlaceTypes() {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.places.getPlaceTypes", parameters),
 				Place_types.class);
 	}
 
 	@Override
-	public Shapes getShapeHistory(String apiKey, String placeId, String woeId) {
+	public Shapes getShapeHistory(String placeId, String woeId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (placeId != null)
 			parameters.set("place_id", placeId);
 		if (woeId != null)
@@ -118,11 +104,9 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Places getTopPlacesList(String apiKey, String placeTypeId,
+	public Places getTopPlacesList(String placeTypeId,
 			String date, String woeId, String placeId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (placeTypeId != null)
 			parameters.set("place_type_id", placeTypeId);
 		if (date != null)
@@ -137,11 +121,9 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Places placesForBoundingBox(String apiKey, String bbox,
+	public Places placesForBoundingBox(String bbox,
 			String placeType, String placeTypeId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (bbox != null)
 			parameters.set("bbox", bbox);
 		if (placeType != null)
@@ -154,14 +136,12 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Places placesForContacts(String apiKey, String placeType,
+	public Places placesForContacts(String placeType,
 			String placeTypeId, String woeId, String placeId, String threshold,
 			String contacts, String minUploadDate, String maxUploadDate,
 			String minTakenDate, String maxTakenDate) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (placeType != null)
 			parameters.set("place_type", placeType);
 		if (placeTypeId != null)
@@ -188,13 +168,11 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Places placesForTags(String apiKey, String placeTypeId, String woeId,
+	public Places placesForTags(String placeTypeId, String woeId,
 			String placeId, String threshold, String tags, String tagMode,
 			String machineTags, String machineTagMode, String minUploadDate,
 			String maxUploadDate, String minTakenDate, String maxTakenDate) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (placeTypeId != null)
 			parameters.set("place_type_id", placeTypeId);
 		if (woeId != null)
@@ -225,14 +203,12 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Places placesForUser(String apiKey, String placeTypeId,
+	public Places placesForUser(String placeTypeId,
 			String placeType, String woeId, String placeId, String threshold,
 			String minUploadDate, String maxUploadDate, String minTakenDate,
 			String maxTakenDate) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (placeTypeId != null)
 			parameters.set("place_type_id", placeTypeId);
 		if (placeType != null)
@@ -257,12 +233,10 @@ public class PlacesTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Tags tagsForPlace(String apiKey, String woeId, String placeId,
+	public Tags tagsForPlace(String woeId, String placeId,
 			String minUploadDate, String maxUploadDate, String minTakenDate,
 			String maxTakenDate) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (woeId != null)
 			parameters.set("woe_id", woeId);
 		if (placeId != null)

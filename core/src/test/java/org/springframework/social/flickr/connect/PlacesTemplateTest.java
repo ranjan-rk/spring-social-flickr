@@ -21,21 +21,21 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void findTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&query=pune&method=flickr.places.find&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?query=pune&method=flickr.places.find&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("places"), responseHeaders));
-		Places places = flickr.placesOperations().find("id", "pune");
+		Places places = flickr.placesOperations().find("pune");
 		assertPlaces(places);
 	}
 	@Test
 	public void findByLatLonTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&lat=18.531&lon=73.853&accuracy=10&method=flickr.places.findByLatLon&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?lat=18.531&lon=73.853&accuracy=10&method=flickr.places.findByLatLon&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placesgeo"), responseHeaders));
-		Places places = flickr.placesOperations().findByLatLon("id", "18.531", "73.853", "10");
+		Places places = flickr.placesOperations().findByLatLon( "18.531", "73.853", "10");
 		assertPlacesGeo(places);
 	}
 
@@ -43,11 +43,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getChildrenWithPhotosPublicTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&woe_id=2295412&method=flickr.places.getChildrenWithPhotosPublic&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?woe_id=2295412&method=flickr.places.getChildrenWithPhotosPublic&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placeschildren"), responseHeaders));
-		Places places = flickr.placesOperations().getChildrenWithPhotosPublic("id", null, "2295412");
+		Places places = flickr.placesOperations().getChildrenWithPhotosPublic( null, "2295412");
 		assertPlacesChildren(places);
 	}
 
@@ -55,11 +55,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getInfoTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&woe_id=2295412&method=flickr.places.getInfo&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?woe_id=2295412&method=flickr.places.getInfo&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placesinfo"), responseHeaders));
-		Place place = flickr.placesOperations().getInfo("id", null, "2295412");
+		Place place = flickr.placesOperations().getInfo( null, "2295412");
 		assertPlace(place);
 		
 	}
@@ -68,33 +68,33 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getInfoByUrlTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&url=%2FIndia%2FMaharashtra%2FPune&method=flickr.places.getInfoByUrl&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?url=%2FIndia%2FMaharashtra%2FPune&method=flickr.places.getInfoByUrl&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placesinfo"), responseHeaders));
-		Place place = flickr.placesOperations().getInfoByUrl("id", "/India/Maharashtra/Pune");
+		Place place = flickr.placesOperations().getInfoByUrl( "/India/Maharashtra/Pune");
 		assertPlace(place);
 	}
 
 	@Test
 	public void getPlaceTypesTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&method=flickr.places.getPlaceTypes&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.places.getPlaceTypes&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placetypes"), responseHeaders));
-		Place_types placeTypes = flickr.placesOperations().getPlaceTypes("id");
+		Place_types placeTypes = flickr.placesOperations().getPlaceTypes();
 		assertPlaceTypes(placeTypes);
 	}
 
 	@Test
 	public void getShapeHistoryTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&woe_id=2295412&method=flickr.places.getShapeHistory&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?woe_id=2295412&method=flickr.places.getShapeHistory&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("shapehistory"), responseHeaders));
-		Shapes shapes = flickr.placesOperations().getShapeHistory("id", null, "2295412");
+		Shapes shapes = flickr.placesOperations().getShapeHistory( null, "2295412");
 		assertShapes(shapes);
 				
 	}
@@ -103,11 +103,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getTopPlacesListTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&place_type_id=22&method=flickr.places.getTopPlacesList&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?place_type_id=22&method=flickr.places.getTopPlacesList&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placestop"), responseHeaders));
-		Places places = flickr.placesOperations().getTopPlacesList("id", "22", null,null, null);
+		Places places = flickr.placesOperations().getTopPlacesList( "22", null,null, null);
 		assertTopPlaces(places);
 	}
 
@@ -115,11 +115,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void placesForBoundingBoxTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&bbox=73.410645%2C18.208480%2C74.443359%2C18.604601&place_type_id=12&method=flickr.places.placesForBoundingBox&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?bbox=73.410645%2C18.208480%2C74.443359%2C18.604601&place_type_id=12&method=flickr.places.placesForBoundingBox&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placebbox"), responseHeaders));
-		Places places = flickr.placesOperations().placesForBoundingBox("id", "73.410645,18.208480,74.443359,18.604601", null, "12");
+		Places places = flickr.placesOperations().placesForBoundingBox( "73.410645,18.208480,74.443359,18.604601", null, "12");
 		assertPhotosBBox(places);
 		
 	}
@@ -127,11 +127,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void placesForContactsTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&place_type_id=7&method=flickr.places.placesForContacts&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?place_type_id=7&method=flickr.places.placesForContacts&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placesforcontact"), responseHeaders));
-		Places places = flickr.placesOperations().placesForContacts("id", null, "7", null, null, null, null, null, null, null, null);
+		Places places = flickr.placesOperations().placesForContacts( null, "7", null, null, null, null, null, null, null, null);
 		assertPhotosForContact(places);
 	}
 
@@ -139,11 +139,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void placesForTagsTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&place_type_id=22&tags=snow&method=flickr.places.placesForTags&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?place_type_id=22&tags=snow&method=flickr.places.placesForTags&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placesfortags"), responseHeaders));
-		Places places = flickr.placesOperations().placesForTags("id", "22", null, null, null, "snow", null, null, null, null, null, null, null);
+		Places places = flickr.placesOperations().placesForTags( "22", null, null, null, "snow", null, null, null, null, null, null, null);
 		assertPhotosForTags(places);
 	}
 
@@ -151,11 +151,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void placesForUserTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&place_type_id=7&method=flickr.places.placesForUser&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?place_type_id=7&method=flickr.places.placesForUser&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placesfortags"), responseHeaders));
-		Places places = flickr.placesOperations().placesForUser("id", "7", null, null, null, null, null, null, null, null);
+		Places places = flickr.placesOperations().placesForUser( "7", null, null, null, null, null, null, null, null);
 		assertPhotosForTags(places);
 	}
 
@@ -163,11 +163,11 @@ public class PlacesTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void tagsForPlaceTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&woe_id=2295412&method=flickr.places.tagsForPlace&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?woe_id=2295412&method=flickr.places.tagsForPlace&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("placetags"), responseHeaders));
-		Tags tags= flickr.placesOperations().tagsForPlace("id", "2295412", null, null, null, null, null);
+		Tags tags= flickr.placesOperations().tagsForPlace( "2295412", null, null, null, null, null);
 		assertTags(tags);
 	}
 	

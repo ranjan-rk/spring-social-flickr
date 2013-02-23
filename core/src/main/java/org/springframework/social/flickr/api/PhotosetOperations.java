@@ -77,7 +77,7 @@ public interface PhotosetOperations {
 	 * @return
 	 */
 	/*
-	 * Need to handle in special way PhotoCount getContext(String photoId ,
+	 * TODO: Need to handle in special way PhotoCount getContext(String photoId ,
 	 * String photosetId);
 	 */
 

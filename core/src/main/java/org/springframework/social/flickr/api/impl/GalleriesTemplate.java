@@ -18,8 +18,8 @@ public class GalleriesTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public GalleriesTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 

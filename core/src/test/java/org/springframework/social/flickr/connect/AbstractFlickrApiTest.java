@@ -29,7 +29,7 @@ public class AbstractFlickrApiTest {
 			mockServer = MockRestServiceServer.createServer(flickr.getRestTemplate());
 			responseHeaders = new HttpHeaders();
 			responseHeaders.setContentType(MediaType.TEXT_PLAIN);
-			unauthorizedFlickr = new FlickrTemplate();
+			unauthorizedFlickr = new FlickrTemplate("consumerKey");
 			// create a mock server just to avoid hitting real flickr if something gets past the authorization check
 			unauthorizedMockServer = MockRestServiceServer.createServer(unauthorizedFlickr.getRestTemplate());//TODO: Hemant Need to check this code.
 	    }

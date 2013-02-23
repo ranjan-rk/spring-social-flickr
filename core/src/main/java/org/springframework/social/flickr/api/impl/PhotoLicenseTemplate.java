@@ -15,8 +15,8 @@ public class PhotoLicenseTemplate extends AbstractFlickrOperations implements Ph
 	
 private final RestTemplate restTemplate;
 	
-	public PhotoLicenseTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public PhotoLicenseTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 

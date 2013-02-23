@@ -14,57 +14,47 @@ public class PrefsTemplate extends AbstractFlickrOperations implements
 		PrefsOperations {
 	private final RestTemplate restTemplate;
 
-	public PrefsTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public PrefsTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public Person getContentType(String apiKey) {
+	public Person getContentType() {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.prefs.getContentType", parameters), Person.class);
 	}
 
 	@Override
-	public Person getGeoPerms(String apiKey) {
+	public Person getGeoPerms() {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.prefs.getGeoPerms", parameters), Person.class);
 	}
 
 	@Override
-	public Person getHidden(String apiKey) {
+	public Person getHidden() {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.prefs.getHidden", parameters), Person.class);
 	}
 
 	@Override
-	public Person getPrivacy(String apiKey) {
+	public Person getPrivacy() {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.prefs.getPrivacy", parameters), Person.class);
 	}
 
 	@Override
-	public Person getSafetyLevel(String apiKey) {
+	public Person getSafetyLevel() {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.prefs.getSafetyLevel", parameters), Person.class);
 	}

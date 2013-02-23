@@ -22,11 +22,9 @@ public class CollectionsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void getInfo(String apiKey, String collectionId) {
+	public void getInfo(String collectionId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (collectionId != null)
 			parameters.set("collection_id", collectionId);
 		restTemplate.getForObject(
@@ -35,10 +33,8 @@ public class CollectionsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Collections getTree(String apiKey, String collectionId, String userId) {
+	public Collections getTree(String collectionId, String userId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (collectionId != null)
 			parameters.set("collection_id", collectionId);
 		if (userId != null)

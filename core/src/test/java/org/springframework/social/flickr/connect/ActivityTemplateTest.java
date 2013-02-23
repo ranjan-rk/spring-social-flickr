@@ -17,22 +17,22 @@ public class ActivityTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void userCommentsTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=23&method=flickr.activity.userComments&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.activity.userComments&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("activity"), responseHeaders));
-		UserComment comments = flickr.activityOperations().userComments("23", null, null);
+		UserComment comments = flickr.activityOperations().userComments(null, null);
 		assertUserComment(comments);
 	}
 	
 	@Test
 	public void userPhotosTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=23&method=flickr.activity.userPhotos&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.activity.userPhotos&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("activity2"), responseHeaders));
-		UserComment comments = flickr.activityOperations().userPhotos("23", null, null,null);
+		UserComment comments = flickr.activityOperations().userPhotos(null, null,null);
 		assertUserPhotos(comments);
 	}
 

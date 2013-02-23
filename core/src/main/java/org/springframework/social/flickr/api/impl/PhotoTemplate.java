@@ -26,8 +26,8 @@ import java.net.URI;
 public class PhotoTemplate extends AbstractFlickrOperations implements PhotoOperations {
     private final RestTemplate restTemplate;
 
-    public PhotoTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser) {
-        super(isAuthorizedForUser);
+    public PhotoTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser,String consumerKey) {
+        super(isAuthorizedForUser,consumerKey);
         this.restTemplate = restTemplate;
     }
 

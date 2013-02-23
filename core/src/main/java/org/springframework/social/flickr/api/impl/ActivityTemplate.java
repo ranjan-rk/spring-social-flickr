@@ -13,19 +13,17 @@ import org.springframework.web.client.RestTemplate;
 public class ActivityTemplate extends AbstractFlickrOperations implements
 		ActivityOperations {
 	private final RestTemplate restTemplate;
-
+	
 	public ActivityTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser, String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public UserComment userComments(String apiKey, String perPage, String page) {
+	public UserComment userComments(String perPage, String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (perPage != null)
 			parameters.set("per_page", perPage);
 		if (page != null)
@@ -36,12 +34,10 @@ public class ActivityTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public UserComment userPhotos(String apiKey, String timeframe, String perPage,
+	public UserComment userPhotos( String timeframe, String perPage,
 			String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (timeframe != null)
 			parameters.set("timeframe", timeframe);
 		if (perPage != null)

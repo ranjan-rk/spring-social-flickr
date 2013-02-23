@@ -11,13 +11,12 @@ public interface GroupsMembersOperations {
 	/**
 	 * Gets the list.
 	 *
-	 * @param apiKey the api key
 	 * @param groupId the group id
 	 * @param membertypes the membertypes
 	 * @param perPage the per page
 	 * @param page the page
 	 * @return the list
 	 */
-	Members getList(String apiKey, String groupId, String membertypes,
+	Members getList(String groupId, String membertypes,
 			String perPage, String page);// membertypes,perPage,page,
 }

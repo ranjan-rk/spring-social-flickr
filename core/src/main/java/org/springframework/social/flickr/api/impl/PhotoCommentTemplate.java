@@ -15,8 +15,8 @@ public class PhotoCommentTemplate extends AbstractFlickrOperations implements Ph
 
 	private final RestTemplate restTemplate;
 	
-	public PhotoCommentTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public PhotoCommentTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser, consumerKey);
 		this.restTemplate = restTemplate;
 	}
 	

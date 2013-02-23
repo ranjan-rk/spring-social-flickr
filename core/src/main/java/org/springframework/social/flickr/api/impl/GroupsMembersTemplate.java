@@ -21,12 +21,10 @@ public class GroupsMembersTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Members getList(String apiKey, String groupId, String membertypes,
+	public Members getList(String groupId, String membertypes,
 			String perPage, String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (groupId != null)
 			parameters.set("group_id", groupId);
 		if (membertypes != null)

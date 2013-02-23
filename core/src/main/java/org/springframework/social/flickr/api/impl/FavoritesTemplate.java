@@ -16,8 +16,8 @@ public class FavoritesTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public FavoritesTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 

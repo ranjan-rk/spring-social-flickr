@@ -54,7 +54,7 @@ public class PeopleTemplateTest extends AbstractFlickrApiTest {
     @Test
     public void getPersonProfileTest(){
     	String userId ="73562874@N08"; 
-    	unauthorizedMockServer.expect(requestTo("http://api.flickr.com/services/rest/?user_id=73562874%40N08&method=flickr.people.getInfo&format=json&nojsoncallback=1"))
+    	unauthorizedMockServer.expect(requestTo("http://api.flickr.com/services/rest/?user_id=73562874%40N08&method=flickr.people.getInfo&format=json&nojsoncallback=1&api_key=consumerKey"))
         .andExpect(method(GET))
         .andRespond(withResponse(jsonResource("peopleinfo"), responseHeaders));
     	Person person = unauthorizedFlickr.peopleOperations().getPersonProfile(userId);

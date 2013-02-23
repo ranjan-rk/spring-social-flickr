@@ -15,8 +15,8 @@ public class PeopleTemplate extends AbstractFlickrOperations implements PeopleOp
 
 	private final RestTemplate restTemplate;
 	
-	public PeopleTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public PeopleTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 

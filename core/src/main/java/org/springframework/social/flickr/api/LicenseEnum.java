@@ -8,12 +8,14 @@ public enum LicenseEnum {
 	 AttributionNonCommercial("2"),
 	 AttributionNonCommercialShareAlike("1"),
 	 AttributionShareAlike("5"),
-	 Noknowncopyrightrestrictions("7"),
+	 Noknowncopyrightrestrictions("7"),	 
 	 UnitedStatesGovernmentWork("8");
 	private String license; 
 	LicenseEnum(String license){
 		this.license = license ;
 	}
+	
+	
 	public String getLicense(){
 		return license;
 	}

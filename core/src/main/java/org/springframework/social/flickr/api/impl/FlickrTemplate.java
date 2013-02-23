@@ -61,29 +61,46 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
     	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
-    	initSubApis();
+    	initSubApis(null);
     }
     
-	public FlickrTemplate(){
+	public FlickrTemplate(String consumerKey){
     	super();
-    	initSubApis();
+    	initSubApis(consumerKey);
     }
 
+	private void initSubApis(String consumerKey) {
+		this.peopleOperations = new PeopleTemplate(getRestTemplate(),isAuthorized(),consumerKey);
+		this.photoOperations = new PhotoTemplate(getRestTemplate(),isAuthorized(),consumerKey); 
+		this.activityOperations = new ActivityTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.commonsOperations = new CommonsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.favoritesOperations = new FavoritesTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.galleriesOperations = new GalleriesTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.photoCommentOperations = new PhotoCommentTemplate(getRestTemplate(),isAuthorized(),consumerKey);
+		this.photoLicenseOperations = new PhotoLicenseTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.photoNoteOperations = new PhotoNoteTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.photosetOperations = new PhotosetTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.blogsOperations = new BlogsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.placesOperations = new PlacesTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.prefsOperations = new PrefsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+	}
+
 	private void initSubApis() {
-		this.peopleOperations = new PeopleTemplate(getRestTemplate(),isAuthorized());
-		this.photoOperations = new PhotoTemplate(getRestTemplate(),isAuthorized()); 
-		this.photoCommentOperations = new PhotoCommentTemplate(getRestTemplate(),isAuthorized() );
-		this.photoLicenseOperations = new PhotoLicenseTemplate(getRestTemplate(), isAuthorized());
-		this.photoNoteOperations = new PhotoNoteTemplate(getRestTemplate(), isAuthorized());
-		this.photosetOperations = new PhotosetTemplate(getRestTemplate(), isAuthorized());
-		this.galleriesOperations = new GalleriesTemplate(getRestTemplate(), isAuthorized());
-		this.favoritesOperations = new FavoritesTemplate(getRestTemplate(), isAuthorized());
-		this.activityOperations = new ActivityTemplate(getRestTemplate(), isAuthorized());
-		this.blogsOperations = new BlogsTemplate(getRestTemplate(), isAuthorized());
-		this.commonsOperations = new CommonsTemplate(getRestTemplate(), isAuthorized());
-		this.groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized());
-		this.placesOperations = new PlacesTemplate(getRestTemplate(), isAuthorized());
-		this.prefsOperations = new PrefsTemplate(getRestTemplate(), isAuthorized());
+		//this.peopleOperations = new PeopleTemplate(getRestTemplate(),isAuthorized());
+		//this.photoOperations = new PhotoTemplate(getRestTemplate(),isAuthorized()); 
+		//this.photoCommentOperations = new PhotoCommentTemplate(getRestTemplate(),isAuthorized() );
+		//this.photoLicenseOperations = new PhotoLicenseTemplate(getRestTemplate(), isAuthorized());
+		//this.photoNoteOperations = new PhotoNoteTemplate(getRestTemplate(), isAuthorized());
+		//this.photosetOperations = new PhotosetTemplate(getRestTemplate(), isAuthorized());
+		//this.galleriesOperations = new GalleriesTemplate(getRestTemplate(), isAuthorized());
+		//this.favoritesOperations = new FavoritesTemplate(getRestTemplate(), isAuthorized());
+		//this.activityOperations = new ActivityTemplate(getRestTemplate(), isAuthorized());
+		//this.blogsOperations = new BlogsTemplate(getRestTemplate(), isAuthorized());
+		//this.commonsOperations = new CommonsTemplate(getRestTemplate(), isAuthorized());
+		//this.groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized());
+		//this.placesOperations = new PlacesTemplate(getRestTemplate(), isAuthorized());
+		//this.prefsOperations = new PrefsTemplate(getRestTemplate(), isAuthorized());
 	}
 	
 	
@@ -156,7 +173,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     	return placesOperations;
     }
     
-    public PrefsOperations prefsOperation(){
+    public PrefsOperations prefsOperations(){
     	return prefsOperations;
     }
 

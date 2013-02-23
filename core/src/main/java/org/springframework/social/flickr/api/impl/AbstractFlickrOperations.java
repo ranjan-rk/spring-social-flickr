@@ -13,9 +13,15 @@ import org.springframework.util.MultiValueMap;
 public class AbstractFlickrOperations {
 
 	private final boolean isAuthorized;
+	private final String consumerKey;
 	
 	public AbstractFlickrOperations(boolean isAuthorized){
 		this.isAuthorized = isAuthorized;
+		this.consumerKey =null;
+	}
+	public AbstractFlickrOperations(boolean isAuthorized,String consumerKey){
+		this.isAuthorized = isAuthorized;
+		this.consumerKey = consumerKey;
 	}
 	
 	protected void requireAuthorization() {
@@ -38,7 +44,12 @@ public class AbstractFlickrOperations {
 		parameters.set("method", methodName);
 		parameters.set("format", "json");
 		parameters.set("nojsoncallback", "1");
-		return URIBuilder.fromUri(API_URL_BASE).queryParams(parameters).build();
+		if(!isAuthorized){
+			parameters.set("api_key", consumerKey);
+		}
+		
+				URI uri 	=	URIBuilder.fromUri(API_URL_BASE).queryParams(parameters).build();
+				return uri;
 	}
 	
 	private static final String API_URL_BASE = "http://api.flickr.com/services/rest/";

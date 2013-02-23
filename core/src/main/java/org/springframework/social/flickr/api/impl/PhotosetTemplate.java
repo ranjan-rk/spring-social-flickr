@@ -21,8 +21,8 @@ public class PhotosetTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public PhotosetTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 

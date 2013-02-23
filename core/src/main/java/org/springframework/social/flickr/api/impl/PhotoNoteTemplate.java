@@ -14,8 +14,8 @@ public class PhotoNoteTemplate extends AbstractFlickrOperations implements Photo
 	
 private final RestTemplate restTemplate;
 	
-	public PhotoNoteTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public PhotoNoteTemplate(RestTemplate restTemplate,boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 

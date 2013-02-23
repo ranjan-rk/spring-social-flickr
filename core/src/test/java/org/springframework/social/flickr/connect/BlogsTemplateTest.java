@@ -19,22 +19,22 @@ public class BlogsTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getListTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=23&method=flickr.blogs.getList&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.blogs.getList&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("blogs"), responseHeaders));
-		Blogs blogs= flickr.blogsOperations().getList("23", null);
+		Blogs blogs= flickr.blogsOperations().getList( null);
 		assertBlog(blogs);
 	}
 
 	@Test
 	public void getServicesTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=23&method=flickr.blogs.getServices&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.blogs.getServices&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("blogservice"), responseHeaders));
-		Services services= flickr.blogsOperations().getServices("23");
+		Services services= flickr.blogsOperations().getServices();
 		assertServices(services);
 	}
 

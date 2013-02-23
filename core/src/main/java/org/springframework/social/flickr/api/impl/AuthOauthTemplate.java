@@ -22,11 +22,9 @@ public class AuthOauthTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Oauth checkToken(String apiKey, String oauthToken) {
+	public Oauth checkToken(String oauthToken) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (oauthToken != null)
 			parameters.set("oauth_token", oauthToken);
 		return restTemplate.getForObject(
@@ -35,11 +33,9 @@ public class AuthOauthTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Auth getAccessToken(String apiKey) {
+	public Auth getAccessToken() {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.auth.oauth.getAccessToken", parameters),
 				Auth.class);

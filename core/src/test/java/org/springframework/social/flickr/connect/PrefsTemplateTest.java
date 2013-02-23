@@ -17,11 +17,11 @@ public class PrefsTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getContentTypeTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&method=flickr.prefs.getContentType&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.prefs.getContentType&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("prefsgetcontenttype"), responseHeaders));
-		Person person = flickr.prefsOperation().getContentType("id");
+		Person person = flickr.prefsOperations().getContentType();
 		assertContentType(person);
 	}
 
@@ -30,11 +30,11 @@ public class PrefsTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getGeoPermsTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&method=flickr.prefs.getGeoPerms&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.prefs.getGeoPerms&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("prefsgetgeoperms"), responseHeaders));
-		Person person = flickr.prefsOperation().getGeoPerms("id");
+		Person person = flickr.prefsOperations().getGeoPerms();
 		assertGeoPerms(person);
 	}
 
@@ -43,11 +43,11 @@ public class PrefsTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getHiddenTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&method=flickr.prefs.getHidden&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.prefs.getHidden&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("prefsgethidden"), responseHeaders));
-		Person person = flickr.prefsOperation().getHidden("id");
+		Person person = flickr.prefsOperations().getHidden();
 		assertHidden(person);
 	}
 
@@ -57,11 +57,11 @@ public class PrefsTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getPrivacyTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&method=flickr.prefs.getPrivacy&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.prefs.getPrivacy&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("prefsgetprivacy"), responseHeaders));
-		Person person = flickr.prefsOperation().getPrivacy("id");
+		Person person = flickr.prefsOperations().getPrivacy();
 		assertPrivacy(person);
 	}
 
@@ -74,11 +74,11 @@ public class PrefsTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getSafetyLevelTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=id&method=flickr.prefs.getSafetyLevel&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.prefs.getSafetyLevel&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("prefsgetsafetylevel"), responseHeaders));
-		Person person = flickr.prefsOperation().getSafetyLevel("id");
+		Person person = flickr.prefsOperations().getSafetyLevel();
 		assertSafetyLevel(person);
 	}
 	

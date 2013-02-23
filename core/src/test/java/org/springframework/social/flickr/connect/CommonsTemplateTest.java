@@ -17,11 +17,11 @@ public class CommonsTemplateTest extends AbstractFlickrApiTest {
 	@Test
 	public void getInstitutionsTest() {
 		mockServer
-				.expect(requestTo("http://api.flickr.com/services/rest/?api_key=23&method=flickr.commons.getInstitutions&format=json&nojsoncallback=1"))
+				.expect(requestTo("http://api.flickr.com/services/rest/?method=flickr.commons.getInstitutions&format=json&nojsoncallback=1"))
 				.andExpect(method(GET))
 				.andRespond(
 						withResponse(jsonResource("institute"), responseHeaders));
-		Institutions institutions = flickr.commonsOperations().getInstitutions("23");
+		Institutions institutions = flickr.commonsOperations().getInstitutions();
 		assertInstitutions(institutions);
 	}
 
