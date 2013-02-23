@@ -23,6 +23,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
 import org.springframework.social.flickr.api.ActivityOperations;
 import org.springframework.social.flickr.api.BlogsOperations;
+import org.springframework.social.flickr.api.CamerasOperations;
 import org.springframework.social.flickr.api.CommonsOperations;
 import org.springframework.social.flickr.api.FavoritesOperations;
 import org.springframework.social.flickr.api.Flickr;
@@ -57,6 +58,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private GroupsOperations groupsOperations;
     private PlacesOperations placesOperations;
     private PrefsOperations prefsOperations;
+    private CamerasOperations camerasOperations;
 
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
@@ -84,6 +86,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.groupsOperations = new GroupsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.placesOperations = new PlacesTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.prefsOperations = new PrefsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.camerasOperations = new CamerasTemplate(getRestTemplate(),  isAuthorized(),consumerKey);
 	}
 
 	private void initSubApis() {
@@ -175,6 +178,10 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     
     public PrefsOperations prefsOperations(){
     	return prefsOperations;
+    }
+    
+    public CamerasOperations camerasOperations(){
+    	return camerasOperations;
     }
 
 }

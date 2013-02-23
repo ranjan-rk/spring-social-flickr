@@ -1,0 +1,12 @@
+{ "cameras": { "brand": "apple", 
+    "camera": [
+      { "id": "iphone_4s", 
+        "name": { "_content": "Apple iPhone 4S" }, 
+        "details": { 
+          "megapixels": { "_content": 8 }, 
+          "lcd_screen_size": { "_content": 3.5 }, 
+          "memory_type": { "_content": "Built-in flash memory" } }, 
+        "images": { 
+          "small": { "_content": "http:\/\/farm7.staticflickr.com\/6052\/cameras\/72157627469395877_model_small_e147f26ff2.jpg" }, 
+          "large": { "_content": "http:\/\/farm7.staticflickr.com\/6052\/cameras\/72157627469395877_model_large_08f72c6d85.jpg" } } }
+    ] }, "stat": "ok" }
