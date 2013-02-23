@@ -143,5 +143,12 @@ public interface Flickr extends ApiBinding {
 	 * @return the groups pools operations
 	 */
 	GroupsPoolsOperations groupsPoolsOperations();
+	
+	/**
+	 * Interestingness operations.
+	 *
+	 * @return the interestingness operations
+	 */
+	InterestingnessOperations interestingnessOperations();
 
 }

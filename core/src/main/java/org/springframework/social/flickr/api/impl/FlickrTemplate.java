@@ -34,6 +34,7 @@ import org.springframework.social.flickr.api.GroupsDiscussTopicsOperations;
 import org.springframework.social.flickr.api.GroupsMembersOperations;
 import org.springframework.social.flickr.api.GroupsOperations;
 import org.springframework.social.flickr.api.GroupsPoolsOperations;
+import org.springframework.social.flickr.api.InterestingnessOperations;
 import org.springframework.social.flickr.api.PeopleOperations;
 import org.springframework.social.flickr.api.PhotoCommentOperations;
 import org.springframework.social.flickr.api.PhotoLicenseOperations;
@@ -69,6 +70,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private GroupsDiscussTopicsOperations groupsDiscussTopicsOperations;
     private GroupsMembersOperations groupsMembersOperations;
     private GroupsPoolsOperations groupsPoolsOperations;
+    private InterestingnessOperations interestingnessOperations;
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
     	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
@@ -101,6 +103,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.groupsDiscussTopicsOperations  = new GroupsDiscussTopicsTemplate(getRestTemplate(), isAuthorized(), consumerKey);
 		this.groupsMembersOperations = new GroupsMembersTemplate(getRestTemplate(), isAuthorized(), consumerKey);
 		this.groupsPoolsOperations = new GroupsPoolsTemplate(getRestTemplate(), isAuthorized(), consumerKey);
+		this.interestingnessOperations = new InterestingnessTemplate(getRestTemplate(), isAuthorized(), consumerKey);
 	}
 
 	private void initSubApis() {
@@ -211,5 +214,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
     public GroupsPoolsOperations groupsPoolsOperations(){
     	return groupsPoolsOperations;
+    }
+    public InterestingnessOperations interestingnessOperations(){
+    	return interestingnessOperations;
     }
 }

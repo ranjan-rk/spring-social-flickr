@@ -15,17 +15,15 @@ public class InterestingnessTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public InterestingnessTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser, String consumerKey) {
+		super(isAuthorizedForUser, consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public Photos getList(String apiKey, String date, String extras,
+	public Photos getList(String date, String extras,
 			String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (date != null)
 			parameters.set("date", date);
 		if (extras != null)
