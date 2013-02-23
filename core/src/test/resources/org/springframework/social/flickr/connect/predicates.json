@@ -1,0 +1,6 @@
+{ "predicates": { 
+    "predicate": [
+      { "_content": "a", "usage": "78786", "namespaces": 9 },
+      { "_content": "a_different_predicate", "usage": 1, "namespaces": 1 },
+      { "_content": "a591", "usage": 12, "namespaces": 1 }
+    ], "page": 1, "total": "6337", "perpage": "500", "pages": 13 }, "stat": "ok" }

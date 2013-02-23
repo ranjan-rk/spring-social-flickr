@@ -150,5 +150,12 @@ public interface Flickr extends ApiBinding {
 	 * @return the interestingness operations
 	 */
 	InterestingnessOperations interestingnessOperations();
+	
+	/**
+	 * Machinetags operations.
+	 *
+	 * @return the machinetags operations
+	 */
+	MachinetagsOperations machinetagsOperations();
 
 }

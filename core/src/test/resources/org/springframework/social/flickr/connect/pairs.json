@@ -1,0 +1,7 @@
+{ "pairs": { 
+    "pair": [
+      { "_content": "a:a", "namespace": "a", "predicate": "a", "usage": "27801" },
+      { "_content": "a:b", "namespace": "a", "predicate": "b", "usage": "3154" },
+      { "_content": "a:c", "namespace": "a", "predicate": "c", "usage": 40 },
+      { "_content": "a:machine", "namespace": "a", "predicate": "machine", "usage": 2 }
+    ], "page": 1, "total": "12482", "perpage": "500", "pages": 25 }, "stat": "ok" }

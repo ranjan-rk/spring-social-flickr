@@ -1,0 +1,8 @@
+{ "namespaces": { 
+    "namespace": [
+      { "_content": "a", "usage": "32721", "predicates": 7 },
+      { "_content": "a01234567890123456789012345678901234567890123456789012345678", "usage": 1, "predicates": 1 },
+      { "_content": "aa", "usage": 1, "predicates": 1 },
+      { "_content": "aa0123456789012345678901234567890123456789012345678901234567", "usage": 2, "predicates": 1 },
+      { "_content": "aaa", "usage": 5, "predicates": 3 }
+    ], "page": 1, "total": "3652", "perpage": "500", "pages": 8 }, "stat": "ok" }

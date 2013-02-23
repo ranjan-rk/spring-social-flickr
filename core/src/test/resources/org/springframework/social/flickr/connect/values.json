@@ -1,0 +1,13 @@
+{ "values": { "namespace": "a", "predicate": "a", 
+    "value": [
+      { "_content": 1, "usage": 1 },
+      { "_content": "camera", "usage": "7825" },
+      { "_content": "countries", "usage": "10312" },
+      { "_content": "date", "usage": 15 },
+      { "_content": "descriptions", "usage": 6 },
+      { "_content": "events", "usage": 13 },
+      { "_content": "lens", "usage": 21 },
+      { "_content": "location", "usage": 10 },
+      { "_content": "objects", "usage": "179" },
+      { "_content": "years", "usage": "10274" }
+    ], "page": 1, "total": 10, "perpage": "500", "pages": 1 }, "stat": "ok" }

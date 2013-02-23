@@ -2,6 +2,7 @@ package org.springframework.social.flickr.api.impl;
 
 import org.springframework.social.flickr.api.MachinetagsOperations;
 import org.springframework.social.flickr.api.Namespaces;
+import org.springframework.social.flickr.api.Pairs;
 import org.springframework.social.flickr.api.Predicates;
 import org.springframework.social.flickr.api.Values;
 import org.springframework.util.LinkedMultiValueMap;
@@ -17,17 +18,15 @@ public class MachinetagsTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public MachinetagsTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public Namespaces getNamespaces(String apiKey, String predicate,
+	public Namespaces getNamespaces(String predicate,
 			String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (predicate != null)
 			parameters.set("predicate", predicate);
 		if (perPage != null)
@@ -40,11 +39,9 @@ public class MachinetagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void getPairs(String apiKey, String namespace, String predicate,
+	public Pairs getPairs(String namespace, String predicate,
 			String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (namespace != null)
 			parameters.set("namespace", namespace);
 		if (predicate != null)
@@ -53,17 +50,15 @@ public class MachinetagsTemplate extends AbstractFlickrOperations implements
 			parameters.set("per_page", perPage);
 		if (page != null)
 			parameters.set("page", page);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.machinetags.getPairs", parameters),
-				Object.class);
+				Pairs.class);
 	}
 
 	@Override
-	public Predicates getPredicates(String apiKey, String namespace,
+	public Predicates getPredicates(String namespace,
 			String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (namespace != null)
 			parameters.set("namespace", namespace);
 		if (perPage != null)
@@ -76,11 +71,9 @@ public class MachinetagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Values getRecentValues(String apiKey, String namespace,
+	public Values getRecentValues(String namespace,
 			String predicate, String addedSince) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (namespace != null)
 			parameters.set("namespace", namespace);
 		if (predicate != null)
@@ -93,11 +86,9 @@ public class MachinetagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Values getValues(String apiKey, String namespace, String predicate,
+	public Values getValues(String namespace, String predicate,
 			String perPage, String page) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (namespace != null)
 			parameters.set("namespace", namespace);
 		if (predicate != null)

@@ -2,12 +2,13 @@ package org.springframework.social.flickr.api;
 
 import java.util.ArrayList;
 
-public class Predicates {
+public class Pairs {
 	String page;
 	String pages;
 	String perpage;
 	String total;
-	ArrayList<Predicate> predicate;
+	ArrayList<Pair> pair;
+	
 	public String getPage() {
 		return page;
 	}
@@ -32,10 +33,10 @@ public class Predicates {
 	public void setTotal(String total) {
 		this.total = total;
 	}
-	public ArrayList<Predicate> getPredicate() {
-		return predicate;
+	public ArrayList<Pair> getPair() {
+		return pair;
 	}
-	public void setPredicate(ArrayList<Predicate> predicate) {
-		this.predicate = predicate;
+	public void setPair(ArrayList<Pair> pair) {
+		this.pair = pair;
 	}
 }

@@ -30,6 +30,7 @@ Following api are currently supported in this project:
 * cameras
 * contacts
 * interestingness
+* machinetags
 
 ###As this project is still under development do not use it in your applications.###
 
