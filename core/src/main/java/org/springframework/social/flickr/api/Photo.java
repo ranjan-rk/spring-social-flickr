@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Photo extends Extras{
 	String id;
 	String owner;
+	String ownername;
 	String secret;
 	String server;
 	String farm;
@@ -181,6 +182,14 @@ public class Photo extends Extras{
 
 	public void setDateFaved(String dateFaved) {
 		this.dateFaved = dateFaved;
+	}
+
+	public String getOwnername() {
+		return ownername;
+	}
+
+	public void setOwnername(String ownername) {
+		this.ownername = ownername;
 	}
 
 }

@@ -11,21 +11,19 @@ public interface PandaOperations {
 	/**
 	 * Gets the list.
 	 *
-	 * @param apiKey the api key
 	 * @return the list
 	 */
-	Pandas getList(String apiKey);
+	Pandas getList();
 
 	/**
 	 * Gets the photos.
 	 *
-	 * @param apiKey the api key
 	 * @param pandaName the panda name
 	 * @param extras the extras
 	 * @param perPage the per page
 	 * @param page the page
 	 * @return the photos
 	 */
-	Photos getPhotos(String apiKey, String pandaName, String extras,
+	Photos getPhotos(String pandaName, String extras,
 			String perPage, String page);// extras,perPage,page,
 }
