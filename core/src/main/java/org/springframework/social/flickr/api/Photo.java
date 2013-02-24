@@ -22,6 +22,7 @@ public class Photo extends Extras{
 	String perpage;
 	String total;
 	String dateFaved;
+	Location location;
 	ArrayList<Person2> person2; //Persons who favorited this photo
 
 	public String getId() {
@@ -190,6 +191,14 @@ public class Photo extends Extras{
 
 	public void setOwnername(String ownername) {
 		this.ownername = ownername;
+	}
+
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 }

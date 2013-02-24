@@ -6,6 +6,7 @@ public class Perms {
 	private boolean ispublic;
 	private boolean isfriend; 
 	private boolean isfamily;
+	private boolean iscontact;
 	private PermissionEnum permcomment;
 	private PermissionEnum permaddmeta;
 	public String getId() {
@@ -43,5 +44,11 @@ public class Perms {
 	}
 	public void setPermaddmeta(PermissionEnum permaddmeta) {
 		this.permaddmeta = permaddmeta;
+	}
+	public boolean isIscontact() {
+		return iscontact;
+	}
+	public void setIscontact(boolean iscontact) {
+		this.iscontact = iscontact;
 	} 
 }

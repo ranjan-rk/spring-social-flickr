@@ -42,6 +42,7 @@ import org.springframework.social.flickr.api.PhotoCommentOperations;
 import org.springframework.social.flickr.api.PhotoLicenseOperations;
 import org.springframework.social.flickr.api.PhotoNoteOperations;
 import org.springframework.social.flickr.api.PhotoOperations;
+import org.springframework.social.flickr.api.PhotosGeoOperations;
 import org.springframework.social.flickr.api.PhotosetOperations;
 import org.springframework.social.flickr.api.PlacesOperations;
 import org.springframework.social.flickr.api.PrefsOperations;
@@ -75,6 +76,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private InterestingnessOperations interestingnessOperations;
     private MachinetagsOperations machinetagsOperations;
     private PandaOperations pandaOperations;
+    private PhotosGeoOperations photosGeoOperations;
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
     	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
@@ -110,6 +112,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.interestingnessOperations = new InterestingnessTemplate(getRestTemplate(), isAuthorized(), consumerKey);
 		this.machinetagsOperations = new MachinetagsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.pandaOperations = new PandaTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.photosGeoOperations = new PhotosGeoTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 	}
 
 	private void initSubApis() {
@@ -229,5 +232,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
     public PandaOperations pandaOperations(){
     	return pandaOperations;
+    }
+    public PhotosGeoOperations photosGeoOperations(){
+    	return photosGeoOperations;
     }
 }

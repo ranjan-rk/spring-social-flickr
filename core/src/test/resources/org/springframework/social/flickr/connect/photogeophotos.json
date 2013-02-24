@@ -1,0 +1,6 @@
+{ "photo": { "id": "7121067493", 
+    "location": { "latitude": 18.531709, "longitude": 73.853843, "accuracy": 11, "context": 0, 
+      "locality": { "_content": "Pune", "place_id": "R5ua9x9TULOpg42W", "woeid": "2295412" }, 
+      "county": { "_content": "Pune", "place_id": "pFwPLvZQUL8_AWpzIA", "woeid": "12586544" }, 
+      "region": { "_content": "Maharashtra", "place_id": "qiZtc3ZTUb6N1adS", "woeid": "2345750" }, 
+      "country": { "_content": "India", "place_id": "kZ2lUVFTUb7CK_DAfA", "woeid": "23424848" }, "place_id": "R5ua9x9TULOpg42W", "woeid": "2295412" } }, "stat": "ok" }

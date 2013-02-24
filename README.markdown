@@ -16,6 +16,7 @@ Following api are currently supported in this project:
 * favorites
 * galleries (partially)
 * photos.comments
+* photos.geo
 * photos.licenses
 * photos.notes
 * photosets

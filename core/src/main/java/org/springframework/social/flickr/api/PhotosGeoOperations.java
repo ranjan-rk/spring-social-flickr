@@ -10,50 +10,48 @@ public interface PhotosGeoOperations {
 	
 	/**
 	 * Batch correct location.
+	 * TODO: pending didn't understand completely
 	 *
-	 * @param apiKey the api key
 	 * @param lat the lat
 	 * @param lon the lon
 	 * @param accuracy the accuracy
 	 * @param placeId the place id
 	 * @param woeId the woe id
 	 */
-	void batchCorrectLocation(String apiKey, String lat, String lon,
+	void batchCorrectLocation(String lat, String lon,
 			String accuracy, String placeId, String woeId);// placeId,woeId,
 
 	/**
 	 * Correct location.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 * @param placeId the place id
 	 * @param woeId the woe id
+	 * @param foursquareId the foursquare id
+	 * @return true, if successful
 	 */
-	void correctLocation(String apiKey, String photoId, String placeId,
-			String woeId);// placeId,woeId,
+	boolean correctLocation(String photoId, String placeId,
+			String woeId,String foursquareId);// placeId,woeId,
 
 	/**
 	 * Gets the location.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 * @return the location
 	 */
-	Photo getLocation(String apiKey, String photoId);
+	Photo getLocation(String photoId);
 
 	/**
 	 * Gets the perms.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 * @return the perms
 	 */
-	Perms getPerms(String apiKey, String photoId);
+	Perms getPerms(String photoId);
 
 	/**
 	 * Photos for location.
 	 *
-	 * @param apiKey the api key
 	 * @param lat the lat
 	 * @param lon the lon
 	 * @param accuracy the accuracy
@@ -62,49 +60,45 @@ public interface PhotosGeoOperations {
 	 * @param page the page
 	 * @return the photos
 	 */
-	Photos photosForLocation(String apiKey, String lat, String lon,
+	Photos photosForLocation(String lat, String lon,
 			String accuracy, String extras, String perPage, String page);// accuracy,extras,perPage,page,
 
 	/**
 	 * Removes the location.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 */
-	void removeLocation(String apiKey, String photoId);
+	boolean removeLocation(String photoId);
 
 	/**
 	 * Sets the context.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 * @param context the context
 	 */
-	void setContext(String apiKey, String photoId, String context);
+	boolean setContext(String photoId, String context);
 
 	/**
 	 * Sets the location.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 * @param lat the lat
 	 * @param lon the lon
 	 * @param accuracy the accuracy
 	 * @param context the context
 	 */
-	void setLocation(String apiKey, String photoId, String lat, String lon,
+	boolean setLocation(String photoId, String lat, String lon,
 			String accuracy, String context);// accuracy,context,
 
 	/**
 	 * Sets the perms.
 	 *
-	 * @param apiKey the api key
 	 * @param isPublic the is public
 	 * @param isContact the is contact
 	 * @param isFriend the is friend
 	 * @param isFamily the is family
 	 * @param photoId the photo id
 	 */
-	void setPerms(String apiKey, String isPublic, String isContact,
+	boolean setPerms(String isPublic, String isContact,
 			String isFriend, String isFamily, String photoId);
 }

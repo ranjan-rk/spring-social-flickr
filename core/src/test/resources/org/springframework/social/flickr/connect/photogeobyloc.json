@@ -1,0 +1,5 @@
+{ "photos": { "page": 1, "pages": 1, "perpage": 100, "total": 2, 
+    "photo": [
+      { "id": "6974984792", "owner": "73562874@N08", "secret": "306e73891d", "server": "7109", "farm": 8, "title": "2012-03-08 11.45.12", "ispublic": 1, "isfriend": 0, "isfamily": 0 },
+      { "id": "7121067493", "owner": "73562874@N08", "secret": "c051d1238d", "server": "7195", "farm": 8, "title": "2012-03-08 11.45.05", "ispublic": 1, "isfriend": 0, "isfamily": 0 }
+    ] }, "stat": "ok" }

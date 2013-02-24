@@ -163,6 +163,13 @@ public interface Flickr extends ApiBinding {
 	 *
 	 * @return the panda operations
 	 */
-	PandaOperations pandaOperations(); 
+	PandaOperations pandaOperations();
+	
+	/**
+	 * Photos geo operations.
+	 *
+	 * @return the photos geo operations
+	 */
+	PhotosGeoOperations photosGeoOperations(); 
 
 }

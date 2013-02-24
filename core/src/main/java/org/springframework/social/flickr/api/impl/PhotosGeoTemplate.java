@@ -17,18 +17,16 @@ public class PhotosGeoTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public PhotosGeoTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public void batchCorrectLocation(String apiKey, String lat, String lon,
+	public void batchCorrectLocation(String lat, String lon,
 			String accuracy, String placeId, String woeId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (lat != null)
 			parameters.set("lat", lat);
 		if (lon != null)
@@ -45,28 +43,27 @@ public class PhotosGeoTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void correctLocation(String apiKey, String photoId, String placeId,
-			String woeId) {
+	public boolean correctLocation(String photoId, String placeId,
+			String woeId,String foursquareId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (placeId != null)
 			parameters.set("place_id", placeId);
 		if (woeId != null)
 			parameters.set("woe_id", woeId);
+		if(foursquareId !=null)
+			parameters.set("foursquare_id", foursquareId);
 		restTemplate.postForObject(
 				buildUri("flickr.photos.geo.correctLocation"), parameters,
 				Object.class);
+		return true;
 	}
 
 	@Override
-	public Photo getLocation(String apiKey, String photoId) {
+	public Photo getLocation(String photoId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		return restTemplate.getForObject(
@@ -75,11 +72,9 @@ public class PhotosGeoTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Perms getPerms(String apiKey, String photoId) {
+	public Perms getPerms(String photoId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		return restTemplate
@@ -89,12 +84,10 @@ public class PhotosGeoTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Photos photosForLocation(String apiKey, String lat, String lon,
+	public Photos photosForLocation(String lat, String lon,
 			String accuracy, String extras, String perPage, String page) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (lat != null)
 			parameters.set("lat", lat);
 		if (lon != null)
@@ -113,39 +106,35 @@ public class PhotosGeoTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void removeLocation(String apiKey, String photoId) {
+	public boolean removeLocation(String photoId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		restTemplate.postForObject(
 				buildUri("flickr.photos.geo.removeLocation"), parameters,
 				Object.class);
+		return true;
 	}
 
 	@Override
-	public void setContext(String apiKey, String photoId, String context) {
+	public boolean setContext(String photoId, String context) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (context != null)
 			parameters.set("context", context);
 		restTemplate.postForObject(buildUri("flickr.photos.geo.setContext"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void setLocation(String apiKey, String photoId, String lat,
+	public boolean setLocation(String photoId, String lat,
 			String lon, String accuracy, String context) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (lat != null)
@@ -158,15 +147,14 @@ public class PhotosGeoTemplate extends AbstractFlickrOperations implements
 			parameters.set("context", context);
 		restTemplate.postForObject(buildUri("flickr.photos.geo.setLocation"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void setPerms(String apiKey, String isPublic, String isContact,
+	public boolean setPerms(String isPublic, String isContact,
 			String isFriend, String isFamily, String photoId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (isPublic != null)
 			parameters.set("is_public", isPublic);
 		if (isContact != null)
@@ -179,5 +167,7 @@ public class PhotosGeoTemplate extends AbstractFlickrOperations implements
 			parameters.set("photo_id", photoId);
 		restTemplate.postForObject(buildUri("flickr.photos.geo.setPerms"),
 				parameters, Object.class);
+		return true;
+		
 	}
 }
