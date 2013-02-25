@@ -1,0 +1,4 @@
+{ "people": { "total": 1, 
+    "person": [
+      { "nsid": "73562874@N08", "username": "hemantsch", "iconserver": "7043", "iconfarm": 8, "realname": "Hemant Sachdeva", "path_alias": "hemant24", "added_by": "73562874@N08", "h": 25, "w": 25, "x": "176", "y": 83 }
+    ], "photo_width": "500", "photo_height": "375" }, "stat": "ok" }

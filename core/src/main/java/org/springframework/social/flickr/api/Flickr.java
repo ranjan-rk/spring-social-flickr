@@ -170,6 +170,13 @@ public interface Flickr extends ApiBinding {
 	 *
 	 * @return the photos geo operations
 	 */
-	PhotosGeoOperations photosGeoOperations(); 
+	PhotosGeoOperations photosGeoOperations();
+	
+	/**
+	 * Photos people operations.
+	 *
+	 * @return the photos people operations
+	 */
+	PhotosPeopleOperations photosPeopleOperations();
 
 }

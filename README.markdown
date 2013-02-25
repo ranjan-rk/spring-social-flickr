@@ -19,6 +19,7 @@ Following api are currently supported in this project:
 * photos.geo
 * photos.licenses
 * photos.notes
+* photos.people
 * photosets
 * blogs
 * groups

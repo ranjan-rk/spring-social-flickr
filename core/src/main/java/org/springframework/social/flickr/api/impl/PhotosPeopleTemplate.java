@@ -15,18 +15,16 @@ public class PhotosPeopleTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public PhotosPeopleTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public void add(String apiKey, String photoId, String userId,
+	public boolean add(String photoId, String userId,
 			String personX, String personY, String personW, String personH) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (userId != null)
@@ -41,27 +39,25 @@ public class PhotosPeopleTemplate extends AbstractFlickrOperations implements
 			parameters.set("person_h", personH);
 		restTemplate.postForObject(buildUri("flickr.photos.people.add"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void delete(String apiKey, String photoId, String userId) {
+	public boolean delete(String photoId, String userId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (userId != null)
 			parameters.set("user_id", userId);
 		restTemplate.postForObject(buildUri("flickr.photos.people.delete"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public People getList(String apiKey, String photoId) {
+	public People getList(String photoId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		return restTemplate.getForObject(
@@ -70,11 +66,9 @@ public class PhotosPeopleTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public void deleteCoords(String apiKey, String photoId, String userId) {
+	public boolean deleteCoords(String photoId, String userId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (userId != null)
@@ -82,15 +76,14 @@ public class PhotosPeopleTemplate extends AbstractFlickrOperations implements
 		restTemplate.postForObject(
 				buildUri("flickr.photos.people.deleteCoords"), parameters,
 				Object.class);
+		return true;
 	}
 
 	@Override
-	public void editCoords(String apiKey, String photoId, String userId,
+	public boolean editCoords(String photoId, String userId,
 			String personX, String personY, String personW, String personH) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (userId != null)
@@ -104,5 +97,6 @@ public class PhotosPeopleTemplate extends AbstractFlickrOperations implements
 		if (personH != null)
 			parameters.set("person_h", personH);
 		restTemplate.postForObject(buildUri("flickr.photos.people.editCoords"),parameters, Object.class);
+		return true;
 	}
 }
