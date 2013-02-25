@@ -8,6 +8,7 @@ public class Location extends Locality {
    	private Locality country;
    	private Locality region;
    	private Locality county;
+   	private Locality neighbourhood;
 	public String getAccuracy() {
 		return accuracy;
 	}
@@ -43,5 +44,11 @@ public class Location extends Locality {
 	}
 	public void setCounty(Locality county) {
 		this.county = county;
+	}
+	public Locality getNeighbourhood() {
+		return neighbourhood;
+	}
+	public void setNeighbourhood(Locality neighbourhood) {
+		this.neighbourhood = neighbourhood;
 	}
 }

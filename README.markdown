@@ -20,6 +20,8 @@ Following api are currently supported in this project:
 * photos.licenses
 * photos.notes
 * photos.people
+* photos.suggestions
+* photos.transform
 * photosets
 * blogs
 * groups

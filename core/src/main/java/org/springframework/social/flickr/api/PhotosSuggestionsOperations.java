@@ -13,41 +13,39 @@ public interface PhotosSuggestionsOperations {
 	/**
 	 * Approve suggestion.
 	 *
-	 * @param apiKey the api key
 	 * @param suggestionId the suggestion id
+	 * @return true, if successful
 	 */
-	void approveSuggestion(String apiKey, String suggestionId);
+	boolean approveSuggestion(String suggestionId);
 
 	/**
 	 * Gets the list.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 * @param statusId the status id
 	 * @return the list
 	 */
-	void getList(String apiKey, String photoId, String statusId);// photoId,statusId,
+	Suggestions getList(String photoId, String statusId);// photoId,statusId,
 
 	/**
 	 * Reject suggestion.
 	 *
-	 * @param apiKey the api key
 	 * @param suggestionId the suggestion id
+	 * @return true, if successful
 	 */
-	void rejectSuggestion(String apiKey, String suggestionId);
+	boolean rejectSuggestion(String suggestionId);
 
 	/**
 	 * Removes the suggestion.
 	 *
-	 * @param apiKey the api key
 	 * @param suggestionId the suggestion id
+	 * @return true, if successful
 	 */
-	void removeSuggestion(String apiKey, String suggestionId);
+	boolean removeSuggestion(String suggestionId);
 
 	/**
 	 * Suggest location.
 	 *
-	 * @param apiKey the api key
 	 * @param photoId the photo id
 	 * @param lat the lat
 	 * @param lon the lon
@@ -55,7 +53,8 @@ public interface PhotosSuggestionsOperations {
 	 * @param woeId the woe id
 	 * @param placeId the place id
 	 * @param note the note
+	 * @return the suggestions
 	 */
-	void suggestLocation(String apiKey, String photoId, String lat, String lon,
+	Suggestions suggestLocation(String photoId, String lat, String lon,
 			String accuracy, String woeId, String placeId, String note);// accuracy,woeId,placeId,note,
 }

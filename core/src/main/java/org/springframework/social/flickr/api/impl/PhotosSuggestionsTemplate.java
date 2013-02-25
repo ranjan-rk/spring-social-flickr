@@ -1,6 +1,7 @@
 package org.springframework.social.flickr.api.impl;
 
 import org.springframework.social.flickr.api.PhotosSuggestionsOperations;
+import org.springframework.social.flickr.api.Suggestions;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
@@ -13,74 +14,66 @@ public class PhotosSuggestionsTemplate extends AbstractFlickrOperations
 		implements PhotosSuggestionsOperations {
 	private final RestTemplate restTemplate;
 
-	public PhotosSuggestionsTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public PhotosSuggestionsTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser, consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public void approveSuggestion(String apiKey, String suggestionId) {
+	public boolean approveSuggestion(String suggestionId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (suggestionId != null)
 			parameters.set("suggestion_id", suggestionId);
 		restTemplate.postForObject(
 				buildUri("flickr.photos.suggestions.approveSuggestion"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void getList(String apiKey, String photoId, String statusId) {
+	public Suggestions getList(String photoId, String statusId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (statusId != null)
 			parameters.set("status_id", statusId);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.photos.suggestions.getList", parameters),
-				Object.class);
+				Suggestions.class);
 	}
 
 	@Override
-	public void rejectSuggestion(String apiKey, String suggestionId) {
+	public boolean rejectSuggestion(String suggestionId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (suggestionId != null)
 			parameters.set("suggestion_id", suggestionId);
 		restTemplate.postForObject(
 				buildUri("flickr.photos.suggestions.rejectSuggestion"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void removeSuggestion(String apiKey, String suggestionId) {
+	public boolean removeSuggestion(String suggestionId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (suggestionId != null)
 			parameters.set("suggestion_id", suggestionId);
 		restTemplate.postForObject(
 				buildUri("flickr.photos.suggestions.removeSuggestion"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void suggestLocation(String apiKey, String photoId, String lat,
+	public Suggestions suggestLocation(String photoId, String lat,
 			String lon, String accuracy, String woeId, String placeId,
 			String note) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		if (lat != null)
@@ -95,8 +88,8 @@ public class PhotosSuggestionsTemplate extends AbstractFlickrOperations
 			parameters.set("place_id", placeId);
 		if (note != null)
 			parameters.set("note", note);
-		restTemplate.postForObject(
+		return restTemplate.postForObject(
 				buildUri("flickr.photos.suggestions.suggestLocation"),
-				parameters, Object.class);
+				parameters, Suggestions.class);
 	}
 }

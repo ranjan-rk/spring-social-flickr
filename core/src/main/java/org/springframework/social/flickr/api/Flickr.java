@@ -178,5 +178,12 @@ public interface Flickr extends ApiBinding {
 	 * @return the photos people operations
 	 */
 	PhotosPeopleOperations photosPeopleOperations();
+	
+	/**
+	 * Photos suggestions operations.
+	 *
+	 * @return the photos suggestions operations
+	 */
+	PhotosSuggestionsOperations photosSuggestionsOperations();
 
 }
