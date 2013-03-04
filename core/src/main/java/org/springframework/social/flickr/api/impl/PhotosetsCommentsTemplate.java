@@ -16,18 +16,16 @@ public class PhotosetsCommentsTemplate extends AbstractFlickrOperations
 	private final RestTemplate restTemplate;
 
 	public PhotosetsCommentsTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public Comment addComment(String apiKey, String photosetId,
+	public Comment addComment(String photosetId,
 			String commentText) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photosetId != null)
 			parameters.set("photoset_id", photosetId);
 		if (commentText != null)
@@ -38,24 +36,21 @@ public class PhotosetsCommentsTemplate extends AbstractFlickrOperations
 	}
 
 	@Override
-	public void deleteComment(String apiKey, String commentId) {
+	public boolean deleteComment(String commentId) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (commentId != null)
 			parameters.set("comment_id", commentId);
 		restTemplate.postForObject(
 				buildUri("flickr.photosets.comments.deleteComment"),
 				parameters, Object.class);
+		return true;
 	}
 
 	@Override
-	public void editComment(String apiKey, String commentId, String commentText) {
+	public boolean editComment(String commentId, String commentText) {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (commentId != null)
 			parameters.set("comment_id", commentId);
 		if (commentText != null)
@@ -63,13 +58,12 @@ public class PhotosetsCommentsTemplate extends AbstractFlickrOperations
 		restTemplate.postForObject(
 				buildUri("flickr.photosets.comments.editComment"), parameters,
 				Object.class);
+		return true;
 	}
 
 	@Override
-	public Comments getList(String apiKey, String photosetId) {
+	public Comments getList(String photosetId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photosetId != null)
 			parameters.set("photoset_id", photosetId);
 		return restTemplate.getForObject(

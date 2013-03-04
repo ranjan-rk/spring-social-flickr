@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Comments {
 	String photoId;
+	String photoset_id;
 	ArrayList<Comment> comment;
 	
 	public String getPhotoId() {
@@ -17,5 +18,11 @@ public class Comments {
 	}
 	public void setComment(ArrayList<Comment> comment) {
 		this.comment = comment;
+	}
+	public String getPhotoset_id() {
+		return photoset_id;
+	}
+	public void setPhotoset_id(String photoset_id) {
+		this.photoset_id = photoset_id;
 	}
 }

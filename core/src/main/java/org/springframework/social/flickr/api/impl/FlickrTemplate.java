@@ -46,6 +46,7 @@ import org.springframework.social.flickr.api.PhotosGeoOperations;
 import org.springframework.social.flickr.api.PhotosPeopleOperations;
 import org.springframework.social.flickr.api.PhotosSuggestionsOperations;
 import org.springframework.social.flickr.api.PhotosetOperations;
+import org.springframework.social.flickr.api.PhotosetsCommentsOperations;
 import org.springframework.social.flickr.api.PlacesOperations;
 import org.springframework.social.flickr.api.PrefsOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
@@ -81,6 +82,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private PhotosGeoOperations photosGeoOperations;
     private PhotosPeopleOperations photosPeopleOperations;
     private PhotosSuggestionsOperations photosSuggestionsOperations;
+    private PhotosetsCommentsOperations photosetsCommentsOperations; 
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
     	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
@@ -119,6 +121,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.photosGeoOperations = new PhotosGeoTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.photosPeopleOperations = new PhotosPeopleTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.photosSuggestionsOperations = new PhotosSuggestionsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.photosetsCommentsOperations = new PhotosetsCommentsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 	}
 
 	private void initSubApis() {
@@ -247,5 +250,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
     public PhotosSuggestionsOperations photosSuggestionsOperations(){
     	return photosSuggestionsOperations;
+    }
+    public PhotosetsCommentsOperations photosetsCommentsOperations(){
+    	return photosetsCommentsOperations;
     }
 }

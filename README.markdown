@@ -23,6 +23,7 @@ Following api are currently supported in this project:
 * photos.suggestions
 * photos.transform
 * photosets
+* photosets.comments
 * blogs
 * groups
 * groups.discuss.replies
