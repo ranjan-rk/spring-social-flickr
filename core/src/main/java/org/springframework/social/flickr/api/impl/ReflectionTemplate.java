@@ -16,16 +16,14 @@ public class ReflectionTemplate extends AbstractFlickrOperations implements
 	private final RestTemplate restTemplate;
 
 	public ReflectionTemplate(RestTemplate restTemplate,
-			boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+			boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public Method getMethodInfo(String apiKey, String methodName) {
+	public Method getMethodInfo(String methodName) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (methodName != null)
 			parameters.set("method_name", methodName);
 		return restTemplate.getForObject(
@@ -34,10 +32,8 @@ public class ReflectionTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Methods getMethods(String apiKey) {
+	public Methods getMethods() {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.reflection.getMethods", parameters),
 				Methods.class);

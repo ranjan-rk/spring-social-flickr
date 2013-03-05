@@ -37,6 +37,7 @@ Following api are currently supported in this project:
 * interestingness
 * machinetags
 * panda
+* reflection (partially)
 
 ###As this project is still under development do not use it in your applications.###
 

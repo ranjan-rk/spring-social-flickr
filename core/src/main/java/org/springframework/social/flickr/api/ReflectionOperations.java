@@ -6,16 +6,16 @@ package org.springframework.social.flickr.api;
  *
  * @author HemantS
  */
-public interface ReflectionOperations {
-	
+public interface ReflectionOperations { 
 	/**
+	 * TODO: pending need to handle the response in different way
 	 * Gets the method info.
 	 *
 	 * @param apiKey the api key
 	 * @param methodName the method name
 	 * @return the method info
 	 */
-	Method getMethodInfo(String apiKey, String methodName);
+	Method getMethodInfo(String methodName);
 
 	/**
 	 * Gets the methods.
@@ -23,5 +23,5 @@ public interface ReflectionOperations {
 	 * @param apiKey the api key
 	 * @return the methods
 	 */
-	Methods getMethods(String apiKey);
+	Methods getMethods();
 }
