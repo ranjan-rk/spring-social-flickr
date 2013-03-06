@@ -9,12 +9,26 @@ package org.springframework.social.flickr.api;
 public class Tag{
    	private String _content;
    	private String author;
-   	private String id;
+   	private String authorname;
+   	public String getAuthorname() {
+		return authorname;
+	}
+	public void setAuthorname(String authorname) {
+		this.authorname = authorname;
+	}
+	private String id;
    	private String machine_tag;
    	private String raw;
    	private Number count;
+   	private Number score;
 
- 	public Number getCount() {
+ 	public Number getScore() {
+		return score;
+	}
+	public void setScore(Number score) {
+		this.score = score;
+	}
+	public Number getCount() {
 		return count;
 	}
 	public void setCount(Number count) {

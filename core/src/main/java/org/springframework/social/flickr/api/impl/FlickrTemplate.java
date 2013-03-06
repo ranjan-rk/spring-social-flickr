@@ -50,6 +50,7 @@ import org.springframework.social.flickr.api.PhotosetsCommentsOperations;
 import org.springframework.social.flickr.api.PlacesOperations;
 import org.springframework.social.flickr.api.PrefsOperations;
 import org.springframework.social.flickr.api.ReflectionOperations;
+import org.springframework.social.flickr.api.TagsOperations;
 import org.springframework.social.oauth1.AbstractOAuth1ApiBinding;
 
 /**
@@ -85,6 +86,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     private PhotosSuggestionsOperations photosSuggestionsOperations;
     private PhotosetsCommentsOperations photosetsCommentsOperations; 
     private ReflectionOperations reflectionOperations;
+    private TagsOperations tagsOperations;
+    
 
 	public FlickrTemplate(String consumerKey, String consumerSecret, String accessToken, String accessTokenSecret) {
     	super(consumerKey, consumerSecret, accessToken, accessTokenSecret);
@@ -125,6 +128,7 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
 		this.photosSuggestionsOperations = new PhotosSuggestionsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.photosetsCommentsOperations = new PhotosetsCommentsTemplate(getRestTemplate(), isAuthorized(),consumerKey);
 		this.reflectionOperations = new ReflectionTemplate(getRestTemplate(), isAuthorized(),consumerKey);
+		this.tagsOperations = new TagsTemplate(getRestTemplate(), isAuthorized(),consumerKey); 
 	}
 
 	private void initSubApis() {
@@ -259,5 +263,8 @@ public class FlickrTemplate extends AbstractOAuth1ApiBinding implements Flickr {
     }
     public ReflectionOperations reflectionOperations(){
     	return reflectionOperations;
+    }
+    public TagsOperations tagsOperations(){
+    	return tagsOperations;
     }
 }

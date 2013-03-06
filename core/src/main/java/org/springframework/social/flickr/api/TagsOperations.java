@@ -5,8 +5,7 @@ package org.springframework.social.flickr.api;
  * The Interface TagsOperations.
  *
  * @author HemantS
- */
-public interface TagsOperations {
+ */ public interface TagsOperations {
 	
 	/**
 	 * Gets the cluster photos.
@@ -16,8 +15,7 @@ public interface TagsOperations {
 	 * @param clusterId the cluster id
 	 * @return the cluster photos
 	 */
-	void getClusterPhotos(String apiKey, String tag, String clusterId);
-
+	Photos getClusterPhotos(String tag, String clusterId); 
 	/**
 	 * Gets the clusters.
 	 *
@@ -25,7 +23,7 @@ public interface TagsOperations {
 	 * @param tag the tag
 	 * @return the clusters
 	 */
-	Clusters getClusters(String apiKey, String tag);
+	Clusters getClusters(String tag);
 
 	/**
 	 * Gets the hot list.
@@ -35,7 +33,7 @@ public interface TagsOperations {
 	 * @param count the count
 	 * @return the hot list
 	 */
-	Hottags getHotList(String apiKey, String period, String count);// period,count,
+	Hottags getHotList(String period, String count);// period,count,
 
 	/**
 	 * Gets the list photo.
@@ -44,7 +42,7 @@ public interface TagsOperations {
 	 * @param photoId the photo id
 	 * @return the list photo
 	 */
-	Photo getListPhoto(String apiKey, String photoId);
+	Photo getListPhoto(String photoId);
 
 	/**
 	 * Gets the list user.
@@ -53,7 +51,7 @@ public interface TagsOperations {
 	 * @param userId the user id
 	 * @return the list user
 	 */
-	Who getListUser(String apiKey, String userId);// userId,
+	Who getListUser(String userId);// userId,
 
 	/**
 	 * Gets the list user popular.
@@ -63,7 +61,7 @@ public interface TagsOperations {
 	 * @param count the count
 	 * @return the list user popular
 	 */
-	Who getListUserPopular(String apiKey, String userId, String count);// userId,count,
+	Who getListUserPopular(String userId, String count);// userId,count,
 
 	/**
 	 * Gets the list user raw.
@@ -72,7 +70,7 @@ public interface TagsOperations {
 	 * @param tag the tag
 	 * @return the list user raw
 	 */
-	Who getListUserRaw(String apiKey, String tag);// tag,
+	Who getListUserRaw(String tag);// tag,
 
 	/**
 	 * Gets the most frequently used.
@@ -80,7 +78,7 @@ public interface TagsOperations {
 	 * @param apiKey the api key
 	 * @return the most frequently used
 	 */
-	Rsp getMostFrequentlyUsed(String apiKey);
+	Rsp getMostFrequentlyUsed();
 
 	/**
 	 * Gets the related.
@@ -89,5 +87,5 @@ public interface TagsOperations {
 	 * @param tag the tag
 	 * @return the related
 	 */
-	Tags getRelated(String apiKey, String tag);
+	Tags getRelated(String tag);
 }

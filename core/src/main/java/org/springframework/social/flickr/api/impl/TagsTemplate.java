@@ -3,6 +3,7 @@ package org.springframework.social.flickr.api.impl;
 import org.springframework.social.flickr.api.Clusters;
 import org.springframework.social.flickr.api.Hottags;
 import org.springframework.social.flickr.api.Photo;
+import org.springframework.social.flickr.api.Photos;
 import org.springframework.social.flickr.api.Rsp;
 import org.springframework.social.flickr.api.Tags;
 import org.springframework.social.flickr.api.TagsOperations;
@@ -19,30 +20,26 @@ public class TagsTemplate extends AbstractFlickrOperations implements
 		TagsOperations {
 	private final RestTemplate restTemplate;
 
-	public TagsTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser) {
-		super(isAuthorizedForUser);
+	public TagsTemplate(RestTemplate restTemplate, boolean isAuthorizedForUser,String consumerKey) {
+		super(isAuthorizedForUser,consumerKey);
 		this.restTemplate = restTemplate;
 	}
 
 	@Override
-	public void getClusterPhotos(String apiKey, String tag, String clusterId) {
+	public Photos getClusterPhotos(String tag, String clusterId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (tag != null)
 			parameters.set("tag", tag);
 		if (clusterId != null)
 			parameters.set("cluster_id", clusterId);
-		restTemplate.getForObject(
+		return restTemplate.getForObject(
 				buildUri("flickr.tags.getClusterPhotos", parameters),
-				Object.class);
+				Photos.class);
 	}
 
 	@Override
-	public Clusters getClusters(String apiKey, String tag) {
+	public Clusters getClusters(String tag) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (tag != null)
 			parameters.set("tag", tag);
 		return restTemplate
@@ -51,10 +48,8 @@ public class TagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Hottags getHotList(String apiKey, String period, String count) {
+	public Hottags getHotList(String period, String count) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (period != null)
 			parameters.set("period", period);
 		if (count != null)
@@ -64,10 +59,8 @@ public class TagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Photo getListPhoto(String apiKey, String photoId) {
+	public Photo getListPhoto(String photoId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (photoId != null)
 			parameters.set("photo_id", photoId);
 		return restTemplate.getForObject(
@@ -75,10 +68,8 @@ public class TagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Who getListUser(String apiKey, String userId) {
+	public Who getListUser(String userId) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (userId != null)
 			parameters.set("user_id", userId);
 		return restTemplate.getForObject(
@@ -86,10 +77,8 @@ public class TagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Who getListUserPopular(String apiKey, String userId, String count) {
+	public Who getListUserPopular(String userId, String count) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (userId != null)
 			parameters.set("user_id", userId);
 		if (count != null)
@@ -100,10 +89,8 @@ public class TagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Who getListUserRaw(String apiKey, String tag) {
+	public Who getListUserRaw(String tag) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (tag != null)
 			parameters.set("tag", tag);
 		return restTemplate.getForObject(
@@ -111,21 +98,17 @@ public class TagsTemplate extends AbstractFlickrOperations implements
 	}
 
 	@Override
-	public Rsp getMostFrequentlyUsed(String apiKey) {
+	public Rsp getMostFrequentlyUsed() {
 		requireAuthorization();
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		return restTemplate.getForObject(
 				buildUri("flickr.tags.getMostFrequentlyUsed", parameters),
 				Rsp.class);
 	}
 
 	@Override
-	public Tags getRelated(String apiKey, String tag) {
+	public Tags getRelated(String tag) {
 		MultiValueMap<String, String> parameters = new LinkedMultiValueMap<String, String>();
-		if (apiKey != null)
-			parameters.set("api_key", apiKey);
 		if (tag != null)
 			parameters.set("tag", tag);
 		return restTemplate.getForObject(
