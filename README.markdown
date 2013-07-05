@@ -1,13 +1,13 @@
 Spring Social Flickr
 ======
-Spring social flickr is project that helps to integrate your application with flickr similar to spring social facebook , twitter. As flickr's authentication is OAuth-like but not exaclty OAuth 1 we have done some tweak to make it work. 
+Spring Social Flickr helps you integrate your application with Flickr similar to Spring Social Facebook , Twitter. As Flickr's authentication is OAuth-like but not exactly OAuth 1 we have done some tweak to make it work. 
 
 ##Running Example##
-This project also contains web module to show some of working APIs example. After deploying web module you require to hit URL : 
+This project also contains web module to demonstrate the usage of APIs. After deploying web module examples can be accessed at the following URL: 
 http://localhost:8080/spring-social-flickr-web/signin.jsp
 
 ##APIs Supported##
-Following api are currently supported in this project:
+Following APIs are currently supported in this project:
 
 * people
 * photos
@@ -39,5 +39,4 @@ Following api are currently supported in this project:
 * panda
 * reflection (partially)
 
-###As this project is still under development do not use it in your applications.###
 
